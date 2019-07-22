@@ -1,0 +1,3 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/leftouter2.so -fPIC -shared $(SOleftouter2) $(SPL_LDFLAGS)\
+	    build/operator/leftouter1.o \
+	    build/type/BeJwrMS01ykwptkguLS7Jz00tKjZJSSxJLTYvKMpPKU0uKbUoLE3MK8ksqQQATc4QBX.o 

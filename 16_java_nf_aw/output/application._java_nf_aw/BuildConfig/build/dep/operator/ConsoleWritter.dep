@@ -1,0 +1,1 @@
+-I ../../.././com.nctu.myutilx/native.function/. -I /opt/ibm/InfoSphere_Streams/4.3.0.3/java/include -I ../../.././com.nctu.myutils/native.function/. 

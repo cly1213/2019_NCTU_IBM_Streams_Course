@@ -1,0 +1,26 @@
+namespace application ;
+
+composite Sender
+{
+	graph
+		(stream<varType varName> TCPSource_1_out0) as TCPSource_1 = TCPSource()
+		{
+			param
+				role : parameterValue ;
+		}
+
+		(stream<varType varName> Custom_2_out0 ; stream<varType varName>
+			Custom_2_out1) as Custom_2 = Custom()
+		{
+		}
+
+		() as TCPSink_3 = TCPSink(InputStreamName0)
+		{
+			param
+				role : parameterValue ;
+		}
+
+}
+
+
+

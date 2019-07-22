@@ -1,0 +1,4 @@
+namespace application;
+
+composite _config_aw {
+}

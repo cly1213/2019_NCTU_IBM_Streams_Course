@@ -1,0 +1,4 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/FlightGate.so -fPIC -shared $(SOFlightGate) $(SPL_LDFLAGS)\
+	    build/operator/FlightGate.o \
+	    build/type/BeJwrMS02T8upjM8rzS02T0ktcEksSS02yy_1KTM_1MKzZJSS0uKTZJB4oBADuUA9_1.o \
+	    build/type/BeJwrMSk2T8upjM8rzS02T0ktcEksSS02yy_1KTM_1MKzZJSS0uAQDkWA02.o 

@@ -1,0 +1,63 @@
+namespace application ;
+
+composite _deduplicate_aw
+{
+	type
+		Book = tuple<rstring title, rstring isbn, rstring author, rstring publisher, float32 price>;
+	graph
+		stream<Book> EBook = Beacon()
+		{
+			param
+				iterations: 100u;
+		}
+
+		stream<Book> BookREC = Custom(EBook)
+		{
+			logic
+				state: mutable uint32 cnt = 0;
+				onTuple EBook: {
+					++cnt;
+					EBook = {
+						title = "Title" + (rstring) cnt,
+						isbn = "ISBM" + (rstring) cnt,
+						author = "Author" + (rstring) cnt,
+						publisher = "Publisher" + (rstring) cnt,
+						price = (float32) random() * (float32) 100.0
+					};
+					submit(EBook, BookREC);
+				}
+		}
+
+		stream<Book> DBookREC = Custom(BookREC)
+		{
+			logic
+				state: mutable uint32 cnt = 0;
+				onTuple BookREC: {
+					submit(BookREC, DBookREC);
+					if (++cnt% 2u == 0u) {
+						submit(BookREC, DBookREC);
+					}
+				}
+		}
+
+		(stream<Book> vBook ; stream<Book> D_Book ) = DeDuplicate(DBookREC)
+		{
+			param
+				timeOut: 120.0;
+				key:	isbn;
+		}
+
+		() as FileSink_5 = FileSink(vBook)
+		{
+			param
+				file : "Books" ;
+		}
+		() as FileSink_6 = FileSink(D_Book)
+		{
+			param
+				file : "Duplicates" ;
+		}
+		
+
+}
+

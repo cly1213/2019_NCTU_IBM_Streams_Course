@@ -1,0 +1,65 @@
+<% # Switch to Perl scripting mode
+	use integer;
+	print "// Perl Arguments in effect for mixed-mode processing\n";
+	my $argCnt = @ARGV;
+	print "// Argument count: ", $argCnt, "\n";
+	my $argIdx;
+	for ($argIdx = 0; $argIdx < $argCnt; $argIdx++) {
+		print "// \$ARGV\[", $argIdx, "\]\:", $ARGV[$argIdx], "\n";
+	}
+%>
+
+namespace application;
+
+composite _split {
+	type 
+		stockReport = tuple<rstring symbol, rstring datetime, float64 price, uint32 vol>;
+	
+	graph
+		stream<stockReport> SR = FileSource() {
+			param
+				file: "/data/Day2/05_stock_report.dat";
+				format: csv;
+				hasDelayField: true;
+		}
+		
+		<% my $cnt=0; %>
+		( <% for ($cnt=1; $cnt <= 26; $cnt++) { %>
+		  stream<stockReport> SROutput<%=$cnt%>
+		  
+		  <% if ($cnt < 26) { %> ;
+		  
+		        <% } %>
+		  <% } %>
+		) = Split(SR) {
+			param
+				file: "/data/Day2/05_mapping.txt";
+				key: symbol;
+				
+		
+		
+		}
+
+    () as sink1 = FileSink(SROutput1) {
+    	param
+    		file: "ibm.txt";
+    }
+    
+    () as sink5 = FileSink(SROutput5) {
+    	param
+    		file: "microsoft.txt";
+    }
+    
+    () as sink15 = FileSink(SROutput15) {
+    	param
+    		file: "emc.txt";
+    }
+    
+    () as sink24 = FileSink(SROutput24) {
+    	param
+    		file: "google.txt";
+    }
+    
+    
+}
+

@@ -1,0 +1,3 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/SRO.so -fPIC -shared $(SOSRO) $(SPL_LDFLAGS)\
+	    build/operator/SRO.o \
+	    build/type/BeJwrMSk2yUvMTc00ykzJNClKzMsuNs1NzMovAgB23glj.o 

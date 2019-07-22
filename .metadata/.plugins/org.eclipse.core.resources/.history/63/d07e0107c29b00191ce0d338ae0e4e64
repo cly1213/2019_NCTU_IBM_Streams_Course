@@ -1,0 +1,18 @@
+namespace application ;
+
+composite _source_sink
+{
+	graph
+		(stream<varType varName> FileSource_1_out0 ; stream<varType varName>
+			FileSource_1_out1) as FileSource_1 = FileSource(FileSource_1_out1)
+		{
+		}
+
+		() as FileSink_2 = FileSink(FileSource_1_out0)
+		{
+			param
+				file : parameterValue ;
+		}
+
+}
+

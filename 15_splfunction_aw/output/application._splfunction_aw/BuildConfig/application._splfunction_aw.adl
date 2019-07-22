@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<applicationSet xmlns="http://www.ibm.com/xmlns/prod/streams/application/v4200" name="application::_splfunction_aw.appset" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <description>application::_splfunction_aw application set</description>
+
+  <splApplication adlPath="BuildConfig/application._splfunction_aw.adl" applicationDirectory="toolkits/15_splfunction_aw" applicationScope="Default" avoidRuntimeYield="auto" buildId="" bundle="./application._splfunction_aw.sab" checkpointDirectory="/home/edu22/workspace/15_splfunction_aw/data/ckpt" dataDirectory="/home/edu22/workspace/15_splfunction_aw/data" name="application::_splfunction_aw" outputDirectory="BuildConfig" productVersion="4.3.0.3" standaloneApplicationDirectory="toolkits/15_splfunction_aw" version="1.0.0">
+    <libraries/>
+    <hostpools>
+      <hostpool index="0" membershipMode="shared" name="$default"/>
+    </hostpools>
+    <tupleTypes>
+      <tupleType index="0">
+        <attribute name="op" type="rstring"/>
+        <attribute name="op1" type="uint32"/>
+        <attribute name="op2" type="uint32"/>
+        <attribute name="result" type="uint32"/>
+        <tuple>
+          <tt:attr name="op" type="rstring"/>
+          <tt:attr name="op1" type="uint32"/>
+          <tt:attr name="op2" type="uint32"/>
+          <tt:attr name="result" type="uint32"/>
+        </tuple>
+      </tupleType>
+    </tupleTypes>
+    <primitiveOperDefinitions>
+      <primitiveOperDefinition index="0" kind="spl.adapter::FileSource" runtimeType="SPL_CPlusPlus" toolkitIndex="1">
+        <customMetricIndicies>
+          <customMetricIndex>0</customMetricIndex>
+          <customMetricIndex>1</customMetricIndex>
+        </customMetricIndicies>
+      </primitiveOperDefinition>
+      <primitiveOperDefinition index="1" kind="spl.utility::Custom" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+    </primitiveOperDefinitions>
+    <composites>
+      <sourceUris>
+        <uri index="0" path="file:///home/edu22/workspace/15_splfunction_aw/application/_splfunction_aw.spl"/>
+      </sourceUris>
+      <compositeOperDefinitions>
+        <compositeOperDefinition endLine="35" index="0" kind="application::_splfunction_aw" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="0" startLine="3" toolkitIndex="0">
+          <description>application::_splfunction_aw Composite</description>
+        </compositeOperDefinition>
+      </compositeOperDefinitions>
+      <compositeOperInstances>
+        <compositeOperInstance definitionIndex="0" endLine="35" index="2" name="application::_splfunction_aw" sourceIndex="0" startLine="3">
+          <primitiveOperInstance definitionIndex="0" endLine="10" index="0" name="Aop" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="5">
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="Aop" streamName="Aop" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="1" operName="writter" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;operation&quot;"/>
+            </runtimeConstants>
+            <sharedObject class="Aop">
+              <wrapper>none</wrapper>
+              <uri>bin/Aop.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="33" index="1" name="writter" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="12">
+            <splAnnotation internal="true" tag="logicClause">
+              <value key="hasState" type="boolean">false</value>
+              <value key="hasOnProcess" type="boolean">false</value>
+              <value key="hasOnTuple" type="boolean">true</value>
+              <value key="hasOnPunct" type="boolean">false</value>
+            </splAnnotation>
+            <inputPorts>
+              <port encoding="LE" index="0" isControl="true" isMutable="true" name="Aop" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="0" operName="Aop" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;Add&quot;"/>
+              <runtimeConstant name="lit$1" value="&quot;Sub&quot;"/>
+              <runtimeConstant name="lit$2" value="&quot;Mul&quot;"/>
+              <runtimeConstant name="lit$3" value="&quot;Div&quot;"/>
+            </runtimeConstants>
+            <sharedObject class="writter">
+              <wrapper>none</wrapper>
+              <uri>bin/writter.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+        </compositeOperInstance>
+      </compositeOperInstances>
+    </composites>
+    <toolkits>
+      <toolkit index="0" name="15_splfunction_aw" uri="file:///home/edu22/workspace/15_splfunction_aw" version="1.0.0"/>
+      <toolkit index="1" name="spl" uri="file:///opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/spl" version="1.4.0"/>
+    </toolkits>
+    <customMetrics>
+      <customMetric index="0" kind="Counter" name="nFilesOpened">
+        <description>The number of files opened by the `FileSource` operator.</description>
+      </customMetric>
+      <customMetric index="1" kind="Counter" name="nInvalidTuples">
+        <description>The number of tuples that failed to read correctly in csv or txt format.</description>
+      </customMetric>
+    </customMetrics>
+  </splApplication>
+
+</applicationSet>

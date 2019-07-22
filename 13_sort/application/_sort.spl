@@ -1,0 +1,63 @@
+namespace application;
+
+composite _sort {
+
+	type employee = tuple< rstring name, uint32 id, rstring title, float32 salary>;
+	
+	graph
+		stream<employee> REC = FileSource()
+		{
+			param
+				file: "/data/Day4/13_EmployeeRecords.txt";
+				format:	csv;
+				hasDelayField:	true;
+				initDelay:	3.0;
+		}
+
+		stream<employee> SortByName= Sort(REC)
+		{
+			window
+				REC:	tumbling, count(5) ;
+			param
+				sortBy : name ;
+		}
+		
+		() as NAME =  Custom(SortByName)
+		{
+			logic
+				onTuple SortByName :
+					printStringLn((rstring) SortByName);
+		}
+
+		stream<employee> SortById = Sort(REC)
+		{
+			window
+				REC : tumbling, punct() ;
+			param
+				sortBy : id ;
+		}
+		() as ID = FileSink(SortById)
+		{
+			param
+				file : "SortID" ;
+				flush:	1u;
+		}
+
+		stream<employee> SortByTitle = Sort( REC )
+		{
+			window
+				REC : tumbling, time(8) ;
+			param
+				sortBy : title ;
+		}
+
+		() as Title = FileSink(SortByTitle)
+		{
+			param
+				file : "SortTitle" ;
+				flush:	1u;
+		}
+
+		
+
+}

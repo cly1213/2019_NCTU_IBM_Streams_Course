@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<applicationSet xmlns="http://www.ibm.com/xmlns/prod/streams/application/v4200" name="application::_join.appset" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <description>application::_join application set</description>
+
+  <splApplication adlPath="BuildConfig/application._join.adl" applicationDirectory="toolkits/07_join" applicationScope="Default" avoidRuntimeYield="auto" buildId="" bundle="./application._join.sab" checkpointDirectory="/home/edu22/workspace/07_join/data/ckpt" dataDirectory="/home/edu22/workspace/07_join/data" name="application::_join" outputDirectory="BuildConfig" productVersion="4.3.0.3" standaloneApplicationDirectory="toolkits/07_join" version="1.0.0">
+    <libraries/>
+    <hostpools>
+      <hostpool index="0" membershipMode="shared" name="$default"/>
+    </hostpools>
+    <tupleTypes>
+      <tupleType index="0">
+        <attribute name="name" type="rstring"/>
+        <attribute name="dept" type="uint32"/>
+        <tuple>
+          <tt:attr name="name" type="rstring"/>
+          <tt:attr name="dept" type="uint32"/>
+        </tuple>
+      </tupleType>
+      <tupleType index="1">
+        <attribute name="dept_id" type="uint32"/>
+        <attribute name="dep_name" type="rstring"/>
+        <tuple>
+          <tt:attr name="dept_id" type="uint32"/>
+          <tt:attr name="dep_name" type="rstring"/>
+        </tuple>
+      </tupleType>
+      <tupleType index="2">
+        <attribute name="id" type="uint32"/>
+        <attribute name="customer" type="rstring"/>
+        <attribute name="date" type="rstring"/>
+        <attribute name="product" type="rstring"/>
+        <attribute name="quantity" type="uint32"/>
+        <tuple>
+          <tt:attr name="id" type="uint32"/>
+          <tt:attr name="customer" type="rstring"/>
+          <tt:attr name="date" type="rstring"/>
+          <tt:attr name="product" type="rstring"/>
+          <tt:attr name="quantity" type="uint32"/>
+        </tuple>
+      </tupleType>
+      <tupleType index="3">
+        <attribute name="product_id" type="uint32"/>
+        <attribute name="productName" type="rstring"/>
+        <attribute name="quantity" type="uint32"/>
+        <attribute name="price" type="float32"/>
+        <tuple>
+          <tt:attr name="product_id" type="uint32"/>
+          <tt:attr name="productName" type="rstring"/>
+          <tt:attr name="quantity" type="uint32"/>
+          <tt:attr name="price" type="float32"/>
+        </tuple>
+      </tupleType>
+      <tupleType index="4">
+        <attribute name="name" type="rstring"/>
+        <attribute name="dept" type="uint32"/>
+        <attribute name="dept_id" type="uint32"/>
+        <attribute name="dep_name" type="rstring"/>
+        <tuple>
+          <tt:attr name="name" type="rstring"/>
+          <tt:attr name="dept" type="uint32"/>
+          <tt:attr name="dept_id" type="uint32"/>
+          <tt:attr name="dep_name" type="rstring"/>
+        </tuple>
+      </tupleType>
+      <tupleType index="5">
+        <attribute name="id" type="uint32"/>
+        <attribute name="customer" type="rstring"/>
+        <attribute name="date" type="rstring"/>
+        <attribute name="product" type="rstring"/>
+        <attribute name="quantity" type="uint32"/>
+        <attribute name="product_id" type="uint32"/>
+        <attribute name="productName" type="rstring"/>
+        <attribute name="price" type="float32"/>
+        <attribute name="quantity2" type="uint32"/>
+        <tuple>
+          <tt:attr name="id" type="uint32"/>
+          <tt:attr name="customer" type="rstring"/>
+          <tt:attr name="date" type="rstring"/>
+          <tt:attr name="product" type="rstring"/>
+          <tt:attr name="quantity" type="uint32"/>
+          <tt:attr name="product_id" type="uint32"/>
+          <tt:attr name="productName" type="rstring"/>
+          <tt:attr name="price" type="float32"/>
+          <tt:attr name="quantity2" type="uint32"/>
+        </tuple>
+      </tupleType>
+    </tupleTypes>
+    <primitiveOperDefinitions>
+      <primitiveOperDefinition index="0" kind="spl.adapter::FileSource" runtimeType="SPL_CPlusPlus" toolkitIndex="1">
+        <customMetricIndicies>
+          <customMetricIndex>0</customMetricIndex>
+          <customMetricIndex>1</customMetricIndex>
+        </customMetricIndicies>
+      </primitiveOperDefinition>
+      <primitiveOperDefinition index="1" kind="spl.relational::Join" runtimeType="SPL_CPlusPlus" toolkitIndex="1">
+        <customMetricIndicies>
+          <customMetricIndex>2</customMetricIndex>
+          <customMetricIndex>3</customMetricIndex>
+        </customMetricIndicies>
+      </primitiveOperDefinition>
+      <primitiveOperDefinition index="2" kind="spl.utility::Custom" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+      <primitiveOperDefinition index="3" kind="spl.adapter::FileSink" runtimeType="SPL_CPlusPlus" toolkitIndex="1">
+        <customMetricIndicies>
+          <customMetricIndex>4</customMetricIndex>
+          <customMetricIndex>5</customMetricIndex>
+        </customMetricIndicies>
+      </primitiveOperDefinition>
+    </primitiveOperDefinitions>
+    <composites>
+      <sourceUris>
+        <uri index="0" path="file:///home/edu22/workspace/07_join/application/_join.spl"/>
+      </sourceUris>
+      <compositeOperDefinitions>
+        <compositeOperDefinition endLine="128" index="0" kind="application::_join" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="0" startLine="3" toolkitIndex="0">
+          <description>application::_join Composite</description>
+        </compositeOperDefinition>
+      </compositeOperDefinitions>
+      <compositeOperInstances>
+        <compositeOperInstance definitionIndex="0" endLine="128" index="11" name="application::_join" sourceIndex="0" startLine="3">
+          <primitiveOperInstance definitionIndex="0" endLine="19" index="0" name="Employee" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="12">
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="Employee" streamName="Employee" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="4" operName="InnerJoin1" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;/data/Day2/07_EmployeeRecords.txt&quot;"/>
+              <runtimeConstant name="lit$1" value="2"/>
+            </runtimeConstants>
+            <sharedObject class="Employee">
+              <wrapper>none</wrapper>
+              <uri>bin/Employee.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="0" endLine="28" index="1" name="Department" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="21">
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="Department" streamName="Department" transport="TCP" tupleTypeIndex="1" viewable="true">
+                <connections>
+                  <connection operIndex="4" operName="InnerJoin1" portIndex="1" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;/data/Day2/07_DepartmentRecords.txt&quot;"/>
+              <runtimeConstant name="lit$1" value="2"/>
+            </runtimeConstants>
+            <sharedObject class="Department">
+              <wrapper>none</wrapper>
+              <uri>bin/Department.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="0" endLine="37" index="2" name="Order" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="30">
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="Order" streamName="Order" transport="TCP" tupleTypeIndex="2" viewable="true">
+                <connections>
+                  <connection operIndex="6" operName="InnerJoin2" portIndex="0" portKind="input"/>
+                  <connection operIndex="8" operName="LeftOuter1" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;/data/Day2/07_orders.txt&quot;"/>
+              <runtimeConstant name="lit$1" value="2"/>
+            </runtimeConstants>
+            <sharedObject class="Order">
+              <wrapper>none</wrapper>
+              <uri>bin/Order.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="0" endLine="46" index="3" name="Inventory" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="39">
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="Inventory" streamName="Inventory" transport="TCP" tupleTypeIndex="3" viewable="true">
+                <connections>
+                  <connection operIndex="6" operName="InnerJoin2" portIndex="1" portKind="input"/>
+                  <connection operIndex="8" operName="LeftOuter1" portIndex="1" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;/data/Day2/07_inventory.txt&quot;"/>
+              <runtimeConstant name="lit$1" value="2"/>
+            </runtimeConstants>
+            <sharedObject class="Inventory">
+              <wrapper>none</wrapper>
+              <uri>bin/Inventory.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="56" index="4" name="InnerJoin1" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="48">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="Employee" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="0" operName="Employee" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+              <port encoding="LE" index="1" isMutable="false" name="Department" transport="TCP" tupleTypeIndex="1">
+                <connections>
+                  <connection operIndex="1" operName="Department" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="InnerJoin1" streamName="InnerJoin1" transport="TCP" tupleTypeIndex="4" viewable="true">
+                <connections>
+                  <connection operIndex="5" operName="innerjoin" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="20"/>
+              <runtimeConstant name="lit$1" value="1"/>
+              <runtimeConstant name="lit$2" value="20"/>
+              <runtimeConstant name="lit$3" value="1"/>
+            </runtimeConstants>
+            <sharedObject class="InnerJoin1">
+              <wrapper>none</wrapper>
+              <uri>bin/InnerJoin1.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="2" endLine="68" index="5" name="innerjoin" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="58">
+            <splAnnotation internal="true" tag="logicClause">
+              <value key="hasState" type="boolean">true</value>
+              <value key="hasOnProcess" type="boolean">false</value>
+              <value key="hasOnTuple" type="boolean">true</value>
+              <value key="hasOnPunct" type="boolean">false</value>
+            </splAnnotation>
+            <inputPorts>
+              <port encoding="LE" index="0" isControl="true" isMutable="false" name="InnerJoin1" transport="TCP" tupleTypeIndex="4">
+                <connections>
+                  <connection operIndex="4" operName="InnerJoin1" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="0"/>
+              <runtimeConstant name="lit$1" value="&quot;\n a) Tuples joined during Inner Join with sliding count(20)&quot;"/>
+              <runtimeConstant name="lit$2" value="&quot;  a) &quot;"/>
+              <runtimeConstant name="lit$3" value="0"/>
+            </runtimeConstants>
+            <sharedObject class="innerjoin">
+              <wrapper>none</wrapper>
+              <uri>bin/innerjoin.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="85" index="6" name="InnerJoin2" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="false" sourceIndex="0" startLine="70">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="Order" transport="TCP" tupleTypeIndex="2">
+                <connections>
+                  <connection operIndex="2" operName="Order" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+              <port encoding="LE" index="1" isMutable="false" name="Inventory" transport="TCP" tupleTypeIndex="3">
+                <connections>
+                  <connection operIndex="3" operName="Inventory" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="InnerJoin2" streamName="InnerJoin2" transport="TCP" tupleTypeIndex="5" viewable="true">
+                <connections>
+                  <connection operIndex="7" operName="FileSink_8" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="125"/>
+              <runtimeConstant name="lit$1" value="1"/>
+              <runtimeConstant name="lit$2" value="1"/>
+              <runtimeConstant name="lit$3" value="7"/>
+              <runtimeConstant name="lit$4" value="1"/>
+            </runtimeConstants>
+            <sharedObject class="InnerJoin2">
+              <wrapper>none</wrapper>
+              <uri>bin/InnerJoin2.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="3" endLine="91" index="7" name="FileSink_8" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="87">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="InnerJoin2" transport="TCP" tupleTypeIndex="5">
+                <connections>
+                  <connection operIndex="6" operName="InnerJoin2" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;InnerJoin2&quot;"/>
+            </runtimeConstants>
+            <sharedObject class="FileSink_8">
+              <wrapper>none</wrapper>
+              <uri>bin/FileSink_8.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="102" index="8" name="LeftOuter1" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="false" sourceIndex="0" startLine="93">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="Order" transport="TCP" tupleTypeIndex="2">
+                <connections>
+                  <connection operIndex="2" operName="Order" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+              <port encoding="LE" index="1" isMutable="false" name="Inventory" transport="TCP" tupleTypeIndex="3">
+                <connections>
+                  <connection operIndex="3" operName="Inventory" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="LeftOuter1" streamName="LeftOuter1" transport="TCP" tupleTypeIndex="2" viewable="true">
+                <connections>
+                  <connection operIndex="9" operName="leftouter1" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+              <port encoding="LE" index="1" isMutable="true" name="LeftOuter2" streamName="LeftOuter2" transport="TCP" tupleTypeIndex="2" viewable="true">
+                <connections>
+                  <connection operIndex="10" operName="leftouter2" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="6"/>
+              <runtimeConstant name="lit$1" value="1"/>
+              <runtimeConstant name="lit$2" value="6"/>
+              <runtimeConstant name="lit$3" value="1"/>
+            </runtimeConstants>
+            <sharedObject class="LeftOuter1">
+              <wrapper>none</wrapper>
+              <uri>bin/LeftOuter1.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="2" endLine="114" index="9" name="leftouter1" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="104">
+            <splAnnotation internal="true" tag="logicClause">
+              <value key="hasState" type="boolean">true</value>
+              <value key="hasOnProcess" type="boolean">false</value>
+              <value key="hasOnTuple" type="boolean">true</value>
+              <value key="hasOnPunct" type="boolean">false</value>
+            </splAnnotation>
+            <inputPorts>
+              <port encoding="LE" index="0" isControl="true" isMutable="false" name="LeftOuter1" transport="TCP" tupleTypeIndex="2">
+                <connections>
+                  <connection operIndex="8" operName="LeftOuter1" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="0"/>
+              <runtimeConstant name="lit$1" value="&quot;\n c) Tuples matched during LeftOuter Join with sliding time(6)&quot;"/>
+              <runtimeConstant name="lit$2" value="&quot;  c) &quot;"/>
+              <runtimeConstant name="lit$3" value="0"/>
+            </runtimeConstants>
+            <sharedObject class="leftouter1">
+              <wrapper>none</wrapper>
+              <uri>bin/leftouter1.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="2" endLine="126" index="10" name="leftouter2" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="116">
+            <splAnnotation internal="true" tag="logicClause">
+              <value key="hasState" type="boolean">true</value>
+              <value key="hasOnProcess" type="boolean">false</value>
+              <value key="hasOnTuple" type="boolean">true</value>
+              <value key="hasOnPunct" type="boolean">false</value>
+            </splAnnotation>
+            <inputPorts>
+              <port encoding="LE" index="0" isControl="true" isMutable="false" name="LeftOuter2" transport="TCP" tupleTypeIndex="2">
+                <connections>
+                  <connection operIndex="8" operName="LeftOuter1" portIndex="1" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="0"/>
+              <runtimeConstant name="lit$1" value="&quot;\n d) Tuples not matched during LeftOuter Join with sliding time(6)&quot;"/>
+              <runtimeConstant name="lit$2" value="&quot;  d) &quot;"/>
+              <runtimeConstant name="lit$3" value="0"/>
+            </runtimeConstants>
+            <sharedObject class="leftouter1">
+              <wrapper>none</wrapper>
+              <uri>bin/leftouter1.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+        </compositeOperInstance>
+      </compositeOperInstances>
+    </composites>
+    <toolkits>
+      <toolkit index="0" name="07_join" uri="file:///home/edu22/workspace/07_join" version="1.0.0"/>
+      <toolkit index="1" name="spl" uri="file:///opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/spl" version="1.4.0"/>
+    </toolkits>
+    <customMetrics>
+      <customMetric index="0" kind="Counter" name="nFilesOpened">
+        <description>The number of files opened by the `FileSource` operator.</description>
+      </customMetric>
+      <customMetric index="1" kind="Counter" name="nInvalidTuples">
+        <description>The number of tuples that failed to read correctly in csv or txt format.</description>
+      </customMetric>
+      <customMetric index="2" kind="Gauge" name="nCurrentPartitionsLHS">
+        <description>Returns the number of partitions in the left input port window.</description>
+      </customMetric>
+      <customMetric index="3" kind="Gauge" name="nCurrentPartitionsRHS">
+        <description>Returns the number of partitions in the right input port window.</description>
+      </customMetric>
+      <customMetric index="4" kind="Counter" name="nFilesOpened">
+        <description>The number of files opened by the `FileSink` operator.</description>
+      </customMetric>
+      <customMetric index="5" kind="Counter" name="nTupleWriteErrors">
+        <description>
+ The number of tuple writes that had an error on the file stream after the write completed. 
+Due to buffering, write failures might not be detected immediately. 
+You can use `param flush : 1u;` to ensure quicker detection, but with a (possibly large) performance penalty. 
+After a failure is detected, all future writes fail unless the error condition is cleared or the file is closed. 
+
+For more information, see the **writeFailureAction** parameter.
+</description>
+      </customMetric>
+    </customMetrics>
+  </splApplication>
+
+</applicationSet>

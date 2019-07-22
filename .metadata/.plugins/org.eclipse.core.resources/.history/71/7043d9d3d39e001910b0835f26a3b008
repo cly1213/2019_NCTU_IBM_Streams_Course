@@ -1,0 +1,15 @@
+namespace application ;
+
+use com.ibm.streamsx.inet::InetSource ;
+
+composite _inetsource_aw
+{
+	graph
+		(stream<varType varName> InetSource_1_out0) as InetSource_1 = InetSource()
+		{
+			param
+				URIList : parameterValue ;
+		}
+
+}
+

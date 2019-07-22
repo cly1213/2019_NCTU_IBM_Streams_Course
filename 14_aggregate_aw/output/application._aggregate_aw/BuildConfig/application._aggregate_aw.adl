@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<applicationSet xmlns="http://www.ibm.com/xmlns/prod/streams/application/v4200" name="application::_aggregate_aw.appset" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <description>application::_aggregate_aw application set</description>
+
+  <splApplication adlPath="BuildConfig/application._aggregate_aw.adl" applicationDirectory="toolkits/14_aggregate_aw" applicationScope="Default" avoidRuntimeYield="auto" buildId="" bundle="./application._aggregate_aw.sab" checkpointDirectory="/home/edu22/workspace/14_aggregate_aw/data/ckpt" dataDirectory="/home/edu22/workspace/14_aggregate_aw/data" name="application::_aggregate_aw" outputDirectory="BuildConfig" productVersion="4.3.0.3" standaloneApplicationDirectory="toolkits/14_aggregate_aw" version="1.0.0">
+    <libraries/>
+    <hostpools>
+      <hostpool index="0" membershipMode="shared" name="$default"/>
+    </hostpools>
+    <tupleTypes>
+      <tupleType index="0">
+        <attribute name="city" type="rstring"/>
+        <attribute name="country" type="rstring"/>
+        <attribute name="population" type="uint32"/>
+        <attribute name="mAge" type="uint32"/>
+        <attribute name="pEducated" type="uint32"/>
+        <tuple>
+          <tt:attr name="city" type="rstring"/>
+          <tt:attr name="country" type="rstring"/>
+          <tt:attr name="population" type="uint32"/>
+          <tt:attr name="mAge" type="uint32"/>
+          <tt:attr name="pEducated" type="uint32"/>
+        </tuple>
+      </tupleType>
+      <tupleType index="1">
+        <attribute name="maxPopulation" type="uint32"/>
+        <attribute name="maxMAge" type="uint32"/>
+        <attribute name="minMAge" type="uint32"/>
+        <attribute name="minpEducated" type="uint32"/>
+        <tuple>
+          <tt:attr name="maxPopulation" type="uint32"/>
+          <tt:attr name="maxMAge" type="uint32"/>
+          <tt:attr name="minMAge" type="uint32"/>
+          <tt:attr name="minpEducated" type="uint32"/>
+        </tuple>
+      </tupleType>
+      <tupleType index="2">
+        <attribute name="maxPopulation" type="uint32"/>
+        <attribute name="maxMAge" type="uint32"/>
+        <attribute name="minMAge" type="uint32"/>
+        <attribute name="minpEducated" type="uint32"/>
+        <attribute name="city" type="rstring"/>
+        <attribute name="country" type="rstring"/>
+        <tuple>
+          <tt:attr name="maxPopulation" type="uint32"/>
+          <tt:attr name="maxMAge" type="uint32"/>
+          <tt:attr name="minMAge" type="uint32"/>
+          <tt:attr name="minpEducated" type="uint32"/>
+          <tt:attr name="city" type="rstring"/>
+          <tt:attr name="country" type="rstring"/>
+        </tuple>
+      </tupleType>
+    </tupleTypes>
+    <primitiveOperDefinitions>
+      <primitiveOperDefinition index="0" kind="spl.adapter::FileSource" runtimeType="SPL_CPlusPlus" toolkitIndex="1">
+        <customMetricIndicies>
+          <customMetricIndex>0</customMetricIndex>
+          <customMetricIndex>1</customMetricIndex>
+        </customMetricIndicies>
+      </primitiveOperDefinition>
+      <primitiveOperDefinition index="1" kind="spl.relational::Aggregate" runtimeType="SPL_CPlusPlus" toolkitIndex="1">
+        <customMetricIndicies>
+          <customMetricIndex>2</customMetricIndex>
+        </customMetricIndicies>
+      </primitiveOperDefinition>
+      <primitiveOperDefinition index="2" kind="spl.utility::Custom" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+    </primitiveOperDefinitions>
+    <composites>
+      <sourceUris>
+        <uri index="0" path="file:///home/edu22/workspace/14_aggregate_aw/application/_aggregate_aw.spl"/>
+      </sourceUris>
+      <compositeOperDefinitions>
+        <compositeOperDefinition endLine="60" index="0" kind="application::_aggregate_aw" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="0" startLine="3" toolkitIndex="0">
+          <description>application::_aggregate_aw Composite</description>
+        </compositeOperDefinition>
+      </compositeOperDefinitions>
+      <compositeOperInstances>
+        <compositeOperInstance definitionIndex="0" endLine="60" index="5" name="application::_aggregate_aw" sourceIndex="0" startLine="3">
+          <primitiveOperInstance definitionIndex="0" endLine="16" index="0" name="CityREC" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="9">
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="CityREC" streamName="CityREC" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="1" operName="A_Result" portIndex="0" portKind="input"/>
+                  <connection operIndex="3" operName="B_Result" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;/data/Day4/14_Population.txt&quot;"/>
+              <runtimeConstant name="lit$1" value="2"/>
+            </runtimeConstants>
+            <sharedObject class="CityREC">
+              <wrapper>none</wrapper>
+              <uri>bin/CityREC.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="29" index="1" name="A_Result" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="18">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="CityREC" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="0" operName="CityREC" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="A_Result" streamName="A_Result" transport="TCP" tupleTypeIndex="1" viewable="true">
+                <connections>
+                  <connection operIndex="2" operName="Custom_3" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="6"/>
+            </runtimeConstants>
+            <sharedObject class="A_Result">
+              <wrapper>none</wrapper>
+              <uri>bin/A_Result.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="2" endLine="36" index="2" name="Custom_3" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="31">
+            <splAnnotation internal="true" tag="logicClause">
+              <value key="hasState" type="boolean">false</value>
+              <value key="hasOnProcess" type="boolean">false</value>
+              <value key="hasOnTuple" type="boolean">true</value>
+              <value key="hasOnPunct" type="boolean">false</value>
+            </splAnnotation>
+            <inputPorts>
+              <port encoding="LE" index="0" isControl="true" isMutable="false" name="A_Result" transport="TCP" tupleTypeIndex="1">
+                <connections>
+                  <connection operIndex="1" operName="A_Result" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <sharedObject class="Custom_3">
+              <wrapper>none</wrapper>
+              <uri>bin/Custom_3.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="51" index="3" name="B_Result" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="38">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="CityREC" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="0" operName="CityREC" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="B_Result" streamName="B_Result" transport="TCP" tupleTypeIndex="2" viewable="true">
+                <connections>
+                  <connection operIndex="4" operName="Custom_4" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="6"/>
+            </runtimeConstants>
+            <sharedObject class="B_Result">
+              <wrapper>none</wrapper>
+              <uri>bin/B_Result.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="2" endLine="58" index="4" name="Custom_4" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="53">
+            <splAnnotation internal="true" tag="logicClause">
+              <value key="hasState" type="boolean">false</value>
+              <value key="hasOnProcess" type="boolean">false</value>
+              <value key="hasOnTuple" type="boolean">true</value>
+              <value key="hasOnPunct" type="boolean">false</value>
+            </splAnnotation>
+            <inputPorts>
+              <port encoding="LE" index="0" isControl="true" isMutable="false" name="B_Result" transport="TCP" tupleTypeIndex="2">
+                <connections>
+                  <connection operIndex="3" operName="B_Result" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <sharedObject class="Custom_4">
+              <wrapper>none</wrapper>
+              <uri>bin/Custom_4.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+        </compositeOperInstance>
+      </compositeOperInstances>
+    </composites>
+    <toolkits>
+      <toolkit index="0" name="14_aggregate_aw" uri="file:///home/edu22/workspace/14_aggregate_aw" version="1.0.0"/>
+      <toolkit index="1" name="spl" uri="file:///opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/spl" version="1.4.0"/>
+    </toolkits>
+    <customMetrics>
+      <customMetric index="0" kind="Counter" name="nFilesOpened">
+        <description>The number of files opened by the `FileSource` operator.</description>
+      </customMetric>
+      <customMetric index="1" kind="Counter" name="nInvalidTuples">
+        <description>The number of tuples that failed to read correctly in csv or txt format.</description>
+      </customMetric>
+      <customMetric index="2" kind="Gauge" name="nCurrentPartitions">
+        <description>The number of partitions in the window.</description>
+      </customMetric>
+    </customMetrics>
+  </splApplication>
+
+</applicationSet>

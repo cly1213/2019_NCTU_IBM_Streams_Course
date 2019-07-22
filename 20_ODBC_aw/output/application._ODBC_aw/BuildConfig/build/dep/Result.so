@@ -1,0 +1,4 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/Result.so -fPIC -shared $(SOResult) $(SPL_LDFLAGS)\
+	    build/operator/Result.o \
+	    build/type/BeJwrMcs09y9KSS3yTCk2NHIuLS7Jz00t8kvMTc00NIBxQXKGAUX5KaXJJWApSygHKGEaUJSZnAoAqt4aBo.o \
+	    build/type/BeJwrscg09y9KSS3yTCk2NHIuLS7Jz00t8kvMTc00NIBxQXKGAUX5KaXJJWApSygHKGEaUJSZDFRsEpyRWZCbmlcSXJJYUloMNAwkUJCZl_06SWJIKAL4_0Caa.o 

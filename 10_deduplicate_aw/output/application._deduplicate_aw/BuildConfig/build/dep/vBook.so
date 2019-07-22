@@ -1,0 +1,3 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/vBook.so -fPIC -shared $(SOvBook) $(SPL_LDFLAGS)\
+	    build/operator/vBook.o \
+	    build/type/BeJwrMS02LcksyUktNsksTsorNkssLcnILyq2LChNyskszkgtSjMtKMpMTgUAT74QAr.o 

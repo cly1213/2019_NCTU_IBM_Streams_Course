@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<tupleModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/tuple" class="BeJwrMSw1TUzOTk0BAA_12ANI" equalitySupported="true" facade="false" splType="tuple&lt;uint32 acked>" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <headers/>
+
+  <attributes>
+    <attribute>
+      <name>acked</name>
+      <cppType>SPL::uint32</cppType>
+      <splType>uint32</splType>
+    </attribute>
+  </attributes>
+
+</tupleModel>

@@ -1,0 +1,4 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/R_Ticker.so -fPIC -shared $(SOR_Ticker) $(SPL_LDFLAGS)\
+	    build/operator/R_Ticker.o \
+	    build/type/BeJwrMSk2K67MTcrPSTMtKMpMTi21KCxNzCvJLKkstiwpSkxJDaksSAUAIo4PAg.o \
+	    build/type/BeJwrMSw1TUzOTk0BAA_12ANI.o 

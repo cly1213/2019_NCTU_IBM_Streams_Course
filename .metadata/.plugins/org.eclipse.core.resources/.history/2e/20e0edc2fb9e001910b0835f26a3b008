@@ -1,0 +1,24 @@
+namespace application ;
+
+use com.ibm.streamsx.inet::InetSource ;
+
+composite _inetsource_aw
+{
+	graph
+		(stream<web_rec> Web = InetSource()
+		{
+			param
+				URIList : parameterValue ;
+				initDelay:
+				increamtalFetch:
+				fetchInterval:
+				
+		}
+
+		() as Custom_2 = Custom()
+		{
+			
+		}
+
+}
+

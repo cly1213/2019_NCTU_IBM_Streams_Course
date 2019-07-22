@@ -1,0 +1,4 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/Functor_stream.so -fPIC -shared $(SOFunctor_stream) $(SPL_LDFLAGS)\
+	    build/operator/Functor_stream.o \
+	    build/type/BeJwrMco0zMw0zAIADBwCCu.o \
+	    build/type/BeJwrscw0zMw0zCo2KS4pMgSTRmDSGEyagElTMGkGJs0ByrgSAh.o 

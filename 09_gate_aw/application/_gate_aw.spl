@@ -1,0 +1,43 @@
+namespace application ;
+
+composite _gate_aw
+{
+	type
+		ticker = tuple<rstring symbol, float32 price, uint32 quantity, rstring tradeType>;
+  	    ack = tuple<uint32 acked>;
+		
+	graph
+		stream<ticker> Ticker_T = Beacon()
+		{
+			param
+				iterations: 70000u;
+				initDelay: 3.0f;
+		}
+
+		stream<ticker> R_Ticker= Gate(Ticker_T ; Ack)
+		{
+			param
+				maxUnackedTupleCount : 1000u ;
+				numTuplesToAck: Ack.acked;
+				
+		}
+
+		(stream<ticker> Ticker1; stream<ack> Ack) = Custom(R_Ticker)
+		{
+			logic
+				state: {
+					mutable uint32 tuplesReceived = 0u;
+					mutable uint32 cnt = 0u;
+				}
+				onTuple R_Ticker: {
+					if (++tuplesReceived == 950u) {
+						tuplesReceived = 0u;
+						printStringLn((rstring) ++cnt + ") received 950 tuples");
+						submit( { acked = 950u }, Ack);					
+					}
+					
+				}
+		}
+
+}
+

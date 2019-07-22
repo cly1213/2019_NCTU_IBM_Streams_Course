@@ -1,0 +1,29 @@
+namespace spiderman ;
+
+composite _metrics
+{
+	graph
+		stream<int64 count, int64 item> Beat = Beacon()
+		{
+			logic
+				state: mutable int64 n = 0;
+			param
+				period: 0.5;
+			output
+				Beat: count = n++, item = (int64) ( random() * 1000000.0);
+				
+		}
+
+
+		() as MetricsSink_1 = MetricsSink(Beat)
+		{
+			param
+				metrics : count, item, count+item ;
+		}
+		
+}
+
+		
+
+
+

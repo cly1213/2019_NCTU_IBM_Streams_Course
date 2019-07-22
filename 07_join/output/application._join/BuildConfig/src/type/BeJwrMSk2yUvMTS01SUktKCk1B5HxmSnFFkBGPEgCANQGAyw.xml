@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<tupleModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/tuple" class="BeJwrMSk2yUvMTS01SUktKCk1B5HxmSnFFkBGPEgCANQGAyw" equalitySupported="true" facade="false" splType="tuple&lt;rstring name,uint32 dept,uint32 dept_id,rstring dep_name>" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <headers/>
+
+  <attributes>
+    <attribute>
+      <name>name</name>
+      <cppType>SPL::rstring</cppType>
+      <splType>rstring</splType>
+    </attribute>
+    <attribute>
+      <name>dept</name>
+      <cppType>SPL::uint32</cppType>
+      <splType>uint32</splType>
+    </attribute>
+    <attribute>
+      <name>dept_id</name>
+      <cppType>SPL::uint32</cppType>
+      <splType>uint32</splType>
+    </attribute>
+    <attribute>
+      <name>dep_name</name>
+      <cppType>SPL::rstring</cppType>
+      <splType>rstring</splType>
+    </attribute>
+  </attributes>
+
+</tupleModel>

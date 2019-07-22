@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<tupleModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/tuple" class="BeJwrMS02Sc4sqSw2T84vzSspqiw1NCjILyjNSSzJzM8rNcl1TE8ttSxwTSlNTixJTQEAtpcSBJ" equalitySupported="true" facade="false" splType="tuple&lt;rstring city,rstring country,uint32 population,uint32 mAge,uint32 pEducated>" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <headers/>
+
+  <attributes>
+    <attribute>
+      <name>city</name>
+      <cppType>SPL::rstring</cppType>
+      <splType>rstring</splType>
+    </attribute>
+    <attribute>
+      <name>country</name>
+      <cppType>SPL::rstring</cppType>
+      <splType>rstring</splType>
+    </attribute>
+    <attribute>
+      <name>population</name>
+      <cppType>SPL::uint32</cppType>
+      <splType>uint32</splType>
+    </attribute>
+    <attribute>
+      <name>mAge</name>
+      <cppType>SPL::uint32</cppType>
+      <splType>uint32</splType>
+    </attribute>
+    <attribute>
+      <name>pEducated</name>
+      <cppType>SPL::uint32</cppType>
+      <splType>uint32</splType>
+    </attribute>
+  </attributes>
+
+</tupleModel>

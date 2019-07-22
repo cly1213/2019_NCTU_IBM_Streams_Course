@@ -1,0 +1,27 @@
+namespace application ;
+
+use com.ibm.streamsx.inet::InetSource ;
+
+composite _inetsource_aw
+{
+	graph
+		stream<rstring web_rec> Web = InetSource()
+		{
+			param
+				URIList : ["http://www.cnn.com/index.html","http://www.yahoo.com/index.html"] ;
+				initDelay: 5.0;
+				increamtalFetch: true;
+				fetchInterval: 30.0;
+				
+		}
+
+		() as Custom_2 = Custom(Web)
+		{
+			logic
+				onTuple Web:
+					printStringLn((rstring) Web);
+			
+		}
+
+}
+

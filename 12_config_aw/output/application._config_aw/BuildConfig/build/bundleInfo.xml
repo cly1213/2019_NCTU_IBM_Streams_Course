@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<bundleInfoModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/bundleInfoModel" adlFile="application._config_aw.adl" applicationDirectory="12_config_aw" buildDate="" buildId="" bundleVersion="4300" executionMode="distributed" outputDirectory="BuildConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <toolkit compileRoot="/home/edu22/workspace/12_config_aw" name="12_config_aw" version="1.0.0">
+    <file name="toolkit.xml"/>
+  </toolkit>
+
+</bundleInfoModel>

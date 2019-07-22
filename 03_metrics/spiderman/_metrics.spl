@@ -1,0 +1,40 @@
+namespace spiderman ;
+/*
+ * 
+Beacon 每0.5個period產生count和item，launch as distributed...
+可觀察Metrics內的數值和Instance Graph的狀況
+
+關閉運行請使用cancel job
+* 
+* */
+
+composite _metrics
+{
+	graph
+		stream<int64 count, int64 item> Beat = Beacon()
+		{
+			logic
+				state: mutable int64 n = 0;
+			param
+				period: 0.5;
+			output
+				Beat: count = n++, item = (int64) ( random() * 1000000.0);
+				
+		}
+
+
+		() as MetricsSink_1 = MetricsSink(Beat)
+		{
+			param
+				metrics : count, item, count+item ;
+				names: "count", "item", "sum";
+				descriptions: "count", "item", "sum";
+				initialValues: (int64) 1, (int64) 10, (int64) 11;
+		}
+		
+}
+
+		
+
+
+

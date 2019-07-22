@@ -1,0 +1,44 @@
+namespace application ;
+
+composite _punctor
+{
+	type 
+		SR = tuple<rstring name, int32 id, int32 rank, rstring major>;
+		
+	graph
+		stream<SR> Beat = Beacon()
+		{
+			param
+				iterations = 100u;				
+		}
+
+		stream<SR> SRO = Custom(Beat)
+		{
+			logic
+				state: mutable int32 n = 0;
+				onTuple Beat: {
+					++n;
+					Beat = {
+					name = "Name" + (rstring) n,
+					id = n + 100,
+					rank = (n%5 == 0) ? 5: n%5,
+					major = "Major" + (rstring) n
+					};
+					submit(Beat, SRO);
+					}
+		}
+
+		(stream<varType varName> Punctor_3_out0) as Punctor_3 =
+			Punctor(Custom_2_out0)
+		{
+			param
+				punctuate : parameterValue ;
+				position : parameterValue ;
+		}
+
+		() as Custom_4 = Custom(Punctor_3_out0)
+		{
+		}
+
+}
+

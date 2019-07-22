@@ -1,0 +1,24 @@
+application._inetsource_aw.sab: \
+  /opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/spl/toolkit.xml \
+  /opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.inet/impl/nl/InetResource.dat \
+  /opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.inet/impl/bin/CodeGenX.pm \
+  /opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.inet/impl/lib/libinettoolkit.so \
+  /opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.inet/impl/lib/com.ibm.streamsx.inet.jar \
+  /opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.inet/etc/http_auth_oauth.properties \
+  /opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.inet/etc/http_request_oauth1.properties \
+  /opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.inet/etc/http_auth_basic.properties \
+  /opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.inet/etc/http_request_oauth2.properties \
+  /opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.inet/etc/http_request_auth.properties \
+  /opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.inet/opt/signpost-1.2/lib/signpost-commonshttp4-1.2.1.1.jar \
+  /opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.inet/opt/signpost-1.2/lib/signpost-core-1.2.jar \
+  /opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.inet/opt/signpost-1.2/LICENSE.txt \
+  /opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.inet/opt/httpcomponents-client-4.5.5/lib/commons-logging-1.2.jar \
+  /opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.inet/opt/httpcomponents-client-4.5.5/lib/commons-codec-1.10.jar \
+  /opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.inet/opt/httpcomponents-client-4.5.5/lib/httpclient-cache-4.5.5.jar \
+  /opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.inet/opt/httpcomponents-client-4.5.5/lib/httpclient-4.5.5.jar \
+  /opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.inet/opt/httpcomponents-client-4.5.5/lib/httpcore-4.4.9.jar \
+  /opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.inet/opt/httpcomponents-client-4.5.5/lib/httpmime-4.5.5.jar \
+  /opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.inet/opt/httpcomponents-client-4.5.5/LICENSE.txt \
+  /opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.inet/opt/httpcomponents-client-4.5.5/NOTICE.txt \
+  /opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.inet/opt/httpcomponents-client-4.5.5/README.txt \
+  /opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.inet/toolkit.xml

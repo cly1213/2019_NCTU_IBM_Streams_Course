@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<bundleInfoModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/bundleInfoModel" adlFile="application._sort.adl" applicationDirectory="13_sort" buildDate="" buildId="" bundleVersion="4300" executionMode="distributed" outputDirectory="BuildConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <toolkit compileRoot="/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/spl" name="spl" version="1.4.0">
+    <file name="toolkit.xml"/>
+  </toolkit>
+
+  <toolkit compileRoot="/home/edu22/workspace/13_sort" name="13_sort" version="1.0.0">
+    <file name="toolkit.xml"/>
+  </toolkit>
+
+</bundleInfoModel>

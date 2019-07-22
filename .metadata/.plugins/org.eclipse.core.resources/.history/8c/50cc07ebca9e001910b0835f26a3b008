@@ -1,0 +1,19 @@
+namespace application ;
+
+composite Receiver
+{
+	graph
+		(stream<varType varName> TCPSource_1_out0) as TCPSource_1 = TCPSource()
+		{
+			param
+				role : parameterValue ;
+		}
+
+		() as TCPSink_2 = TCPSink(TCPSource_1_out0)
+		{
+			param
+				role : parameterValue ;
+		}
+
+}
+

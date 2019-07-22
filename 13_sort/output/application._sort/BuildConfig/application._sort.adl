@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<applicationSet xmlns="http://www.ibm.com/xmlns/prod/streams/application/v4200" name="application::_sort.appset" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <description>application::_sort application set</description>
+
+  <splApplication adlPath="BuildConfig/application._sort.adl" applicationDirectory="toolkits/13_sort" applicationScope="Default" avoidRuntimeYield="auto" buildId="" bundle="./application._sort.sab" checkpointDirectory="/home/edu22/workspace/13_sort/data/ckpt" dataDirectory="/home/edu22/workspace/13_sort/data" name="application::_sort" outputDirectory="BuildConfig" productVersion="4.3.0.3" standaloneApplicationDirectory="toolkits/13_sort" version="1.0.0">
+    <libraries/>
+    <hostpools>
+      <hostpool index="0" membershipMode="shared" name="$default"/>
+    </hostpools>
+    <tupleTypes>
+      <tupleType index="0">
+        <attribute name="name" type="rstring"/>
+        <attribute name="id" type="uint32"/>
+        <attribute name="title" type="rstring"/>
+        <attribute name="salary" type="float32"/>
+        <tuple>
+          <tt:attr name="name" type="rstring"/>
+          <tt:attr name="id" type="uint32"/>
+          <tt:attr name="title" type="rstring"/>
+          <tt:attr name="salary" type="float32"/>
+        </tuple>
+      </tupleType>
+    </tupleTypes>
+    <primitiveOperDefinitions>
+      <primitiveOperDefinition index="0" kind="spl.adapter::FileSource" runtimeType="SPL_CPlusPlus" toolkitIndex="1">
+        <customMetricIndicies>
+          <customMetricIndex>0</customMetricIndex>
+          <customMetricIndex>1</customMetricIndex>
+        </customMetricIndicies>
+      </primitiveOperDefinition>
+      <primitiveOperDefinition index="1" kind="spl.relational::Sort" runtimeType="SPL_CPlusPlus" toolkitIndex="1">
+        <customMetricIndicies>
+          <customMetricIndex>2</customMetricIndex>
+        </customMetricIndicies>
+      </primitiveOperDefinition>
+      <primitiveOperDefinition index="2" kind="spl.utility::Custom" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+      <primitiveOperDefinition index="3" kind="spl.adapter::FileSink" runtimeType="SPL_CPlusPlus" toolkitIndex="1">
+        <customMetricIndicies>
+          <customMetricIndex>3</customMetricIndex>
+          <customMetricIndex>4</customMetricIndex>
+        </customMetricIndicies>
+      </primitiveOperDefinition>
+    </primitiveOperDefinitions>
+    <composites>
+      <sourceUris>
+        <uri index="0" path="file:///home/edu22/workspace/13_sort/application/_sort.spl"/>
+      </sourceUris>
+      <compositeOperDefinitions>
+        <compositeOperDefinition endLine="63" index="0" kind="application::_sort" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="0" startLine="3" toolkitIndex="0">
+          <description>application::_sort Composite</description>
+        </compositeOperDefinition>
+      </compositeOperDefinitions>
+      <compositeOperInstances>
+        <compositeOperInstance definitionIndex="0" endLine="63" index="7" name="application::_sort" sourceIndex="0" startLine="3">
+          <primitiveOperInstance definitionIndex="0" endLine="15" index="0" name="REC" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="8">
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="REC" streamName="REC" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="1" operName="SortByName" portIndex="0" portKind="input"/>
+                  <connection operIndex="3" operName="SortById" portIndex="0" portKind="input"/>
+                  <connection operIndex="5" operName="SortByTitle" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;/data/Day4/13_EmployeeRecords.txt&quot;"/>
+              <runtimeConstant name="lit$1" value="3"/>
+            </runtimeConstants>
+            <sharedObject class="REC">
+              <wrapper>none</wrapper>
+              <uri>bin/REC.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="23" index="1" name="SortByName" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="17">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="REC" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="0" operName="REC" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="SortByName" streamName="SortByName" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="2" operName="NAME" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="5"/>
+            </runtimeConstants>
+            <sharedObject class="SortByName">
+              <wrapper>none</wrapper>
+              <uri>bin/SortByName.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="2" endLine="30" index="2" name="NAME" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="25">
+            <splAnnotation internal="true" tag="logicClause">
+              <value key="hasState" type="boolean">false</value>
+              <value key="hasOnProcess" type="boolean">false</value>
+              <value key="hasOnTuple" type="boolean">true</value>
+              <value key="hasOnPunct" type="boolean">false</value>
+            </splAnnotation>
+            <inputPorts>
+              <port encoding="LE" index="0" isControl="true" isMutable="false" name="SortByName" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="1" operName="SortByName" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <sharedObject class="NAME">
+              <wrapper>none</wrapper>
+              <uri>bin/NAME.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="38" index="3" name="SortById" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="32">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="REC" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="0" operName="REC" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="SortById" streamName="SortById" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="4" operName="ID" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <sharedObject class="SortById">
+              <wrapper>none</wrapper>
+              <uri>bin/SortById.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="3" endLine="44" index="4" name="ID" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="39">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="SortById" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="3" operName="SortById" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;SortID&quot;"/>
+              <runtimeConstant name="lit$1" value="1"/>
+            </runtimeConstants>
+            <sharedObject class="ID">
+              <wrapper>none</wrapper>
+              <uri>bin/ID.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="52" index="5" name="SortByTitle" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="false" sourceIndex="0" startLine="46">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="REC" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="0" operName="REC" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="SortByTitle" streamName="SortByTitle" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="6" operName="Title" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="8"/>
+            </runtimeConstants>
+            <sharedObject class="SortByTitle">
+              <wrapper>none</wrapper>
+              <uri>bin/SortByTitle.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="3" endLine="59" index="6" name="Title" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="54">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="SortByTitle" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="5" operName="SortByTitle" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;SortTitle&quot;"/>
+              <runtimeConstant name="lit$1" value="1"/>
+            </runtimeConstants>
+            <sharedObject class="ID">
+              <wrapper>none</wrapper>
+              <uri>bin/ID.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+        </compositeOperInstance>
+      </compositeOperInstances>
+    </composites>
+    <toolkits>
+      <toolkit index="0" name="13_sort" uri="file:///home/edu22/workspace/13_sort" version="1.0.0"/>
+      <toolkit index="1" name="spl" uri="file:///opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/spl" version="1.4.0"/>
+    </toolkits>
+    <customMetrics>
+      <customMetric index="0" kind="Counter" name="nFilesOpened">
+        <description>The number of files opened by the `FileSource` operator.</description>
+      </customMetric>
+      <customMetric index="1" kind="Counter" name="nInvalidTuples">
+        <description>The number of tuples that failed to read correctly in csv or txt format.</description>
+      </customMetric>
+      <customMetric index="2" kind="Gauge" name="nCurrentPartitions">
+        <description>Returns the number of partitions in the current window.</description>
+      </customMetric>
+      <customMetric index="3" kind="Counter" name="nFilesOpened">
+        <description>The number of files opened by the `FileSink` operator.</description>
+      </customMetric>
+      <customMetric index="4" kind="Counter" name="nTupleWriteErrors">
+        <description>
+ The number of tuple writes that had an error on the file stream after the write completed. 
+Due to buffering, write failures might not be detected immediately. 
+You can use `param flush : 1u;` to ensure quicker detection, but with a (possibly large) performance penalty. 
+After a failure is detected, all future writes fail unless the error condition is cleared or the file is closed. 
+
+For more information, see the **writeFailureAction** parameter.
+</description>
+      </customMetric>
+    </customMetrics>
+  </splApplication>
+
+</applicationSet>

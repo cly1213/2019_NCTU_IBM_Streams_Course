@@ -1,0 +1,3 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/Beat.so -fPIC -shared $(SOBeat) $(SPL_LDFLAGS)\
+	    build/operator/Beat.o \
+	    build/type/BeJwrMfI0Tc4vzSvxNMksSc0FACoJAV6.o 

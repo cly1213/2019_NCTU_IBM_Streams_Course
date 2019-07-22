@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<tupleModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/tuple" class="BeJwrMSo1TYzPK811M02OT0rMAQAwrgXN" equalitySupported="true" facade="false" splType="tuple&lt;uint32 a_num,float64 c_bal>" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <headers/>
+
+  <attributes>
+    <attribute>
+      <name>a_num</name>
+      <cppType>SPL::uint32</cppType>
+      <splType>uint32</splType>
+    </attribute>
+    <attribute>
+      <name>c_bal</name>
+      <cppType>SPL::float64</cppType>
+      <splType>float64</splType>
+    </attribute>
+  </attributes>
+
+</tupleModel>

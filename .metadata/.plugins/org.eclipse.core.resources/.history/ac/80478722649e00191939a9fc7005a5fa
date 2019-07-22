@@ -1,0 +1,205 @@
+// Perl Arguments in effect for mixed-mode processing
+// Argument count: 0
+
+
+namespace application;
+
+composite _split {
+	type 
+		stockReport = tuple<rstring symbol, rstring datetime, float64 price, uint32 vol>;
+	
+	graph
+		stream<stockReport> SR = FileSource() {
+			param
+				file: "/data/Day2/05_stock_report.dat";
+				format: csv;
+				hasDelayField: true;
+		}
+		
+		
+		( 
+		  stream<stockReport> SROutput1
+		  
+		   ;
+		  
+		        
+		  
+		  stream<stockReport> SROutput2
+		  
+		   ;
+		  
+		        
+		  
+		  stream<stockReport> SROutput3
+		  
+		   ;
+		  
+		        
+		  
+		  stream<stockReport> SROutput4
+		  
+		   ;
+		  
+		        
+		  
+		  stream<stockReport> SROutput5
+		  
+		   ;
+		  
+		        
+		  
+		  stream<stockReport> SROutput6
+		  
+		   ;
+		  
+		        
+		  
+		  stream<stockReport> SROutput7
+		  
+		   ;
+		  
+		        
+		  
+		  stream<stockReport> SROutput8
+		  
+		   ;
+		  
+		        
+		  
+		  stream<stockReport> SROutput9
+		  
+		   ;
+		  
+		        
+		  
+		  stream<stockReport> SROutput10
+		  
+		   ;
+		  
+		        
+		  
+		  stream<stockReport> SROutput11
+		  
+		   ;
+		  
+		        
+		  
+		  stream<stockReport> SROutput12
+		  
+		   ;
+		  
+		        
+		  
+		  stream<stockReport> SROutput13
+		  
+		   ;
+		  
+		        
+		  
+		  stream<stockReport> SROutput14
+		  
+		   ;
+		  
+		        
+		  
+		  stream<stockReport> SROutput15
+		  
+		   ;
+		  
+		        
+		  
+		  stream<stockReport> SROutput16
+		  
+		   ;
+		  
+		        
+		  
+		  stream<stockReport> SROutput17
+		  
+		   ;
+		  
+		        
+		  
+		  stream<stockReport> SROutput18
+		  
+		   ;
+		  
+		        
+		  
+		  stream<stockReport> SROutput19
+		  
+		   ;
+		  
+		        
+		  
+		  stream<stockReport> SROutput20
+		  
+		   ;
+		  
+		        
+		  
+		  stream<stockReport> SROutput21
+		  
+		   ;
+		  
+		        
+		  
+		  stream<stockReport> SROutput22
+		  
+		   ;
+		  
+		        
+		  
+		  stream<stockReport> SROutput23
+		  
+		   ;
+		  
+		        
+		  
+		  stream<stockReport> SROutput24
+		  
+		   ;
+		  
+		        
+		  
+		  stream<stockReport> SROutput25
+		  
+		   ;
+		  
+		        
+		  
+		  stream<stockReport> SROutput26
+		  
+		  
+		  
+		) = Split(SR) {
+			param
+				file: "/data/Day2/05_mapping.txt";
+				key: symbol;
+				
+		
+		
+		}
+
+    () as sink1 = FileSink(SROutput1) {
+    	param
+    		file: "ibm.txt";
+    }
+    
+    () as sink3 = FileSink(SROutput3) {
+    	param
+    		file: "microsoft.txt";
+    }
+    
+    () as sink15 = FileSink(SROutput15) {
+    	param
+    		file: "emc.txt";
+    }
+    () as sink24 = FileSink(SROutput24) {
+    	param
+    		file: "google.txt";
+    }
+    
+    
+}
+

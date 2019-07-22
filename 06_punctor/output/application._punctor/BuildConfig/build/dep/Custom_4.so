@@ -1,0 +1,3 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/Custom_4.so -fPIC -shared $(SOCustom_4) $(SPL_LDFLAGS)\
+	    build/operator/Custom_4.o \
+	    build/type/BeJwrMSk2yUvMTc00ykzJNClKzMsuNs1NzMovAgB23glj.o 

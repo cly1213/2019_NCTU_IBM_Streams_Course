@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<applicationSet xmlns="http://www.ibm.com/xmlns/prod/streams/application/v4200" name="application::_config_aw.appset" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <description>application::_config_aw application set</description>
+
+  <splApplication adlPath="BuildConfig/application._config_aw.adl" applicationDirectory="toolkits/98_config_aw" applicationScope="Default" avoidRuntimeYield="auto" buildId="" bundle="./application._config_aw.sab" checkpointDirectory="/home/edu22/workspace/98_config_aw/data/ckpt" dataDirectory="/home/edu22/workspace/98_config_aw/data" name="application::_config_aw" outputDirectory="BuildConfig" productVersion="4.3.0.3" standaloneApplicationDirectory="toolkits/98_config_aw" version="1.0.0">
+    <libraries/>
+    <hostpools>
+      <hostpool index="0" membershipMode="shared" name="$default"/>
+    </hostpools>
+    <tupleTypes>
+      <tupleType index="0">
+        <attribute name="symbol" type="rstring"/>
+        <attribute name="price" type="float32"/>
+        <attribute name="quantity" type="uint32"/>
+        <attribute name="tradetype" type="rstring"/>
+        <tuple>
+          <tt:attr name="symbol" type="rstring"/>
+          <tt:attr name="price" type="float32"/>
+          <tt:attr name="quantity" type="uint32"/>
+          <tt:attr name="tradetype" type="rstring"/>
+        </tuple>
+      </tupleType>
+    </tupleTypes>
+    <primitiveOperDefinitions>
+      <primitiveOperDefinition index="0" kind="spl.utility::Beacon" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+      <primitiveOperDefinition index="1" kind="spl.utility::Custom" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+      <primitiveOperDefinition index="2" kind="spl.utility::Split" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+    </primitiveOperDefinitions>
+    <composites>
+      <sourceUris>
+        <uri index="0" path="file:///home/edu22/workspace/98_config_aw/application/_config_aw.spl"/>
+        <uri index="1" path="file:///opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/spl/spl/Sys.spl"/>
+      </sourceUris>
+      <compositeOperDefinitions>
+        <compositeOperDefinition endLine="152" index="0" kind="application::_config_aw" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="0" startLine="3" toolkitIndex="0">
+          <description>application::_config_aw Composite</description>
+        </compositeOperDefinition>
+        <compositeOperDefinition endLine="256" index="1" kind="spl::Sys" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="1" startLine="20" toolkitIndex="1">
+          <description>spl::Sys Composite</description>
+        </compositeOperDefinition>
+        <compositeOperDefinition endLine="278" index="2" kind="spl::Log" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="1" startLine="262" toolkitIndex="1">
+          <description>spl::Log Composite</description>
+        </compositeOperDefinition>
+        <compositeOperDefinition endLine="301" index="3" kind="spl::Trace" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="1" startLine="283" toolkitIndex="1">
+          <description>spl::Trace Composite</description>
+        </compositeOperDefinition>
+      </compositeOperDefinitions>
+      <compositeOperInstances>
+        <compositeOperInstance definitionIndex="0" endLine="152" index="13" name="application::_config_aw" sourceIndex="0" startLine="3">
+          <primitiveOperInstance definitionIndex="0" endLine="16" index="0" name="C_ticker" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="11">
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="C_ticker" streamName="C_ticker" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="1" operName="Ticker" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <hostLocation hostname="10.0.20.107"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="5"/>
+            </runtimeConstants>
+            <sharedObject class="C_ticker">
+              <wrapper>none</wrapper>
+              <uri>bin/C_ticker.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="57" index="1" name="Ticker" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="18">
+            <splAnnotation internal="true" tag="logicClause">
+              <value key="hasState" type="boolean">true</value>
+              <value key="hasOnProcess" type="boolean">false</value>
+              <value key="hasOnTuple" type="boolean">true</value>
+              <value key="hasOnPunct" type="boolean">false</value>
+            </splAnnotation>
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="C_ticker" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="0" operName="C_ticker" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="Ticker" streamName="Ticker" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="2" operName="GM_Ticker" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <hostLocation hostname="10.0.20.109"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="10"/>
+              <runtimeConstant name="lit$1" value="100"/>
+              <runtimeConstant name="lit$2" value="0"/>
+              <runtimeConstant name="lit$3" value="1"/>
+              <runtimeConstant name="lit$4" value="0"/>
+              <runtimeConstant name="lit$5" value="0"/>
+              <runtimeConstant name="lit$6" value="0"/>
+              <runtimeConstant name="lit$7" value="[&quot;GM&quot;, &quot;IBM&quot;, &quot;F&quot;, &quot;EMC&quot;, &quot;GOOG&quot;, &quot;AMZN&quot;, &quot;GE&quot;, &quot;APPLE&quot;, &quot;FB&quot;, &quot;MS&quot;]"/>
+              <runtimeConstant name="lit$8" value="[170.34, 223.12, 156.65, 54.67, 68.34, 205.13, 54.78, 58.34, 73.12, 186.79]"/>
+              <runtimeConstant name="lit$9" value="[156, 215, 100, 142, 654, 560, 679, 420, 460, 325]"/>
+              <runtimeConstant name="lit$10" value="[&quot;buy&quot;, &quot;sell&quot;]"/>
+              <runtimeConstant name="lit$11" value="0"/>
+            </runtimeConstants>
+            <sharedObject class="Ticker">
+              <wrapper>none</wrapper>
+              <uri>bin/Ticker.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="2" endLine="86" index="2" name="GM_Ticker" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="76">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="Ticker" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="1" operName="Ticker" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="GM_Ticker" streamName="GM_Ticker" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="3" operName="Ticker_1" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+              <port encoding="LE" index="1" isMutable="false" name="IBM_Ticker" streamName="IBM_Ticker" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="4" operName="Ticker_2" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+              <port encoding="LE" index="2" isMutable="false" name="F_Ticker" streamName="F_Ticker" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="5" operName="Ticker_3" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+              <port encoding="LE" index="3" isMutable="false" name="EMC_Ticker" streamName="EMC_Ticker" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="6" operName="Ticker_4" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+              <port encoding="LE" index="4" isMutable="false" name="GOOG_Ticker" streamName="GOOG_Ticker" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="7" operName="Ticker_5" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+              <port encoding="LE" index="5" isMutable="false" name="AMZN_Ticker" streamName="AMZN_Ticker" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="8" operName="Ticker_6" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+              <port encoding="LE" index="6" isMutable="false" name="GE_Ticker" streamName="GE_Ticker" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="9" operName="Ticker_7" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+              <port encoding="LE" index="7" isMutable="false" name="APPLE_Ticker" streamName="APPLE_Ticker" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="10" operName="Ticker_8" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+              <port encoding="LE" index="8" isMutable="false" name="FB_Ticker" streamName="FB_Ticker" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="11" operName="Ticker_9" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+              <port encoding="LE" index="9" isMutable="false" name="MS_Ticker" streamName="MS_Ticker" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="12" operName="Ticker_10" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <hostLocation hostname="10.0.20.111"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;/data/Day3/12_splitter.txt&quot;"/>
+            </runtimeConstants>
+            <sharedObject class="GM_Ticker">
+              <wrapper>none</wrapper>
+              <uri>bin/GM_Ticker.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="91" index="3" name="Ticker_1" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="88">
+            <inputPorts>
+              <port encoding="LE" index="0" isControl="true" isMutable="false" name="GM_Ticker" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="2" operName="GM_Ticker" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <sharedObject class="Ticker_1">
+              <wrapper>none</wrapper>
+              <uri>bin/Ticker_1.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="105" index="4" name="Ticker_2" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="102">
+            <inputPorts>
+              <port encoding="LE" index="0" isControl="true" isMutable="false" name="IBM_Ticker" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="2" operName="GM_Ticker" portIndex="1" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <sharedObject class="Ticker_1">
+              <wrapper>none</wrapper>
+              <uri>bin/Ticker_1.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="109" index="5" name="Ticker_3" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="107">
+            <inputPorts>
+              <port encoding="LE" index="0" isControl="true" isMutable="false" name="F_Ticker" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="2" operName="GM_Ticker" portIndex="2" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <sharedObject class="Ticker_1">
+              <wrapper>none</wrapper>
+              <uri>bin/Ticker_1.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="113" index="6" name="Ticker_4" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="111">
+            <inputPorts>
+              <port encoding="LE" index="0" isControl="true" isMutable="false" name="EMC_Ticker" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="2" operName="GM_Ticker" portIndex="3" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <sharedObject class="Ticker_1">
+              <wrapper>none</wrapper>
+              <uri>bin/Ticker_1.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="117" index="7" name="Ticker_5" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="115">
+            <inputPorts>
+              <port encoding="LE" index="0" isControl="true" isMutable="false" name="GOOG_Ticker" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="2" operName="GM_Ticker" portIndex="4" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <sharedObject class="Ticker_1">
+              <wrapper>none</wrapper>
+              <uri>bin/Ticker_1.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="121" index="8" name="Ticker_6" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="119">
+            <inputPorts>
+              <port encoding="LE" index="0" isControl="true" isMutable="false" name="AMZN_Ticker" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="2" operName="GM_Ticker" portIndex="5" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <sharedObject class="Ticker_1">
+              <wrapper>none</wrapper>
+              <uri>bin/Ticker_1.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="125" index="9" name="Ticker_7" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="123">
+            <inputPorts>
+              <port encoding="LE" index="0" isControl="true" isMutable="false" name="GE_Ticker" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="2" operName="GM_Ticker" portIndex="6" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <sharedObject class="Ticker_1">
+              <wrapper>none</wrapper>
+              <uri>bin/Ticker_1.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="129" index="10" name="Ticker_8" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="127">
+            <inputPorts>
+              <port encoding="LE" index="0" isControl="true" isMutable="false" name="APPLE_Ticker" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="2" operName="GM_Ticker" portIndex="7" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <sharedObject class="Ticker_1">
+              <wrapper>none</wrapper>
+              <uri>bin/Ticker_1.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="133" index="11" name="Ticker_9" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="131">
+            <inputPorts>
+              <port encoding="LE" index="0" isControl="true" isMutable="false" name="FB_Ticker" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="2" operName="GM_Ticker" portIndex="8" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <sharedObject class="Ticker_1">
+              <wrapper>none</wrapper>
+              <uri>bin/Ticker_1.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="137" index="12" name="Ticker_10" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="135">
+            <inputPorts>
+              <port encoding="LE" index="0" isControl="true" isMutable="false" name="MS_Ticker" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="2" operName="GM_Ticker" portIndex="9" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <sharedObject class="Ticker_1">
+              <wrapper>none</wrapper>
+              <uri>bin/Ticker_1.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+        </compositeOperInstance>
+      </compositeOperInstances>
+    </composites>
+    <toolkits>
+      <toolkit index="0" name="98_config_aw" uri="file:///home/edu22/workspace/98_config_aw" version="1.0.0"/>
+      <toolkit index="1" name="spl" uri="file:///opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/spl" version="1.4.0"/>
+    </toolkits>
+  </splApplication>
+
+</applicationSet>

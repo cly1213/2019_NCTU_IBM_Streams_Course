@@ -1,0 +1,63 @@
+namespace application;
+
+composite _JAVA {
+	type
+		ticker = tuple< rstring symbol, float32 price, uint32 quantity, rstring tradetype, rstring datetime> ;	
+	graph
+		stream<ticker> C_ticker = Beacon()
+		{
+			param
+				initDelay : 5.0f ;
+				iterations: 10u;
+		}
+		
+		stream<ticker> Ticker = Custom(C_ticker)
+		{
+			logic
+				state :
+				{
+					mutable uint32 cnt = 0 ;
+					list<rstring> symbols = [ "GM", "IBM", "F", "EMC", "GOOG", "AMZN", "GE", "APPLE", "FB", "MS" ] ;
+					mutable list<float32> prices = [ 170.34f, 223.12f, 156.65f, 54.67f, 68.34f, 205.13f, 54.78f, 58.34f, 73.12f, 186.79f ] ;
+					mutable list<uint32> quantities = [ 156u, 215u, 100u, 142u, 654u, 560u,	679u, 420u, 460u, 325u ] ;
+					list<rstring> tradetypes = [ "buy", "sell" ] ;
+					mutable uint32 tradetypeindicator = 0 ;
+					mutable tuple<ticker> result = { } ;
+				}
+				onTuple C_ticker :
+				{
+					cnt =((uint32)(random() * 100.0)) % 10u ;
+					if(tradetypeindicator == 0u)
+					{
+						tradetypeindicator = 1u ;
+					}
+
+					else
+					{
+						tradetypeindicator = 0u ;
+					}
+
+					result.symbol = symbols [ cnt ] ;
+					result.quantity = quantities [ cnt ] ;
+					result.price = prices [ cnt ] ;
+					result.tradetype = tradetypes [ tradetypeindicator ] ;
+					submit(result, Ticker) ;
+				}
+		}				
+	
+		stream<ticker> Ticker_T = JavaOp(Ticker)
+		{
+			param
+				generated: true;
+				className : "com.ibm.nctu.AddTime" ;
+				classLibrary : "bin" ;
+		}
+
+		() as OnConsole = Custom(Ticker_T)
+		{
+			logic
+				onTuple Ticker_T:
+					printStringLn((rstring) Ticker_T);
+		}
+
+}

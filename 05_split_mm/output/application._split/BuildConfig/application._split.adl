@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<applicationSet xmlns="http://www.ibm.com/xmlns/prod/streams/application/v4200" name="application::_split.appset" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <description>application::_split application set</description>
+
+  <splApplication adlPath="BuildConfig/application._split.adl" applicationDirectory="toolkits/05_split_mm" applicationScope="Default" avoidRuntimeYield="auto" buildId="" bundle="./application._split.sab" checkpointDirectory="/home/edu22/workspace/05_split_mm/data/ckpt" dataDirectory="/home/edu22/workspace/05_split_mm/data" name="application::_split" outputDirectory="BuildConfig" productVersion="4.3.0.3" standaloneApplicationDirectory="toolkits/05_split_mm" version="1.0.0">
+    <libraries/>
+    <hostpools>
+      <hostpool index="0" membershipMode="shared" name="$default"/>
+    </hostpools>
+    <tupleTypes>
+      <tupleType index="0">
+        <attribute name="symbol" type="rstring"/>
+        <attribute name="datetime" type="rstring"/>
+        <attribute name="price" type="float64"/>
+        <attribute name="vol" type="uint32"/>
+        <tuple>
+          <tt:attr name="symbol" type="rstring"/>
+          <tt:attr name="datetime" type="rstring"/>
+          <tt:attr name="price" type="float64"/>
+          <tt:attr name="vol" type="uint32"/>
+        </tuple>
+      </tupleType>
+    </tupleTypes>
+    <primitiveOperDefinitions>
+      <primitiveOperDefinition index="0" kind="spl.adapter::FileSource" runtimeType="SPL_CPlusPlus" toolkitIndex="1">
+        <customMetricIndicies>
+          <customMetricIndex>0</customMetricIndex>
+          <customMetricIndex>1</customMetricIndex>
+        </customMetricIndicies>
+      </primitiveOperDefinition>
+      <primitiveOperDefinition index="1" kind="spl.utility::Split" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+      <primitiveOperDefinition index="2" kind="spl.adapter::FileSink" runtimeType="SPL_CPlusPlus" toolkitIndex="1">
+        <customMetricIndicies>
+          <customMetricIndex>2</customMetricIndex>
+          <customMetricIndex>3</customMetricIndex>
+        </customMetricIndicies>
+      </primitiveOperDefinition>
+    </primitiveOperDefinitions>
+    <composites>
+      <sourceUris>
+        <uri index="0" path="file:///home/edu22/workspace/05_split_mm/application/_split_mm.spl"/>
+      </sourceUris>
+      <compositeOperDefinitions>
+        <compositeOperDefinition endLine="205" index="0" kind="application::_split" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="0" startLine="7" toolkitIndex="0">
+          <description>application::_split Composite</description>
+        </compositeOperDefinition>
+      </compositeOperDefinitions>
+      <compositeOperInstances>
+        <compositeOperInstance definitionIndex="0" endLine="205" index="6" name="application::_split" sourceIndex="0" startLine="7">
+          <primitiveOperInstance definitionIndex="0" endLine="17" index="0" name="SR" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="12">
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="SR" streamName="SR" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="1" operName="SROutput1" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;/data/Day2/05_stock_report.dat&quot;"/>
+            </runtimeConstants>
+            <sharedObject class="SR">
+              <wrapper>none</wrapper>
+              <uri>bin/SR.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="182" index="1" name="SROutput1" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="20">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="SR" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="0" operName="SR" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="SROutput1" streamName="SROutput1" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="2" operName="sink1" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+              <port encoding="LE" index="1" isMutable="false" name="SROutput2" streamName="SROutput2" transport="TCP" tupleTypeIndex="0" viewable="true"/>
+              <port encoding="LE" index="2" isMutable="false" name="SROutput3" streamName="SROutput3" transport="TCP" tupleTypeIndex="0" viewable="true"/>
+              <port encoding="LE" index="3" isMutable="false" name="SROutput4" streamName="SROutput4" transport="TCP" tupleTypeIndex="0" viewable="true"/>
+              <port encoding="LE" index="4" isMutable="false" name="SROutput5" streamName="SROutput5" transport="TCP" tupleTypeIndex="0" viewable="true"/>
+              <port encoding="LE" index="5" isMutable="false" name="SROutput6" streamName="SROutput6" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="3" operName="sink6" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+              <port encoding="LE" index="6" isMutable="false" name="SROutput7" streamName="SROutput7" transport="TCP" tupleTypeIndex="0" viewable="true"/>
+              <port encoding="LE" index="7" isMutable="false" name="SROutput8" streamName="SROutput8" transport="TCP" tupleTypeIndex="0" viewable="true"/>
+              <port encoding="LE" index="8" isMutable="false" name="SROutput9" streamName="SROutput9" transport="TCP" tupleTypeIndex="0" viewable="true"/>
+              <port encoding="LE" index="9" isMutable="false" name="SROutput10" streamName="SROutput10" transport="TCP" tupleTypeIndex="0" viewable="true"/>
+              <port encoding="LE" index="10" isMutable="false" name="SROutput11" streamName="SROutput11" transport="TCP" tupleTypeIndex="0" viewable="true"/>
+              <port encoding="LE" index="11" isMutable="false" name="SROutput12" streamName="SROutput12" transport="TCP" tupleTypeIndex="0" viewable="true"/>
+              <port encoding="LE" index="12" isMutable="false" name="SROutput13" streamName="SROutput13" transport="TCP" tupleTypeIndex="0" viewable="true"/>
+              <port encoding="LE" index="13" isMutable="false" name="SROutput14" streamName="SROutput14" transport="TCP" tupleTypeIndex="0" viewable="true"/>
+              <port encoding="LE" index="14" isMutable="false" name="SROutput15" streamName="SROutput15" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="4" operName="sink15" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+              <port encoding="LE" index="15" isMutable="false" name="SROutput16" streamName="SROutput16" transport="TCP" tupleTypeIndex="0" viewable="true"/>
+              <port encoding="LE" index="16" isMutable="false" name="SROutput17" streamName="SROutput17" transport="TCP" tupleTypeIndex="0" viewable="true"/>
+              <port encoding="LE" index="17" isMutable="false" name="SROutput18" streamName="SROutput18" transport="TCP" tupleTypeIndex="0" viewable="true"/>
+              <port encoding="LE" index="18" isMutable="false" name="SROutput19" streamName="SROutput19" transport="TCP" tupleTypeIndex="0" viewable="true"/>
+              <port encoding="LE" index="19" isMutable="false" name="SROutput20" streamName="SROutput20" transport="TCP" tupleTypeIndex="0" viewable="true"/>
+              <port encoding="LE" index="20" isMutable="false" name="SROutput21" streamName="SROutput21" transport="TCP" tupleTypeIndex="0" viewable="true"/>
+              <port encoding="LE" index="21" isMutable="false" name="SROutput22" streamName="SROutput22" transport="TCP" tupleTypeIndex="0" viewable="true"/>
+              <port encoding="LE" index="22" isMutable="false" name="SROutput23" streamName="SROutput23" transport="TCP" tupleTypeIndex="0" viewable="true"/>
+              <port encoding="LE" index="23" isMutable="false" name="SROutput24" streamName="SROutput24" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="5" operName="sink24" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+              <port encoding="LE" index="24" isMutable="false" name="SROutput25" streamName="SROutput25" transport="TCP" tupleTypeIndex="0" viewable="true"/>
+              <port encoding="LE" index="25" isMutable="false" name="SROutput26" streamName="SROutput26" transport="TCP" tupleTypeIndex="0" viewable="true"/>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;/data/Day2/05_mapping.txt&quot;"/>
+            </runtimeConstants>
+            <sharedObject class="SROutput1">
+              <wrapper>none</wrapper>
+              <uri>bin/SROutput1.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="2" endLine="187" index="2" name="sink1" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="184">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="SROutput1" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="1" operName="SROutput1" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;ibm.txt&quot;"/>
+            </runtimeConstants>
+            <sharedObject class="sink1">
+              <wrapper>none</wrapper>
+              <uri>bin/sink1.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="2" endLine="192" index="3" name="sink6" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="189">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="SROutput6" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="1" operName="SROutput1" portIndex="5" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;microsoft.txt&quot;"/>
+            </runtimeConstants>
+            <sharedObject class="sink1">
+              <wrapper>none</wrapper>
+              <uri>bin/sink1.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="2" endLine="197" index="4" name="sink15" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="194">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="SROutput15" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="1" operName="SROutput1" portIndex="14" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;emc.txt&quot;"/>
+            </runtimeConstants>
+            <sharedObject class="sink1">
+              <wrapper>none</wrapper>
+              <uri>bin/sink1.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="2" endLine="202" index="5" name="sink24" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="199">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="SROutput24" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="1" operName="SROutput1" portIndex="23" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;google.txt&quot;"/>
+            </runtimeConstants>
+            <sharedObject class="sink1">
+              <wrapper>none</wrapper>
+              <uri>bin/sink1.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+        </compositeOperInstance>
+      </compositeOperInstances>
+    </composites>
+    <toolkits>
+      <toolkit index="0" name="05_split_mm" uri="file:///home/edu22/workspace/05_split_mm" version="1.0.0"/>
+      <toolkit index="1" name="spl" uri="file:///opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/spl" version="1.4.0"/>
+    </toolkits>
+    <customMetrics>
+      <customMetric index="0" kind="Counter" name="nFilesOpened">
+        <description>The number of files opened by the `FileSource` operator.</description>
+      </customMetric>
+      <customMetric index="1" kind="Counter" name="nInvalidTuples">
+        <description>The number of tuples that failed to read correctly in csv or txt format.</description>
+      </customMetric>
+      <customMetric index="2" kind="Counter" name="nFilesOpened">
+        <description>The number of files opened by the `FileSink` operator.</description>
+      </customMetric>
+      <customMetric index="3" kind="Counter" name="nTupleWriteErrors">
+        <description>
+ The number of tuple writes that had an error on the file stream after the write completed. 
+Due to buffering, write failures might not be detected immediately. 
+You can use `param flush : 1u;` to ensure quicker detection, but with a (possibly large) performance penalty. 
+After a failure is detected, all future writes fail unless the error condition is cleared or the file is closed. 
+
+For more information, see the **writeFailureAction** parameter.
+</description>
+      </customMetric>
+    </customMetrics>
+  </splApplication>
+
+</applicationSet>

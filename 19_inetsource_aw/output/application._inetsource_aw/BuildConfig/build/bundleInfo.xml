@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<bundleInfoModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/bundleInfoModel" adlFile="application._inetsource_aw.adl" applicationDirectory="19_inetsource_aw" buildDate="" buildId="" bundleVersion="4300" executionMode="distributed" outputDirectory="BuildConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <toolkit compileRoot="/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/spl" name="spl" version="1.4.0">
+    <file name="toolkit.xml"/>
+  </toolkit>
+
+  <toolkit compileRoot="/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.inet" name="com.ibm.streamsx.inet" version="2.3.6">
+    <file name="impl/nl/InetResource.dat"/>
+    <file name="impl/bin/CodeGenX.pm"/>
+    <file name="impl/lib/libinettoolkit.so"/>
+    <file name="impl/lib/com.ibm.streamsx.inet.jar"/>
+    <file name="etc/http_auth_oauth.properties"/>
+    <file name="etc/http_request_oauth1.properties"/>
+    <file name="etc/http_auth_basic.properties"/>
+    <file name="etc/http_request_oauth2.properties"/>
+    <file name="etc/http_request_auth.properties"/>
+    <file name="opt/signpost-1.2/lib/signpost-commonshttp4-1.2.1.1.jar"/>
+    <file name="opt/signpost-1.2/lib/signpost-core-1.2.jar"/>
+    <file name="opt/signpost-1.2/LICENSE.txt"/>
+    <file name="opt/httpcomponents-client-4.5.5/lib/commons-logging-1.2.jar"/>
+    <file name="opt/httpcomponents-client-4.5.5/lib/commons-codec-1.10.jar"/>
+    <file name="opt/httpcomponents-client-4.5.5/lib/httpclient-cache-4.5.5.jar"/>
+    <file name="opt/httpcomponents-client-4.5.5/lib/httpclient-4.5.5.jar"/>
+    <file name="opt/httpcomponents-client-4.5.5/lib/httpcore-4.4.9.jar"/>
+    <file name="opt/httpcomponents-client-4.5.5/lib/httpmime-4.5.5.jar"/>
+    <file name="opt/httpcomponents-client-4.5.5/LICENSE.txt"/>
+    <file name="opt/httpcomponents-client-4.5.5/NOTICE.txt"/>
+    <file name="opt/httpcomponents-client-4.5.5/README.txt"/>
+    <file name="toolkit.xml"/>
+  </toolkit>
+
+  <toolkit compileRoot="/home/edu22/workspace/19_inetsource_aw" name="19_inetsource_aw" version="1.0.0">
+    <file name="toolkit.xml"/>
+  </toolkit>
+
+</bundleInfoModel>

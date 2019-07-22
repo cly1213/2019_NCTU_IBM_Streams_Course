@@ -1,0 +1,3 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/Ticker_T.so -fPIC -shared $(SOTicker_T) -lstreams-stdtk-javaop -L /opt/ibm/InfoSphere_Streams/4.3.0.3/java/jre/lib/amd64/j9vm -Wl,-rpath -Wl,/opt/ibm/InfoSphere_Streams/4.3.0.3/java/jre/lib/amd64/j9vm -lpthread -ldl -lstreams-stdtk-runtime $(SPL_LDFLAGS)\
+	    build/operator/Ticker_T.o \
+	    build/type/BeJwrMS02K67MTcrPSTMtKMpMTi21KCxNzCvJLKkstiwpSkxJLaksSC22SEksSS3JzE0FAND1BM5.o 

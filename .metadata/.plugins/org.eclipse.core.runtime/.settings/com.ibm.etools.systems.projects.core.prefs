@@ -1,0 +1,3 @@
+com.ibm.etools.systems.projects.core.prompt_for_remote_delete=false
+com.ibm.etools.systems.projects.core.remoteunix.file_type_list=*.*~\:true,.*\:true,*.a\:true,*.adt\:true,*.adt2\:true,cmpout.xml\:true,*.dat\:true,*.IBMCOB\:true,*.lst\:true,*.o\:true,*.out\:true,*.par\:true,*.so\:true,com.ibm.etools.unix.cobol.projects.prefs\:true,org.eclipse.core.resources.prefs\:true,*.dmp\:true,*.trc\:true,javacore.*.txt\:true
+eclipse.preferences.version=1

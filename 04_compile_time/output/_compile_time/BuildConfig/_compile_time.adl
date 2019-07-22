@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<applicationSet xmlns="http://www.ibm.com/xmlns/prod/streams/application/v4200" name="_compile_time.appset" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <description>_compile_time application set</description>
+
+  <splApplication adlPath="BuildConfig/_compile_time.adl" applicationDirectory="toolkits/04_compile_time" applicationScope="Default" avoidRuntimeYield="auto" buildId="" bundle="./_compile_time.sab" checkpointDirectory="/home/edu22/workspace/04_compile_time/data/ckpt" dataDirectory="/home/edu22/workspace/04_compile_time/data" name="_compile_time" outputDirectory="BuildConfig" productVersion="4.3.0.3" standaloneApplicationDirectory="toolkits/04_compile_time" version="1.0.0">
+    <libraries/>
+    <hostpools>
+      <hostpool index="0" membershipMode="shared" name="$default"/>
+    </hostpools>
+    <tupleTypes>
+      <tupleType index="0">
+        <attribute name="i" type="int32"/>
+        <attribute name="j" type="int32"/>
+        <tuple>
+          <tt:attr name="i" type="int32"/>
+          <tt:attr name="j" type="int32"/>
+        </tuple>
+      </tupleType>
+      <tupleType index="1">
+        <attribute name="i" type="int32"/>
+        <attribute name="j" type="int32"/>
+        <attribute name="str1" type="rstring"/>
+        <attribute name="str2" type="rstring"/>
+        <attribute name="str3" type="rstring"/>
+        <attribute name="str4" type="rstring"/>
+        <attribute name="str5" type="rstring"/>
+        <attribute name="str6" type="rstring"/>
+        <attribute name="str7" type="rstring"/>
+        <tuple>
+          <tt:attr name="i" type="int32"/>
+          <tt:attr name="j" type="int32"/>
+          <tt:attr name="str1" type="rstring"/>
+          <tt:attr name="str2" type="rstring"/>
+          <tt:attr name="str3" type="rstring"/>
+          <tt:attr name="str4" type="rstring"/>
+          <tt:attr name="str5" type="rstring"/>
+          <tt:attr name="str6" type="rstring"/>
+          <tt:attr name="str7" type="rstring"/>
+        </tuple>
+      </tupleType>
+    </tupleTypes>
+    <primitiveOperDefinitions>
+      <primitiveOperDefinition index="0" kind="spl.utility::Beacon" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+      <primitiveOperDefinition index="1" kind="spl.relational::Functor" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+      <primitiveOperDefinition index="2" kind="spl.utility::Custom" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+    </primitiveOperDefinitions>
+    <composites>
+      <sourceUris>
+        <uri index="0" path="file:///home/edu22/workspace/04_compile_time/_compile_time.spl"/>
+      </sourceUris>
+      <compositeOperDefinitions>
+        <compositeOperDefinition endLine="47" index="0" kind="_compile_time" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="0" startLine="3" toolkitIndex="0">
+          <description>_compile_time Composite</description>
+        </compositeOperDefinition>
+      </compositeOperDefinitions>
+      <compositeOperInstances>
+        <compositeOperInstance definitionIndex="0" endLine="47" index="3" name="_compile_time" sourceIndex="0" startLine="3">
+          <primitiveOperInstance definitionIndex="0" endLine="20" index="0" name="Beat" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="12">
+            <splAnnotation internal="true" tag="logicClause">
+              <value key="hasState" type="boolean">true</value>
+              <value key="hasOnProcess" type="boolean">false</value>
+              <value key="hasOnTuple" type="boolean">false</value>
+              <value key="hasOnPunct" type="boolean">false</value>
+            </splAnnotation>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="Beat" streamName="Beat" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="1" operName="Functor_stream" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="5"/>
+              <runtimeConstant name="lit$1" value="0"/>
+              <runtimeConstant name="lit$2" value="0"/>
+            </runtimeConstants>
+            <sharedObject class="Beat">
+              <wrapper>none</wrapper>
+              <uri>bin/Beat.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="38" index="1" name="Functor_stream" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="22">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="Beat" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="0" operName="Beat" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="Functor_stream" streamName="Functor_stream" transport="TCP" tupleTypeIndex="1" viewable="true">
+                <connections>
+                  <connection operIndex="2" operName="Custom_3" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;5&quot;"/>
+              <runtimeConstant name="lit$1" value="&quot;superman&quot;"/>
+              <runtimeConstant name="lit$2" value="&quot;A&quot;"/>
+              <runtimeConstant name="lit$3" value="&quot;C&quot;"/>
+              <runtimeConstant defaultValue="&quot;str1&quot;" name="lit$4" submissionTimeValueIndex="0" value="&quot;str1&quot;"/>
+              <runtimeConstant name="lit$5" submissionTimeValueIndex="1" value="&quot;&quot;"/>
+              <runtimeConstant name="lit$6" submissionTimeValueIndex="2" value="&quot;&quot;"/>
+            </runtimeConstants>
+            <sharedObject class="Functor_stream">
+              <wrapper>none</wrapper>
+              <uri>bin/Functor_stream.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="2" endLine="45" index="2" name="Custom_3" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="40">
+            <splAnnotation internal="true" tag="logicClause">
+              <value key="hasState" type="boolean">false</value>
+              <value key="hasOnProcess" type="boolean">false</value>
+              <value key="hasOnTuple" type="boolean">true</value>
+              <value key="hasOnPunct" type="boolean">false</value>
+            </splAnnotation>
+            <inputPorts>
+              <port encoding="LE" index="0" isControl="true" isMutable="false" name="Functor_stream" transport="TCP" tupleTypeIndex="1">
+                <connections>
+                  <connection operIndex="1" operName="Functor_stream" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;\n&quot;"/>
+              <runtimeConstant name="lit$1" value="&quot;This tuple has &quot;"/>
+            </runtimeConstants>
+            <sharedObject class="Custom_3">
+              <wrapper>none</wrapper>
+              <uri>bin/Custom_3.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+        </compositeOperInstance>
+      </compositeOperInstances>
+    </composites>
+    <toolkits>
+      <toolkit index="0" name="04_compile_time" uri="file:///home/edu22/workspace/04_compile_time" version="1.0.0"/>
+      <toolkit index="1" name="spl" uri="file:///opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/spl" version="1.4.0"/>
+    </toolkits>
+    <submissionTimeValues>
+      <submissionTimeValue compositeName="_compile_time" index="2" kind="named" name="param6" required="true"/>
+      <submissionTimeValue compositeName="_compile_time" index="1" kind="named" name="param5" required="true"/>
+      <submissionTimeValue compositeName="_compile_time" defaultValue="&quot;str1&quot;" index="0" kind="named" name="param4" required="false"/>
+    </submissionTimeValues>
+  </splApplication>
+
+</applicationSet>

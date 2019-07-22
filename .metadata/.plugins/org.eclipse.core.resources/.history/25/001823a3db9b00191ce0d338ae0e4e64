@@ -1,0 +1,39 @@
+
+
+composite _compile_time
+{
+	type 
+		myTuple1 = tuple<int32 i, int32 j>;
+		myTuple2 = tuple<rstring str1, rstring str2, rstring str3, rstring str4, rstring str5, rstring str6, rstring str7>;
+		myTuple3 = tuple<myTuple1, myTuple2>;
+		
+	
+	graph
+		stream<myTuple1> Beat = Beacon()
+		{
+			logic 
+				state: { mutable int32 m = 0; mutable int32 n = 0;}
+			param 
+				iterations: 5u;
+			output
+				Beat:  i = ++m, j = ++n;
+		}
+
+		stream<myTuple3> Functor_stream = Functdr(Beat)
+		{
+			output Functor_stream:
+			i = Beat.i, j = Beat.j,
+			str1 = getCompileTimeValue("param1", "5"),
+			str2 = getCompileTimeValue("param2"),
+			str3 = getCompileTimeListValue("param3")[0],
+			str4 = getCompileTimeListValue("param3")[2],
+			
+			
+		}
+
+		() as Custom_3 = Custom(Functor_stream)
+		{
+		}
+
+}
+

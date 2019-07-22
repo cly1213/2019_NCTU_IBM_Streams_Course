@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<applicationSet xmlns="http://www.ibm.com/xmlns/prod/streams/application/v4200" name="application::_barrier_aw.appset" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <description>application::_barrier_aw application set</description>
+
+  <splApplication adlPath="BuildConfig/application._barrier_aw.adl" applicationDirectory="toolkits/08_barrier_aw" applicationScope="Default" avoidRuntimeYield="auto" buildId="" bundle="./application._barrier_aw.sab" checkpointDirectory="/home/edu22/workspace/08_barrier_aw/data/ckpt" dataDirectory="/home/edu22/workspace/08_barrier_aw/data" name="application::_barrier_aw" outputDirectory="BuildConfig" productVersion="4.3.0.3" standaloneApplicationDirectory="toolkits/08_barrier_aw" version="1.0.0">
+    <libraries/>
+    <hostpools>
+      <hostpool index="0" membershipMode="shared" name="$default"/>
+    </hostpools>
+    <tupleTypes>
+      <tupleType index="0">
+        <attribute name="a_num" type="uint32"/>
+        <attribute name="tx_type" type="rstring"/>
+        <attribute name="c_bal" type="float64"/>
+        <attribute name="tx_amount" type="float64"/>
+        <tuple>
+          <tt:attr name="a_num" type="uint32"/>
+          <tt:attr name="tx_type" type="rstring"/>
+          <tt:attr name="c_bal" type="float64"/>
+          <tt:attr name="tx_amount" type="float64"/>
+        </tuple>
+      </tupleType>
+      <tupleType index="1">
+        <attribute name="a_num" type="uint32"/>
+        <attribute name="c_bal" type="float64"/>
+        <attribute name="dep_amount" type="float64"/>
+        <tuple>
+          <tt:attr name="a_num" type="uint32"/>
+          <tt:attr name="c_bal" type="float64"/>
+          <tt:attr name="dep_amount" type="float64"/>
+        </tuple>
+      </tupleType>
+      <tupleType index="2">
+        <attribute name="a_num" type="uint32"/>
+        <attribute name="c_bal" type="float64"/>
+        <attribute name="deb_amount" type="float64"/>
+        <tuple>
+          <tt:attr name="a_num" type="uint32"/>
+          <tt:attr name="c_bal" type="float64"/>
+          <tt:attr name="deb_amount" type="float64"/>
+        </tuple>
+      </tupleType>
+      <tupleType index="3">
+        <attribute name="new_bal" type="float64"/>
+        <tuple>
+          <tt:attr name="new_bal" type="float64"/>
+        </tuple>
+      </tupleType>
+      <tupleType index="4">
+        <attribute name="a_num" type="uint32"/>
+        <attribute name="c_bal" type="float64"/>
+        <tuple>
+          <tt:attr name="a_num" type="uint32"/>
+          <tt:attr name="c_bal" type="float64"/>
+        </tuple>
+      </tupleType>
+    </tupleTypes>
+    <primitiveOperDefinitions>
+      <primitiveOperDefinition index="0" kind="spl.adapter::FileSource" runtimeType="SPL_CPlusPlus" toolkitIndex="1">
+        <customMetricIndicies>
+          <customMetricIndex>0</customMetricIndex>
+          <customMetricIndex>1</customMetricIndex>
+        </customMetricIndicies>
+      </primitiveOperDefinition>
+      <primitiveOperDefinition index="1" kind="spl.relational::Functor" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+      <primitiveOperDefinition index="2" kind="spl.utility::Barrier" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+      <primitiveOperDefinition index="3" kind="spl.adapter::FileSink" runtimeType="SPL_CPlusPlus" toolkitIndex="1">
+        <customMetricIndicies>
+          <customMetricIndex>2</customMetricIndex>
+          <customMetricIndex>3</customMetricIndex>
+        </customMetricIndicies>
+      </primitiveOperDefinition>
+    </primitiveOperDefinitions>
+    <composites>
+      <sourceUris>
+        <uri index="0" path="file:///home/edu22/workspace/08_barrier_aw/application/_barrier_aw.spl"/>
+      </sourceUris>
+      <compositeOperDefinitions>
+        <compositeOperDefinition endLine="72" index="0" kind="application::_barrier_aw" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="0" startLine="3" toolkitIndex="0">
+          <description>application::_barrier_aw Composite</description>
+        </compositeOperDefinition>
+      </compositeOperDefinitions>
+      <compositeOperInstances>
+        <compositeOperInstance definitionIndex="0" endLine="72" index="9" name="application::_barrier_aw" sourceIndex="0" startLine="3">
+          <primitiveOperInstance definitionIndex="0" endLine="18" index="0" name="Tx_Data" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="13">
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="Tx_Data" streamName="Tx_Data" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="1" operName="DepR" portIndex="0" portKind="input"/>
+                  <connection operIndex="2" operName="DebR" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;/data/Day3/08_bank_tasks.dat&quot;"/>
+            </runtimeConstants>
+            <sharedObject class="Tx_Data">
+              <wrapper>none</wrapper>
+              <uri>bin/Tx_Data.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="26" index="1" name="DepR" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="20">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="Tx_Data" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="0" operName="Tx_Data" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="DepR" streamName="DepR" transport="TCP" tupleTypeIndex="1" viewable="true">
+                <connections>
+                  <connection operIndex="3" operName="DepRes" portIndex="0" portKind="input"/>
+                  <connection operIndex="5" operName="F_Dep" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;Deposit&quot;"/>
+            </runtimeConstants>
+            <sharedObject class="DepR">
+              <wrapper>none</wrapper>
+              <uri>bin/DepR.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="34" index="2" name="DebR" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="28">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="Tx_Data" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="0" operName="Tx_Data" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="DebR" streamName="DebR" transport="TCP" tupleTypeIndex="2" viewable="true">
+                <connections>
+                  <connection operIndex="4" operName="DebRes" portIndex="0" portKind="input"/>
+                  <connection operIndex="6" operName="F_Deb" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;Debit&quot;"/>
+            </runtimeConstants>
+            <sharedObject class="DebR">
+              <wrapper>none</wrapper>
+              <uri>bin/DebR.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="40" index="3" name="DepRes" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="36">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="DepR" transport="TCP" tupleTypeIndex="1">
+                <connections>
+                  <connection operIndex="1" operName="DepR" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="DepRes" streamName="DepRes" transport="TCP" tupleTypeIndex="3" viewable="true">
+                <connections>
+                  <connection operIndex="5" operName="F_Dep" portIndex="1" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <sharedObject class="DepRes">
+              <wrapper>none</wrapper>
+              <uri>bin/DepRes.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="46" index="4" name="DebRes" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="42">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="DebR" transport="TCP" tupleTypeIndex="2">
+                <connections>
+                  <connection operIndex="2" operName="DebR" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="DebRes" streamName="DebRes" transport="TCP" tupleTypeIndex="3" viewable="true">
+                <connections>
+                  <connection operIndex="6" operName="F_Deb" portIndex="1" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <sharedObject class="DebRes">
+              <wrapper>none</wrapper>
+              <uri>bin/DebRes.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="2" endLine="52" index="5" name="F_Dep" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="48">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="DepR" transport="TCP" tupleTypeIndex="1">
+                <connections>
+                  <connection operIndex="1" operName="DepR" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+              <port encoding="LE" index="1" isMutable="false" name="DepRes" transport="TCP" tupleTypeIndex="3">
+                <connections>
+                  <connection operIndex="3" operName="DepRes" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="F_Dep" streamName="F_Dep" transport="TCP" tupleTypeIndex="4" viewable="true">
+                <connections>
+                  <connection operIndex="7" operName="Deposit" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <sharedObject class="F_Dep">
+              <wrapper>none</wrapper>
+              <uri>bin/F_Dep.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="2" endLine="58" index="6" name="F_Deb" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="54">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="DebR" transport="TCP" tupleTypeIndex="2">
+                <connections>
+                  <connection operIndex="2" operName="DebR" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+              <port encoding="LE" index="1" isMutable="false" name="DebRes" transport="TCP" tupleTypeIndex="3">
+                <connections>
+                  <connection operIndex="4" operName="DebRes" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="F_Deb" streamName="F_Deb" transport="TCP" tupleTypeIndex="4" viewable="true">
+                <connections>
+                  <connection operIndex="8" operName="Withdraw" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <sharedObject class="F_Deb">
+              <wrapper>none</wrapper>
+              <uri>bin/F_Deb.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="3" endLine="64" index="7" name="Deposit" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="60">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="F_Dep" transport="TCP" tupleTypeIndex="4">
+                <connections>
+                  <connection operIndex="5" operName="F_Dep" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;Deposit_R&quot;"/>
+            </runtimeConstants>
+            <sharedObject class="Deposit">
+              <wrapper>none</wrapper>
+              <uri>bin/Deposit.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="3" endLine="70" index="8" name="Withdraw" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="66">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="F_Deb" transport="TCP" tupleTypeIndex="4">
+                <connections>
+                  <connection operIndex="6" operName="F_Deb" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;Debit_R&quot;"/>
+            </runtimeConstants>
+            <sharedObject class="Deposit">
+              <wrapper>none</wrapper>
+              <uri>bin/Deposit.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+        </compositeOperInstance>
+      </compositeOperInstances>
+    </composites>
+    <toolkits>
+      <toolkit index="0" name="08_barrier_aw" uri="file:///home/edu22/workspace/08_barrier_aw" version="1.0.0"/>
+      <toolkit index="1" name="spl" uri="file:///opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/spl" version="1.4.0"/>
+    </toolkits>
+    <customMetrics>
+      <customMetric index="0" kind="Counter" name="nFilesOpened">
+        <description>The number of files opened by the `FileSource` operator.</description>
+      </customMetric>
+      <customMetric index="1" kind="Counter" name="nInvalidTuples">
+        <description>The number of tuples that failed to read correctly in csv or txt format.</description>
+      </customMetric>
+      <customMetric index="2" kind="Counter" name="nFilesOpened">
+        <description>The number of files opened by the `FileSink` operator.</description>
+      </customMetric>
+      <customMetric index="3" kind="Counter" name="nTupleWriteErrors">
+        <description>
+ The number of tuple writes that had an error on the file stream after the write completed. 
+Due to buffering, write failures might not be detected immediately. 
+You can use `param flush : 1u;` to ensure quicker detection, but with a (possibly large) performance penalty. 
+After a failure is detected, all future writes fail unless the error condition is cleared or the file is closed. 
+
+For more information, see the **writeFailureAction** parameter.
+</description>
+      </customMetric>
+    </customMetrics>
+  </splApplication>
+
+</applicationSet>

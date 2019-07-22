@@ -1,0 +1,53 @@
+namespace application ;
+
+composite _punctor
+{
+	type 
+		SR = tuple<rstring name, int32 id, int32 rank, rstring major>;
+		
+	graph
+		stream<SR> Beat = Beacon()
+		{
+			param
+				iterations: 100u;				
+		}
+
+		stream<SR> SRO = Custom(Beat)
+		{
+			logic
+				state: mutable int32 n = 0;
+				onTuple Beat: {
+					++n;
+					Beat = {
+					name = "Name" + (rstring) n,
+					id = n + 100,
+					rank = (n%5 == 0) ? 5: n%5,
+					major = "Major" + (rstring) n
+					};
+					
+					submit(Beat, SRO);
+					}
+		}
+
+		stream<SR> PSR = Punctor(SRO)
+		{
+			param
+				punctuate: (id == 1026 || id == 1051 || id == 1076 || id >1100);
+				position: before;
+		}
+
+		() as Custom_4 = Custom(PSR)
+		{
+			logic 
+				state: {mutable boolean p_ar = false; mutable int32 err = 0;}
+				onPunct PSR: p_ar = true;
+				onTuple PSR:
+						if(p_ar){
+							p_ar = false;
+							printstringLn("Punctuation arrived before" + (rstring) PSR);
+								spl.file::fflush(0ul, err);
+						}
+		}
+
+}
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<bundleInfoModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/bundleInfoModel" adlFile="application._JAVA.adl" applicationDirectory="21_JAVA" buildDate="" buildId="" bundleVersion="4300" executionMode="distributed" outputDirectory="BuildConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <toolkit compileRoot="/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/spl" name="spl" version="1.4.0">
+    <file name="toolkit.xml"/>
+  </toolkit>
+
+  <toolkit compileRoot="/home/edu22/workspace/21_JAVA" name="21_JAVA" version="1.0.0">
+    <file name="toolkit.xml"/>
+    <file name="opt/java/src/com/ibm/nctu/AbstractAddTime.java"/>
+    <file name="opt/java/src/com/ibm/nctu/AddTime.java"/>
+  </toolkit>
+
+</bundleInfoModel>

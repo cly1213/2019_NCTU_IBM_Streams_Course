@@ -1,0 +1,4 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/PSR.so -fPIC -shared $(SOPSR) $(SPL_LDFLAGS)\
+	    build/operator/PSR.o \
+	    build/type/BeJwrMSk2yUvMTc00ykzJNClKzMsuNs1NzMovAgB23glj.o \
+	    build/type/BeJyrNIo3S0pNyy9KNU1MK0ktAgAw9gX7.o 

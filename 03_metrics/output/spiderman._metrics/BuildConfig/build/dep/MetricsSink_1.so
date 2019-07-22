@@ -1,0 +1,3 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/MetricsSink_1.so -fPIC -shared $(SOMetricsSink_1) $(SPL_LDFLAGS)\
+	    build/operator/MetricsSink_1.o \
+	    build/type/BeJwrMfI0Tc4vzSvxNMksSc0FACoJAV6.o 

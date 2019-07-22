@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><launchConfiguration type="com.ibm.streams.studio.launchers.launchConfigurationType.Standalone">
+<stringAttribute key="buildConfig" value="BuildConfig"/>
+<stringAttribute key="compositeName" value="application::_java_nf_aw"/>
+<stringAttribute key="dataDirectory" value=""/>
+<stringAttribute key="debuggerExe" value=""/>
+<stringAttribute key="executionDirectory" value=""/>
+<stringAttribute key="instance" value="$default"/>
+<stringAttribute key="jobName" value="16_java_nf_aw - application::_java_nf_aw - BuildConfig="/>
+<stringAttribute key="loggingLevel" value="DEFAULT"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/16_java_nf_aw"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="4"/>
+</listAttribute>
+<listAttribute key="parameterList"/>
+<stringAttribute key="projectName" value="16_java_nf_aw"/>
+<booleanAttribute key="prompt" value="true"/>
+<stringAttribute key="sampleName" value=""/>
+<stringAttribute key="samplePath" value=""/>
+<stringAttribute key="tracingLevel" value="DEFAULT"/>
+</launchConfiguration>

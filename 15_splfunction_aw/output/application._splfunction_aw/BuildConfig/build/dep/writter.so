@@ -1,0 +1,7 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/writter.so -fPIC -shared $(SOwritter) $(SPL_LDFLAGS)\
+	    build/operator/writter.o \
+	    build/function/application/addition.o \
+	    build/function/application/division.o \
+	    build/function/application/multiplication.o \
+	    build/function/application/subtraction.o \
+	    build/type/BeJwrMSk2yi8oNc4vMAQRRqVmRanFpTklAGvhAjo.o 

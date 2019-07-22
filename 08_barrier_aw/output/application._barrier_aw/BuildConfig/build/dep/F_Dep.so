@@ -1,0 +1,5 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/F_Dep.so -fPIC -shared $(SOF_Dep) $(SPL_LDFLAGS)\
+	    build/operator/F_Dep.o \
+	    build/type/BeJwrMXQzz0stj09KzAEAFqIDD7.o \
+	    build/type/BeJwrMSo1TYzPK811M02OT0rMAQAwrgXN.o \
+	    build/type/BeJwrMS41TYzPK811M02OT0rMcTM0SEktiE_1MzS_1NKwEAmn0KCh.o 

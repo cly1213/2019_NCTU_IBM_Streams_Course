@@ -1,0 +1,24 @@
+namespace application;
+use com.nctu.myutils::*;
+use com.nctu.myutilx::*;
+
+composite _java_nf_aw {
+	graph
+		stream<uint32 dummy> TestJAVA = Beacon() {
+			param
+				iterations: 1u;
+		}
+		() as ConsoleWritter = Custom(TestJAVA) {
+			logic
+				onTuple TestJAVA: {
+					printStringLn("Result from add " + (rstring) add(30, 9));
+					printStringLn("User us " + getUser());
+					printStringLn("1) Result from cumu Add of 3, 5 " + (rstring) cumuAdd(3, 5));
+					printStringLn("2) Result from cumu Add of 3, 5 " + (rstring) cumuAdd(3, 5));
+					printStringLn("3) Result from cumu Add of 3, 5 " + (rstring) cumuAdd(3, 5));
+				}
+		}
+	
+	
+}
+

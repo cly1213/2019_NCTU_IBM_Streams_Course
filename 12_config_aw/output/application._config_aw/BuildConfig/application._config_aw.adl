@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<applicationSet xmlns="http://www.ibm.com/xmlns/prod/streams/application/v4200" name="application::_config_aw.appset" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <description>application::_config_aw application set</description>
+
+  <splApplication adlPath="BuildConfig/application._config_aw.adl" applicationDirectory="toolkits/12_config_aw" applicationScope="Default" avoidRuntimeYield="auto" buildId="" bundle="./application._config_aw.sab" checkpointDirectory="/home/edu22/workspace/12_config_aw/data/ckpt" dataDirectory="/home/edu22/workspace/12_config_aw/data" name="application::_config_aw" outputDirectory="BuildConfig" productVersion="4.3.0.3" standaloneApplicationDirectory="toolkits/12_config_aw" version="1.0.0">
+    <libraries/>
+    <hostpools/>
+    <tupleTypes/>
+    <primitiveOperDefinitions/>
+    <composites>
+      <sourceUris>
+        <uri index="0" path="file:///home/edu22/workspace/12_config_aw/application/_config_aw.spl"/>
+      </sourceUris>
+      <compositeOperDefinitions>
+        <compositeOperDefinition endLine="4" index="0" kind="application::_config_aw" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="0" startLine="3" toolkitIndex="0">
+          <description>application::_config_aw Composite</description>
+        </compositeOperDefinition>
+      </compositeOperDefinitions>
+      <compositeOperInstances>
+        <compositeOperInstance definitionIndex="0" endLine="4" index="0" name="application::_config_aw" sourceIndex="0" startLine="3"/>
+      </compositeOperInstances>
+    </composites>
+    <toolkits>
+      <toolkit index="0" name="12_config_aw" uri="file:///home/edu22/workspace/12_config_aw" version="1.0.0"/>
+    </toolkits>
+  </splApplication>
+
+</applicationSet>

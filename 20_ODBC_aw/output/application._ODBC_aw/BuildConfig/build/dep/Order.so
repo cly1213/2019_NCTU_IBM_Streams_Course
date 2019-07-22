@@ -1,0 +1,3 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/Order.so -fPIC -shared $(SOOrder) -L /opt/ibm/db2/V10.5/lib64/ -Wl,-rpath -Wl,/opt/ibm/db2/V10.5/lib64 -ldb2 $(SPL_LDFLAGS)\
+	    build/operator/Order.o \
+	    build/type/BeJwrMcs09y9KSS3yTCk2NHIuLS7Jz00t8kvMTc00NIBxQXKGAUX5KaXJJWApSygHKGEaUJSZnAoAqt4aBo.o 

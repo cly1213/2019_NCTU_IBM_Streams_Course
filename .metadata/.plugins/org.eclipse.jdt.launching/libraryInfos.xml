@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><libraryInfos>
+<libraryInfo home="/home/edu22/StreamsStudio/jre" version="1.8.0_201">
+<bootpath>
+<entry path="/home/edu22/StreamsStudio/jre/lib/amd64/compressedrefs/jclSC180/vm.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/se-service.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/math.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ibmorb.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ibmorbapi.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ibmcfw.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ibmpkcs.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ibmcertpathfw.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ibmjgssfw.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ibmjssefw.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ibmsaslfw.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ibmjcefw.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ibmjgssprovider.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ibmjsseprovider2.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ibmcertpathprovider.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/xmldsigfw.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/xml.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/charsets.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/resources.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/rt.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/dataaccess.jar"/>
+</bootpath>
+<extensionDirs>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="/home/edu22/StreamsStudio/jre/lib/endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+<libraryInfo home="/home/edu22/StreamsStudio" version="1.8.0_201">
+<bootpath>
+<entry path="/home/edu22/StreamsStudio/jre/lib/amd64/compressedrefs/jclSC180/vm.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/se-service.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/math.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ibmorb.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ibmorbapi.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ibmcfw.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ibmpkcs.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ibmcertpathfw.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ibmjgssfw.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ibmjssefw.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ibmsaslfw.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ibmjcefw.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ibmjgssprovider.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ibmjsseprovider2.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ibmcertpathprovider.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/xmldsigfw.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/xml.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/charsets.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/resources.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/rt.jar"/>
+<entry path="/home/edu22/StreamsStudio/jre/lib/dataaccess.jar"/>
+</bootpath>
+<extensionDirs>
+<entry path="/home/edu22/StreamsStudio/jre/lib/ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="/home/edu22/StreamsStudio/jre/lib/endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+</libraryInfos>

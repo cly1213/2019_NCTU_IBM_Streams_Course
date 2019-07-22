@@ -1,0 +1,49 @@
+namespace application ;
+
+use com.ibm.streams.db::ODBCSource ;
+use com.ibm.streams.db::ODBCAppend ;
+
+composite _ODBC_aw
+{
+	graph
+		stream< int32 OrderId, rstring CustomerName, int32 CustomerId, rstring ProductName, 
+				int32 ProductId, rstring Price> Order = ODBCSource()
+		{
+			param
+				connectionDocument: "/data/Day4/connections.xml";
+				connection : "MyConnection" ;
+				access : "readFromOrderTableForSource" ;
+				initDelay: 5f;
+		} 
+
+		stream<Order, tuple<int32 ShipmentStatus, rstring ShippingDate>> Result =
+			Functor(Order)
+		{
+			logic
+				state: {
+					mutable int32 _shipped = 0;
+					mutable rstring _shipdate = "";
+				}
+				onTuple Order: {
+					if (_shipped == 0) {
+						_shipped = 1;
+						_shipdate = "sadmin";
+					} else {
+						_shipped = 0;
+						_shipdate = "None";
+					}
+				}
+			output
+				Result: ShipmentStatus = _shipped, ShippingDate = _shipdate;
+		}
+
+		() as ODBCAppend_3 = ODBCAppend(Result)
+		{
+			param
+				connectionDocument: "/data/Day4/connections.xml";
+				connection : "MyConnection" ;
+				access : "writeToOrderResultsTable" ;
+		}
+
+}
+

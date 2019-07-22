@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<applicationSet xmlns="http://www.ibm.com/xmlns/prod/streams/application/v4200" name="application::_ODBC_aw.appset" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <description>application::_ODBC_aw application set</description>
+
+  <splApplication adlPath="BuildConfig/application._ODBC_aw.adl" applicationDirectory="toolkits/20_ODBC_aw" applicationScope="Default" avoidRuntimeYield="auto" buildId="" bundle="./application._ODBC_aw.sab" checkpointDirectory="/home/edu22/workspace/20_ODBC_aw/data/ckpt" dataDirectory="/home/edu22/workspace/20_ODBC_aw/data" name="application::_ODBC_aw" outputDirectory="BuildConfig" productVersion="4.3.0.3" standaloneApplicationDirectory="toolkits/20_ODBC_aw" version="1.0.0">
+    <libraries/>
+    <hostpools>
+      <hostpool index="0" membershipMode="shared" name="$default"/>
+    </hostpools>
+    <tupleTypes>
+      <tupleType index="0">
+        <attribute name="OrderId" type="int32"/>
+        <attribute name="CustomerName" type="rstring"/>
+        <attribute name="CustomerId" type="int32"/>
+        <attribute name="ProductName" type="rstring"/>
+        <attribute name="ProductId" type="int32"/>
+        <attribute name="Price" type="rstring"/>
+        <tuple>
+          <tt:attr name="OrderId" type="int32"/>
+          <tt:attr name="CustomerName" type="rstring"/>
+          <tt:attr name="CustomerId" type="int32"/>
+          <tt:attr name="ProductName" type="rstring"/>
+          <tt:attr name="ProductId" type="int32"/>
+          <tt:attr name="Price" type="rstring"/>
+        </tuple>
+      </tupleType>
+      <tupleType index="1">
+        <attribute name="OrderId" type="int32"/>
+        <attribute name="CustomerName" type="rstring"/>
+        <attribute name="CustomerId" type="int32"/>
+        <attribute name="ProductName" type="rstring"/>
+        <attribute name="ProductId" type="int32"/>
+        <attribute name="Price" type="rstring"/>
+        <attribute name="ShipmentStatus" type="int32"/>
+        <attribute name="ShippingDate" type="rstring"/>
+        <tuple>
+          <tt:attr name="OrderId" type="int32"/>
+          <tt:attr name="CustomerName" type="rstring"/>
+          <tt:attr name="CustomerId" type="int32"/>
+          <tt:attr name="ProductName" type="rstring"/>
+          <tt:attr name="ProductId" type="int32"/>
+          <tt:attr name="Price" type="rstring"/>
+          <tt:attr name="ShipmentStatus" type="int32"/>
+          <tt:attr name="ShippingDate" type="rstring"/>
+        </tuple>
+      </tupleType>
+    </tupleTypes>
+    <primitiveOperDefinitions>
+      <primitiveOperDefinition index="0" kind="com.ibm.streams.db::ODBCSource" runtimeType="SPL_CPlusPlus" toolkitIndex="5"/>
+      <primitiveOperDefinition index="1" kind="spl.relational::Functor" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+      <primitiveOperDefinition index="2" kind="com.ibm.streams.db::ODBCAppend" runtimeType="SPL_CPlusPlus" toolkitIndex="5">
+        <customMetricIndicies>
+          <customMetricIndex>0</customMetricIndex>
+        </customMetricIndicies>
+      </primitiveOperDefinition>
+    </primitiveOperDefinitions>
+    <composites>
+      <sourceUris>
+        <uri index="0" path="file:///home/edu22/workspace/20_ODBC_aw/application/_ODBC_aw.spl"/>
+      </sourceUris>
+      <compositeOperDefinitions>
+        <compositeOperDefinition endLine="47" index="0" kind="application::_ODBC_aw" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="0" startLine="6" toolkitIndex="0">
+          <description>application::_ODBC_aw Composite</description>
+        </compositeOperDefinition>
+      </compositeOperDefinitions>
+      <compositeOperInstances>
+        <compositeOperInstance definitionIndex="0" endLine="47" index="3" name="application::_ODBC_aw" sourceIndex="0" startLine="6">
+          <primitiveOperInstance definitionIndex="0" endLine="17" index="0" name="Order" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="9">
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="Order" streamName="Order" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="1" operName="Result" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="5"/>
+            </runtimeConstants>
+            <sharedObject class="Order">
+              <wrapper>none</wrapper>
+              <uri>bin/Order.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="37" index="1" name="Result" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="19">
+            <splAnnotation internal="true" tag="logicClause">
+              <value key="hasState" type="boolean">true</value>
+              <value key="hasOnProcess" type="boolean">false</value>
+              <value key="hasOnTuple" type="boolean">true</value>
+              <value key="hasOnPunct" type="boolean">false</value>
+            </splAnnotation>
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="Order" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="0" operName="Order" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="Result" streamName="Result" transport="TCP" tupleTypeIndex="1" viewable="true">
+                <connections>
+                  <connection operIndex="2" operName="ODBCAppend_3" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="0"/>
+              <runtimeConstant name="lit$1" value="1"/>
+              <runtimeConstant name="lit$2" value="&quot;edu22&quot;"/>
+              <runtimeConstant name="lit$3" value="0"/>
+              <runtimeConstant name="lit$4" value="&quot;None&quot;"/>
+              <runtimeConstant name="lit$5" value="0"/>
+              <runtimeConstant name="lit$6" value="&quot;&quot;"/>
+            </runtimeConstants>
+            <sharedObject class="Result">
+              <wrapper>none</wrapper>
+              <uri>bin/Result.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="2" endLine="45" index="2" name="ODBCAppend_3" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="39">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="Result" transport="TCP" tupleTypeIndex="1">
+                <connections>
+                  <connection operIndex="1" operName="Result" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <sharedObject class="ODBCAppend_3">
+              <wrapper>none</wrapper>
+              <uri>bin/ODBCAppend_3.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+        </compositeOperInstance>
+      </compositeOperInstances>
+    </composites>
+    <toolkits>
+      <toolkit index="0" name="20_ODBC_aw" uri="file:///home/edu22/workspace/20_ODBC_aw" version="1.0.0"/>
+      <toolkit index="1" name="spl" uri="file:///opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/spl" version="1.4.0"/>
+      <toolkit index="5" name="com.ibm.streams.db" uri="file:///opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streams.db" version="2.2.0"/>
+    </toolkits>
+    <customMetrics>
+      <customMetric index="0" kind="Counter" name="droppedTuples">
+        <description>The number of input tuples that are dropped (not inserted into the table) because of an insert failure.</description>
+      </customMetric>
+    </customMetrics>
+  </splApplication>
+
+</applicationSet>

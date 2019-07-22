@@ -1,0 +1,73 @@
+namespace application ;
+
+composite _barrier_aw
+{
+	type
+		TxS = uint32 a_num, rstring tx_type, float64 c_bal, float64 tx_amount;
+		DepS = uint32 a_num, float64 c_bal, float64 dep_amount;
+		DebS = uint32 a_num, float64 c_bal, float64 deb_amount;
+		TxRS = float64 new_bal;
+		PostTxRS = uint32 a_num, float64 c_bal;
+		
+	graph
+		stream<TxS> Tx_Data = FileSource()
+		{
+			param
+				file: "/data/Day3/08_bank_tasks.dat";
+				format: csv;
+		}
+
+		stream<DepS> DepR = 	Functor(Tx_Data)
+		{
+			param
+				filter: tx_type == "Deposit";
+			output
+				DepR: dep_amount = tx_amount;
+		}
+
+		stream<DebS> DebR = 	Functor(Tx_Data)
+		{
+			param
+				filter: tx_type == "Debit";
+			output
+				DebR: deb_amount = tx_amount;
+		}
+
+		stream<TxRS> DepRes = Functor(DepR)
+		{
+			output
+				DepRes: new_bal = c_bal + dep_amount;
+		}
+
+		stream<TxRS> DebRes = Functor(DebR)
+		{
+			output
+				DebRes: new_bal = c_bal - deb_amount;
+		}
+
+		stream<PostTxRS> F_Dep =		Barrier(DepR ; DepRes)
+		{
+			output
+				F_Dep: a_num = DepR.a_num,  c_bal = DepRes.new_bal;
+  		}
+
+		stream<PostTxRS> F_Deb =		Barrier(DebR ; DebRes)
+		{
+			output
+				F_Deb:	a_num =DebR.a_num, c_bal = DebRes.new_bal;
+		}
+
+		() as Deposit = FileSink(F_Dep)
+		{
+			param
+				file : "Deposit_R" ;
+		}
+
+		() as Withdraw = FileSink(F_Deb)
+		{
+			param
+				file : "Debit_R" ;
+		}
+
+}
+

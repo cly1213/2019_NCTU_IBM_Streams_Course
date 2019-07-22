@@ -1,0 +1,3 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/SortByName.so -fPIC -shared $(SOSortByName) $(SPL_LDFLAGS)\
+	    build/operator/SortByName.o \
+	    build/type/BeJwrMSk2yUvMTS01ykwpNi3JLMlJTTMrTsxJLKoEAIzYApX.o 

@@ -1,0 +1,3 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/TestJAVA.so -fPIC -shared $(SOTestJAVA) $(SPL_LDFLAGS)\
+	    build/operator/TestJAVA.o \
+	    build/type/BeJwrMSw1TSnNza0EABB4AN8.o 

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<applicationSet xmlns="http://www.ibm.com/xmlns/prod/streams/application/v4200" name="application::_gate_aw.appset" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <description>application::_gate_aw application set</description>
+
+  <splApplication adlPath="BuildConfig/application._gate_aw.adl" applicationDirectory="toolkits/09_gate_aw" applicationScope="Default" avoidRuntimeYield="auto" buildId="" bundle="./application._gate_aw.sab" checkpointDirectory="/home/edu22/workspace/09_gate_aw/data/ckpt" dataDirectory="/home/edu22/workspace/09_gate_aw/data" name="application::_gate_aw" outputDirectory="BuildConfig" productVersion="4.3.0.3" standaloneApplicationDirectory="toolkits/09_gate_aw" version="1.0.0">
+    <libraries/>
+    <hostpools>
+      <hostpool index="0" membershipMode="shared" name="$default"/>
+    </hostpools>
+    <tupleTypes>
+      <tupleType index="0">
+        <attribute name="symbol" type="rstring"/>
+        <attribute name="price" type="float32"/>
+        <attribute name="quantity" type="uint32"/>
+        <attribute name="tradeType" type="rstring"/>
+        <tuple>
+          <tt:attr name="symbol" type="rstring"/>
+          <tt:attr name="price" type="float32"/>
+          <tt:attr name="quantity" type="uint32"/>
+          <tt:attr name="tradeType" type="rstring"/>
+        </tuple>
+      </tupleType>
+      <tupleType index="1">
+        <attribute name="acked" type="uint32"/>
+        <tuple>
+          <tt:attr name="acked" type="uint32"/>
+        </tuple>
+      </tupleType>
+    </tupleTypes>
+    <primitiveOperDefinitions>
+      <primitiveOperDefinition index="0" kind="spl.utility::Beacon" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+      <primitiveOperDefinition index="1" kind="spl.utility::Gate" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+      <primitiveOperDefinition index="2" kind="spl.utility::Custom" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+    </primitiveOperDefinitions>
+    <composites>
+      <sourceUris>
+        <uri index="0" path="file:///home/edu22/workspace/09_gate_aw/application/_gate_aw.spl"/>
+      </sourceUris>
+      <compositeOperDefinitions>
+        <compositeOperDefinition endLine="42" index="0" kind="application::_gate_aw" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="0" startLine="3" toolkitIndex="0">
+          <description>application::_gate_aw Composite</description>
+        </compositeOperDefinition>
+      </compositeOperDefinitions>
+      <compositeOperInstances>
+        <compositeOperInstance definitionIndex="0" endLine="42" index="3" name="application::_gate_aw" sourceIndex="0" startLine="3">
+          <primitiveOperInstance definitionIndex="0" endLine="15" index="0" name="Ticker_T" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="10">
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="Ticker_T" streamName="Ticker_T" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="1" operName="R_Ticker" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="70000"/>
+              <runtimeConstant name="lit$1" value="3"/>
+            </runtimeConstants>
+            <sharedObject class="Ticker_T">
+              <wrapper>none</wrapper>
+              <uri>bin/Ticker_T.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="23" index="1" name="R_Ticker" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="17">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="Ticker_T" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="0" operName="Ticker_T" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+              <port encoding="LE" index="1" isControl="true" isMutable="false" name="Ack" transport="TCP" tupleTypeIndex="1">
+                <connections>
+                  <connection operIndex="2" operName="Ticker1" portIndex="1" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="R_Ticker" streamName="R_Ticker" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="2" operName="Ticker1" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="1000"/>
+            </runtimeConstants>
+            <sharedObject class="R_Ticker">
+              <wrapper>none</wrapper>
+              <uri>bin/R_Ticker.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="2" endLine="40" index="2" name="Ticker1" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="25">
+            <splAnnotation internal="true" tag="logicClause">
+              <value key="hasState" type="boolean">true</value>
+              <value key="hasOnProcess" type="boolean">false</value>
+              <value key="hasOnTuple" type="boolean">true</value>
+              <value key="hasOnPunct" type="boolean">false</value>
+            </splAnnotation>
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="R_Ticker" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="1" operName="R_Ticker" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="Ticker1" streamName="Ticker1" transport="TCP" tupleTypeIndex="0" viewable="true"/>
+              <port encoding="LE" index="1" isMutable="true" name="Ack" streamName="Ack" transport="TCP" tupleTypeIndex="1" viewable="true">
+                <connections>
+                  <connection operIndex="1" operName="R_Ticker" portIndex="1" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="950"/>
+              <runtimeConstant name="lit$1" value="0"/>
+              <runtimeConstant name="lit$2" value="&quot;) received 950 tuples&quot;"/>
+              <runtimeConstant name="lit$3" value="{acked = 950}"/>
+              <runtimeConstant name="lit$4" value="1"/>
+              <runtimeConstant name="lit$5" value="0"/>
+              <runtimeConstant name="lit$6" value="0"/>
+            </runtimeConstants>
+            <sharedObject class="Ticker1">
+              <wrapper>none</wrapper>
+              <uri>bin/Ticker1.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+        </compositeOperInstance>
+      </compositeOperInstances>
+    </composites>
+    <toolkits>
+      <toolkit index="0" name="09_gate_aw" uri="file:///home/edu22/workspace/09_gate_aw" version="1.0.0"/>
+      <toolkit index="1" name="spl" uri="file:///opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/spl" version="1.4.0"/>
+    </toolkits>
+  </splApplication>
+
+</applicationSet>

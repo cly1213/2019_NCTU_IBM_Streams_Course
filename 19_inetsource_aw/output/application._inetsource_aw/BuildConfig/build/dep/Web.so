@@ -1,0 +1,3 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/Web.so -fPIC -shared $(SOWeb) -lcurl $(SPL_LDFLAGS)\
+	    build/operator/Web.o \
+	    build/type/BeJwrMSw2L09Nii9KTQYAGDwEAn.o 

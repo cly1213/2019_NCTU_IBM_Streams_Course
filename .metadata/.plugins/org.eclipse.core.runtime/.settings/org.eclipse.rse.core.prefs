@@ -1,0 +1,8 @@
+activeuserprofiles=InvPM107;Team
+eclipse.preferences.version=1
+org.eclipse.rse.systemtype.linux.systemType.enabled=false
+org.eclipse.rse.systemtype.local.systemType.defaultUserId=edu22
+org.eclipse.rse.systemtype.ssh.systemType.enabled=false
+org.eclipse.rse.systemtype.unix.systemType.enabled=false
+org.eclipse.rse.systemtype.windows.systemType.enabled=false
+useridperkey=InvPM107.Local\=edu22;

@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<applicationSet xmlns="http://www.ibm.com/xmlns/prod/streams/application/v4200" name="application::_deduplicate_aw.appset" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <description>application::_deduplicate_aw application set</description>
+
+  <splApplication adlPath="BuildConfig/application._deduplicate_aw.adl" applicationDirectory="toolkits/10_deduplicate_aw" applicationScope="Default" avoidRuntimeYield="auto" buildId="" bundle="./application._deduplicate_aw.sab" checkpointDirectory="/home/edu22/workspace/10_deduplicate_aw/data/ckpt" dataDirectory="/home/edu22/workspace/10_deduplicate_aw/data" name="application::_deduplicate_aw" outputDirectory="BuildConfig" productVersion="4.3.0.3" standaloneApplicationDirectory="toolkits/10_deduplicate_aw" version="1.0.0">
+    <libraries/>
+    <hostpools>
+      <hostpool index="0" membershipMode="shared" name="$default"/>
+    </hostpools>
+    <tupleTypes>
+      <tupleType index="0">
+        <attribute name="title" type="rstring"/>
+        <attribute name="isbn" type="rstring"/>
+        <attribute name="author" type="rstring"/>
+        <attribute name="publisher" type="rstring"/>
+        <attribute name="price" type="float32"/>
+        <tuple>
+          <tt:attr name="title" type="rstring"/>
+          <tt:attr name="isbn" type="rstring"/>
+          <tt:attr name="author" type="rstring"/>
+          <tt:attr name="publisher" type="rstring"/>
+          <tt:attr name="price" type="float32"/>
+        </tuple>
+      </tupleType>
+    </tupleTypes>
+    <primitiveOperDefinitions>
+      <primitiveOperDefinition index="0" kind="spl.utility::Beacon" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+      <primitiveOperDefinition index="1" kind="spl.utility::Custom" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+      <primitiveOperDefinition index="2" kind="spl.utility::DeDuplicate" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+      <primitiveOperDefinition index="3" kind="spl.adapter::FileSink" runtimeType="SPL_CPlusPlus" toolkitIndex="1">
+        <customMetricIndicies>
+          <customMetricIndex>0</customMetricIndex>
+          <customMetricIndex>1</customMetricIndex>
+        </customMetricIndicies>
+      </primitiveOperDefinition>
+    </primitiveOperDefinitions>
+    <composites>
+      <sourceUris>
+        <uri index="0" path="file:///home/edu22/workspace/10_deduplicate_aw/application/_deduplicate_aw.spl"/>
+      </sourceUris>
+      <compositeOperDefinitions>
+        <compositeOperDefinition endLine="63" index="0" kind="application::_deduplicate_aw" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="0" startLine="3" toolkitIndex="0">
+          <description>application::_deduplicate_aw Composite</description>
+        </compositeOperDefinition>
+      </compositeOperDefinitions>
+      <compositeOperInstances>
+        <compositeOperInstance definitionIndex="0" endLine="63" index="6" name="application::_deduplicate_aw" sourceIndex="0" startLine="3">
+          <primitiveOperInstance definitionIndex="0" endLine="13" index="0" name="EBook" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="9">
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="EBook" streamName="EBook" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="1" operName="BookREC" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="100"/>
+            </runtimeConstants>
+            <sharedObject class="EBook">
+              <wrapper>none</wrapper>
+              <uri>bin/EBook.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="30" index="1" name="BookREC" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="15">
+            <splAnnotation internal="true" tag="logicClause">
+              <value key="hasState" type="boolean">true</value>
+              <value key="hasOnProcess" type="boolean">false</value>
+              <value key="hasOnTuple" type="boolean">true</value>
+              <value key="hasOnPunct" type="boolean">false</value>
+            </splAnnotation>
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="EBook" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="0" operName="EBook" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="BookREC" streamName="BookREC" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="2" operName="DBookREC" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;Title&quot;"/>
+              <runtimeConstant name="lit$1" value="&quot;ISBM&quot;"/>
+              <runtimeConstant name="lit$2" value="&quot;Author&quot;"/>
+              <runtimeConstant name="lit$3" value="&quot;Publisher&quot;"/>
+              <runtimeConstant name="lit$4" value="100"/>
+              <runtimeConstant name="lit$5" value="0"/>
+              <runtimeConstant name="lit$6" value="0"/>
+            </runtimeConstants>
+            <sharedObject class="BookREC">
+              <wrapper>none</wrapper>
+              <uri>bin/BookREC.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="42" index="2" name="DBookREC" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="32">
+            <splAnnotation internal="true" tag="logicClause">
+              <value key="hasState" type="boolean">true</value>
+              <value key="hasOnProcess" type="boolean">false</value>
+              <value key="hasOnTuple" type="boolean">true</value>
+              <value key="hasOnPunct" type="boolean">false</value>
+            </splAnnotation>
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="BookREC" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="1" operName="BookREC" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="DBookREC" streamName="DBookREC" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="3" operName="vBook" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="0"/>
+              <runtimeConstant name="lit$1" value="0"/>
+              <runtimeConstant name="lit$2" value="2"/>
+              <runtimeConstant name="lit$3" value="0"/>
+              <runtimeConstant name="lit$4" value="0"/>
+            </runtimeConstants>
+            <sharedObject class="DBookREC">
+              <wrapper>none</wrapper>
+              <uri>bin/DBookREC.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="2" endLine="49" index="3" name="vBook" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="44">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="DBookREC" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="2" operName="DBookREC" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="vBook" streamName="vBook" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="4" operName="FileSink_5" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+              <port encoding="LE" index="1" isMutable="false" name="D_Book" streamName="D_Book" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="5" operName="FileSink_6" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="120"/>
+            </runtimeConstants>
+            <sharedObject class="vBook">
+              <wrapper>none</wrapper>
+              <uri>bin/vBook.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="3" endLine="55" index="4" name="FileSink_5" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="51">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="vBook" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="3" operName="vBook" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;Books&quot;"/>
+            </runtimeConstants>
+            <sharedObject class="FileSink_5">
+              <wrapper>none</wrapper>
+              <uri>bin/FileSink_5.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="3" endLine="60" index="5" name="FileSink_6" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="56">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="D_Book" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="3" operName="vBook" portIndex="1" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;Duplicates&quot;"/>
+            </runtimeConstants>
+            <sharedObject class="FileSink_5">
+              <wrapper>none</wrapper>
+              <uri>bin/FileSink_5.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+        </compositeOperInstance>
+      </compositeOperInstances>
+    </composites>
+    <toolkits>
+      <toolkit index="0" name="10_deduplicate_aw" uri="file:///home/edu22/workspace/10_deduplicate_aw" version="1.0.0"/>
+      <toolkit index="1" name="spl" uri="file:///opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/spl" version="1.4.0"/>
+    </toolkits>
+    <customMetrics>
+      <customMetric index="0" kind="Counter" name="nFilesOpened">
+        <description>The number of files opened by the `FileSink` operator.</description>
+      </customMetric>
+      <customMetric index="1" kind="Counter" name="nTupleWriteErrors">
+        <description>
+ The number of tuple writes that had an error on the file stream after the write completed. 
+Due to buffering, write failures might not be detected immediately. 
+You can use `param flush : 1u;` to ensure quicker detection, but with a (possibly large) performance penalty. 
+After a failure is detected, all future writes fail unless the error condition is cleared or the file is closed. 
+
+For more information, see the **writeFailureAction** parameter.
+</description>
+      </customMetric>
+    </customMetrics>
+  </splApplication>
+
+</applicationSet>

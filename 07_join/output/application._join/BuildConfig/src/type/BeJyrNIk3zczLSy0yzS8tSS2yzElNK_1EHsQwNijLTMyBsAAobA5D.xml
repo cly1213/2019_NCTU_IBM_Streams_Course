@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<enumerationModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/enumeration" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <class>BeJyrNIk3zczLSy0yzS8tSS2yzElNK_1EHsQwNijLTMyBsAAobA5D</class>
+
+  <enumerators>
+    <enumerator>
+      <name>inner</name>
+    </enumerator>
+    <enumerator>
+      <name>outer</name>
+    </enumerator>
+    <enumerator>
+      <name>leftOuter</name>
+    </enumerator>
+    <enumerator>
+      <name>rightOuter</name>
+    </enumerator>
+  </enumerators>
+
+</enumerationModel>

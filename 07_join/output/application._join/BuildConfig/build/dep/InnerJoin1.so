@@ -1,0 +1,6 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/InnerJoin1.so -fPIC -shared $(SOInnerJoin1) $(SPL_LDFLAGS)\
+	    build/operator/InnerJoin1.o \
+	    build/type/BeJwrMSo1T0ktKInPTCm2ADLi8xJzUwFW4wgQ.o \
+	    build/type/BeJyrNIk3zczLSy0yzS8tSS2yzElNK_1EHsQwNijLTMyBsAAobA5D.o \
+	    build/type/BeJwrMSo2yUvMTS01SUktKAEAJkUFBF.o \
+	    build/type/BeJwrMSk2yUvMTS01SUktKCk1B5HxmSnFFkBGPEgCANQGAyw.o 

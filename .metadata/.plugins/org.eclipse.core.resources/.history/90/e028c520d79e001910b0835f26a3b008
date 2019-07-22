@@ -1,0 +1,29 @@
+namespace application ;
+
+use com.ibm.streams.db::ODBCSource ;
+use com.ibm.streams.db::ODBCAppend ;
+
+composite _ODBC_aw
+{
+	graph
+		(stream<varType varName> ODBCSource_1_out0) as ODBCSource_1 = ODBCSource()
+		{
+			param
+				connection : parameterValue ;
+				access : parameterValue ;
+		}
+
+		(stream<varType varName> Functor_2_out0) as Functor_2 =
+			Functor(ODBCSource_1_out0)
+		{
+		}
+
+		() as ODBCAppend_3 = ODBCAppend(Functor_2_out0)
+		{
+			param
+				connection : parameterValue ;
+				access : parameterValue ;
+		}
+
+}
+

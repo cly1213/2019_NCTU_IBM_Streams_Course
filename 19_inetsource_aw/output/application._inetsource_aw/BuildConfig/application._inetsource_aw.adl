@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<applicationSet xmlns="http://www.ibm.com/xmlns/prod/streams/application/v4200" name="application::_inetsource_aw.appset" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <description>application::_inetsource_aw application set</description>
+
+  <splApplication adlPath="BuildConfig/application._inetsource_aw.adl" applicationDirectory="toolkits/19_inetsource_aw" applicationScope="Default" avoidRuntimeYield="auto" buildId="" bundle="./application._inetsource_aw.sab" checkpointDirectory="/home/edu22/workspace/19_inetsource_aw/data/ckpt" dataDirectory="/home/edu22/workspace/19_inetsource_aw/data" name="application::_inetsource_aw" outputDirectory="BuildConfig" productVersion="4.3.0.3" standaloneApplicationDirectory="toolkits/19_inetsource_aw" version="1.0.0">
+    <libraries/>
+    <hostpools>
+      <hostpool index="0" membershipMode="shared" name="$default"/>
+    </hostpools>
+    <tupleTypes>
+      <tupleType index="0">
+        <attribute name="web_rec" type="rstring"/>
+        <tuple>
+          <tt:attr name="web_rec" type="rstring"/>
+        </tuple>
+      </tupleType>
+    </tupleTypes>
+    <primitiveOperDefinitions>
+      <primitiveOperDefinition index="0" kind="com.ibm.streamsx.inet::InetSource" runtimeType="SPL_CPlusPlus" toolkitIndex="18"/>
+      <primitiveOperDefinition index="1" kind="spl.utility::Custom" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+    </primitiveOperDefinitions>
+    <composites>
+      <sourceUris>
+        <uri index="0" path="file:///home/edu22/workspace/19_inetsource_aw/application/_inetsource_aw.spl"/>
+      </sourceUris>
+      <compositeOperDefinitions>
+        <compositeOperDefinition endLine="26" index="0" kind="application::_inetsource_aw" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="0" startLine="5" toolkitIndex="0">
+          <description>application::_inetsource_aw Composite</description>
+        </compositeOperDefinition>
+      </compositeOperDefinitions>
+      <compositeOperInstances>
+        <compositeOperInstance definitionIndex="0" endLine="26" index="2" name="application::_inetsource_aw" sourceIndex="0" startLine="5">
+          <primitiveOperInstance definitionIndex="0" endLine="16" index="0" name="Web" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="8">
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="Web" streamName="Web" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="1" operName="Custom_2" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="[&quot;http://www.cnn.com/index.html&quot;, &quot;http://www.yahoo.com/index.html&quot;]"/>
+              <runtimeConstant name="lit$1" value="5"/>
+              <runtimeConstant name="lit$2" value="true"/>
+              <runtimeConstant name="lit$3" value="30"/>
+            </runtimeConstants>
+            <sharedObject class="Web">
+              <wrapper>none</wrapper>
+              <uri>bin/Web.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="24" index="1" name="Custom_2" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="18">
+            <splAnnotation internal="true" tag="logicClause">
+              <value key="hasState" type="boolean">false</value>
+              <value key="hasOnProcess" type="boolean">false</value>
+              <value key="hasOnTuple" type="boolean">true</value>
+              <value key="hasOnPunct" type="boolean">false</value>
+            </splAnnotation>
+            <inputPorts>
+              <port encoding="LE" index="0" isControl="true" isMutable="false" name="Web" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="0" operName="Web" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <sharedObject class="Custom_2">
+              <wrapper>none</wrapper>
+              <uri>bin/Custom_2.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+        </compositeOperInstance>
+      </compositeOperInstances>
+    </composites>
+    <toolkits>
+      <toolkit index="0" name="19_inetsource_aw" uri="file:///home/edu22/workspace/19_inetsource_aw" version="1.0.0"/>
+      <toolkit index="1" name="spl" uri="file:///opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/spl" version="1.4.0"/>
+      <toolkit index="18" name="com.ibm.streamsx.inet" uri="file:///opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.inet" version="2.3.6"/>
+    </toolkits>
+  </splApplication>
+
+</applicationSet>

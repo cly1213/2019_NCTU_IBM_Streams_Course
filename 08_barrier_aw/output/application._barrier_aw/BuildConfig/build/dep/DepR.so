@@ -1,0 +1,4 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/DepR.so -fPIC -shared $(SODepR) $(SPL_LDFLAGS)\
+	    build/operator/DepR.o \
+	    build/type/BeJwrMS41TYzPK811M02OT0rMcTM0SEktiE_1MzS_1NKwEAmn0KCh.o \
+	    build/type/BeJwrMSk1TYzPK80tNi_0piC_0pLEh1M02OT0rMcbME8hNz80vzSgD8nw3k.o 

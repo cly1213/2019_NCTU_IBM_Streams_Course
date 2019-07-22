@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<operatorInstanceModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/operator/instance" xmlns:an="http://www.ibm.com/xmlns/prod/streams/spl/annotation" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <context>
+    <kind>spl.relational::Functor</kind>
+    <class>DepRes</class>
+    <operatorModelDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/spl/spl/relational/Functor</operatorModelDirectory>
+    <applicationDirectory>/home/edu22/workspace/08_barrier_aw</applicationDirectory>
+    <dataDirectory>/home/edu22/workspace/08_barrier_aw/data</dataDirectory>
+    <outputDirectory>/home/edu22/workspace/08_barrier_aw/output/application._barrier_aw/BuildConfig</outputDirectory>
+    <toolkits>
+      <toolkit isCurrentToolkit="false">
+        <name>08_barrier_aw</name>
+        <rootDirectory>/home/edu22/workspace/08_barrier_aw</rootDirectory>
+        <index>0</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="true">
+        <name>spl</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/spl</rootDirectory>
+        <index>1</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streams.cep</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streams.cep</rootDirectory>
+        <index>2</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streams.cybersecurity</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streams.cybersecurity</rootDirectory>
+        <index>3</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streams.dataexplorer</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streams.dataexplorer</rootDirectory>
+        <index>4</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streams.db</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streams.db</rootDirectory>
+        <index>5</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streams.geospatial</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streams.geospatial</rootDirectory>
+        <index>6</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streams.mining</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streams.mining</rootDirectory>
+        <index>7</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streams.rproject</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streams.rproject</rootDirectory>
+        <index>8</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streams.rules</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streams.rules</rootDirectory>
+        <index>9</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streams.rulescompiler</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streams.rulescompiler</rootDirectory>
+        <index>10</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streams.teda</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streams.teda</rootDirectory>
+        <index>11</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streams.text</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streams.text</rootDirectory>
+        <index>12</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streams.timeseries</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streams.timeseries</rootDirectory>
+        <index>13</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.datetime</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.datetime</rootDirectory>
+        <index>14</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.dps</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.dps</rootDirectory>
+        <index>15</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.hbase</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.hbase</rootDirectory>
+        <index>16</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.hdfs</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.hdfs</rootDirectory>
+        <index>17</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.inet</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.inet</rootDirectory>
+        <index>18</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.iot</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.iot</rootDirectory>
+        <index>19</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.jdbc</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.jdbc</rootDirectory>
+        <index>20</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.json</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.json</rootDirectory>
+        <index>21</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.kafka</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.kafka</rootDirectory>
+        <index>22</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.messagehub</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.messagehub</rootDirectory>
+        <index>23</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.messaging</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.messaging</rootDirectory>
+        <index>24</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.mqtt</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.mqtt</rootDirectory>
+        <index>25</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.network</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.network</rootDirectory>
+        <index>26</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.objectstorage</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.objectstorage</rootDirectory>
+        <index>27</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.rabbitmq</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.rabbitmq</rootDirectory>
+        <index>28</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.sparkmllib</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.sparkmllib</rootDirectory>
+        <index>29</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.topology</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streamsx.topology</rootDirectory>
+        <index>30</index>
+      </toolkit>
+    </toolkits>
+    <optimized>true</optimized>
+    <verbose>false</verbose>
+    <networkByteOrdering>false</networkByteOrdering>
+    <codeBeautification>false</codeBeautification>
+    <includes>
+      <include>"../type/BeJwrMS41TYzPK811M02OT0rMcTM0SEktiE_1MzS_1NKwEAmn0KCh.h"</include>
+      <include>"../type/BeJwrMXQzz0stj09KzAEAFqIDD7.h"</include>
+    </includes>
+    <stateVariables/>
+    <runtimeConstants/>
+    <sourceLocation>
+      <file>application/_barrier_aw.spl</file>
+      <line>36</line>
+      <column>3</column>
+    </sourceLocation>
+    <productVersion>4.3.0.3</productVersion>
+    <checkpointKind>none</checkpointKind>
+  </context>
+
+  <parameters/>
+
+  <inputPorts>
+    <inputPort>
+      <index>0</index>
+      <tupleCppName>iport$0</tupleCppName>
+      <tupleCppType>SPL::BeJwrMS41TYzPK811M02OT0rMcTM0SEktiE_1MzS_1NKwEAmn0KCh</tupleCppType>
+      <tupleSPLType>tuple&lt;uint32 a_num,float64 c_bal,float64 dep_amount&gt;</tupleSPLType>
+      <facade>false</facade>
+      <mutationAllowed>false</mutationAllowed>
+      <sourceLocation>
+        <file>application/_barrier_aw.spl</file>
+        <line>36</line>
+        <column>33</column>
+      </sourceLocation>
+      <attributes>
+        <attribute>
+          <name>a_num</name>
+          <cppType>SPL::uint32</cppType>
+          <splType>uint32</splType>
+        </attribute>
+        <attribute>
+          <name>c_bal</name>
+          <cppType>SPL::float64</cppType>
+          <splType>float64</splType>
+        </attribute>
+        <attribute>
+          <name>dep_amount</name>
+          <cppType>SPL::float64</cppType>
+          <splType>float64</splType>
+        </attribute>
+      </attributes>
+      <tuple>
+        <tt:attr name="a_num" type="uint32"/>
+        <tt:attr name="c_bal" type="float64"/>
+        <tt:attr name="dep_amount" type="float64"/>
+      </tuple>
+    </inputPort>
+  </inputPorts>
+
+  <outputPorts>
+    <outputPort>
+      <index>0</index>
+      <tupleCppName>oport$0</tupleCppName>
+      <tupleCppType>SPL::BeJwrMXQzz0stj09KzAEAFqIDD7</tupleCppType>
+      <tupleSPLType>tuple&lt;float64 new_bal&gt;</tupleSPLType>
+      <facade>false</facade>
+      <mutationAllowed>true</mutationAllowed>
+      <sourceLocation>
+        <file>application/_barrier_aw.spl</file>
+        <line>36</line>
+        <column>3</column>
+      </sourceLocation>
+      <attributes>
+        <attribute>
+          <name>new_bal</name>
+          <cppType>SPL::float64</cppType>
+          <splType>float64</splType>
+          <assignment>
+            <sourceLocation>
+              <file>application/_barrier_aw.spl</file>
+              <line>39</line>
+              <column>13</column>
+            </sourceLocation>
+            <values>
+              <value>
+                <cppType>SPL::float64</cppType>
+                <splType>float64</splType>
+                <hasRuntimeConstant>false</hasRuntimeConstant>
+                <cppExpression>(iport$0.get_c_bal() + iport$0.get_dep_amount())</cppExpression>
+                <splExpression>DepR.c_bal + DepR.dep_amount</splExpression>
+                <hasFunctions>false</hasFunctions>
+                <hasSideEffects>false</hasSideEffects>
+                <readsState>false</readsState>
+                <hasStreamAttributes>true</hasStreamAttributes>
+                <sourceLocation>
+                  <file>application/_barrier_aw.spl</file>
+                  <line>39</line>
+                  <column>23</column>
+                </sourceLocation>
+              </value>
+            </values>
+          </assignment>
+        </attribute>
+      </attributes>
+      <tuple>
+        <tt:attr name="new_bal" type="float64"/>
+      </tuple>
+      <finalPunctuationPortScope>
+        <port>0</port>
+      </finalPunctuationPortScope>
+    </outputPort>
+  </outputPorts>
+
+</operatorInstanceModel>

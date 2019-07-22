@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><launchConfiguration type="com.ibm.streams.studio.launchers.launchConfigurationType.Standalone">
+<stringAttribute key="buildConfig" value="BuildConfig"/>
+<stringAttribute key="compositeName" value="application::_hello_world"/>
+<stringAttribute key="dataDirectory" value=""/>
+<stringAttribute key="debuggerExe" value=""/>
+<stringAttribute key="executionDirectory" value=""/>
+<stringAttribute key="instance" value="$default"/>
+<stringAttribute key="jobName" value="02_hello_world - application::_hello_world - BuildConfig="/>
+<stringAttribute key="loggingLevel" value="DEFAULT"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/02_hello_world"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="4"/>
+</listAttribute>
+<listAttribute key="parameterList"/>
+<stringAttribute key="projectName" value="02_hello_world"/>
+<booleanAttribute key="prompt" value="true"/>
+<stringAttribute key="sampleName" value=""/>
+<stringAttribute key="samplePath" value=""/>
+<stringAttribute key="tracingLevel" value="DEFAULT"/>
+</launchConfiguration>

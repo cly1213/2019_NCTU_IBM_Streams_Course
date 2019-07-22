@@ -1,0 +1,20 @@
+namespace application ;
+
+composite _hello_world
+{
+	graph
+		stream<rstring message> Hi = Beacon()
+		{
+			param
+				iterations: 5u;
+				output Hi:
+					message = "Hello World!";
+				
+		}
+
+		() as Custom_2 = Custom(Hi)
+		{
+		}
+
+}
+

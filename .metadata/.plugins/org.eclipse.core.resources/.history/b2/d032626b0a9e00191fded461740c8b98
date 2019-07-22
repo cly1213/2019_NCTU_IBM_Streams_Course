@@ -1,0 +1,31 @@
+namespace application;
+
+composite _splfunction_aw {
+graph
+	stream<operation> Aop = FileSource() {
+		param
+			file: "operation";
+			format: csv;
+			hotFile: true;		
+	}
+	
+	() as writter = Custom(Aop) {
+		logic
+			onTuple Aop: { 
+				if (Aop.op == "Add") {
+					Aop.result = addition(Aop.op1, Aop.op2);
+				}
+				if (Aop.op == "Sub") {
+					Aop.result = subtraction(Aop.op1, Aop.op2);
+				}
+				if (Aop.op == "Mul") {
+					Aop.result = multiplication(Aop.op1, Aop.op2);
+				}
+				if (Aop.op == "Div") {
+					Aop.result  = division(Aop.op1, Aop.op2);	
+				}
+				printStringLn((rstring) Aop);
+			}
+	}
+
+}

@@ -1,0 +1,60 @@
+namespace application;
+
+composite _aggregate_aw {
+	type
+		cityData = tuple< rstring city, rstring country, uint32 population, uint32 mAge, uint32 pEducated >;
+		AcityData = tuple< uint32 maxPopulation, uint32 maxMAge, uint32 minMAge, uint32 minpEducated>;
+		
+	graph
+		stream<cityData> CityREC = FileSource()
+		{
+			param
+				file	:	"/data/Day4/14_Population.txt";
+				format	:	csv;
+				hasDelayField: true;
+				initDelay	:	2.0;
+		}
+
+		stream<AcityData> A_Result = 	Aggregate(CityREC)
+		{
+			window
+				CityREC	:	 tumbling, time(6) ;
+				
+			output 
+				A_Result :	
+				maxPopulation	=	Max(population),
+				maxMAge = Max(mAge),
+				minMAge	=	Min(mAge),
+				minpEducated = Min(pEducated);			
+		}
+		
+		() as Custom_3 = Custom(A_Result)
+		{
+			logic
+				onTuple A_Result:
+					printStringLn((rstring) A_Result);
+		}
+		
+		stream<AcityData, tuple<rstring city, rstring country> > B_Result = 	Aggregate(CityREC)
+		{
+			window
+				CityREC	:	 tumbling, time(6) ;
+			param
+				groupBy:	city, country; 			
+			output 
+				B_Result :	
+				maxPopulation	=	Max(population),
+				maxMAge = Max(mAge),
+				minMAge	=	Min(mAge),
+				minpEducated = Min(pEducated);			
+		
+		}
+		
+		() as Custom_4 = Custom(B_Result)
+		{
+			logic
+				onTuple B_Result:
+					printStringLn((rstring) B_Result);
+		}
+
+}

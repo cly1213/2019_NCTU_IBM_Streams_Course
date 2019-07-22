@@ -1,0 +1,3 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/Hi.so -fPIC -shared $(SOHi) $(SPL_LDFLAGS)\
+	    build/operator/Hi.o \
+	    build/type/BeJwrMSw2z00tLk5MTwUAGG4EA1.o 

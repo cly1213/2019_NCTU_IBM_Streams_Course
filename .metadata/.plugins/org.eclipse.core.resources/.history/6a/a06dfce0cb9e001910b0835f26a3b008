@@ -1,0 +1,26 @@
+namespace application ;
+
+composite Receiver
+{
+	type
+		FLY_REC = tuple<rstring fly_num, rstring depDate, rstring origin, rstring >;
+		FLY_REC_gate = FLY_REC, tuple<rstring gate>;
+		
+	graph
+		(stream<FLY_REC_gate> Flight_gate = TCPSource()
+		{
+			param
+				role : server ;
+				port : 21222u;
+		}
+
+		() as TCPSink_2 = TCPSink(Flight_gate)
+		{
+			param
+				role : server ;
+				port : 21223u;
+				flush : 1u;
+		}
+
+}
+

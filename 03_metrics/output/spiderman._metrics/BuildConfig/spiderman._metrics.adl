@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<applicationSet xmlns="http://www.ibm.com/xmlns/prod/streams/application/v4200" name="spiderman::_metrics.appset" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <description>spiderman::_metrics application set</description>
+
+  <splApplication adlPath="BuildConfig/spiderman._metrics.adl" applicationDirectory="toolkits/03_metrics" applicationScope="Default" avoidRuntimeYield="auto" buildId="" bundle="./spiderman._metrics.sab" checkpointDirectory="/home/edu22/workspace/03_metrics/data/ckpt" dataDirectory="/home/edu22/workspace/03_metrics/data" name="spiderman::_metrics" outputDirectory="BuildConfig" productVersion="4.3.0.3" standaloneApplicationDirectory="toolkits/03_metrics" version="1.0.0">
+    <libraries/>
+    <hostpools>
+      <hostpool index="0" membershipMode="shared" name="$default"/>
+    </hostpools>
+    <tupleTypes>
+      <tupleType index="0">
+        <attribute name="count" type="int64"/>
+        <attribute name="item" type="int64"/>
+        <tuple>
+          <tt:attr name="count" type="int64"/>
+          <tt:attr name="item" type="int64"/>
+        </tuple>
+      </tupleType>
+    </tupleTypes>
+    <primitiveOperDefinitions>
+      <primitiveOperDefinition index="0" kind="spl.utility::Beacon" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+      <primitiveOperDefinition index="1" kind="spl.adapter::MetricsSink" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+    </primitiveOperDefinitions>
+    <composites>
+      <sourceUris>
+        <uri index="0" path="file:///home/edu22/workspace/03_metrics/spiderman/_metrics.spl"/>
+      </sourceUris>
+      <compositeOperDefinitions>
+        <compositeOperDefinition endLine="27" index="0" kind="spiderman::_metrics" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="0" startLine="3" toolkitIndex="0">
+          <description>spiderman::_metrics Composite</description>
+        </compositeOperDefinition>
+      </compositeOperDefinitions>
+      <compositeOperInstances>
+        <compositeOperInstance definitionIndex="0" endLine="27" index="2" name="spiderman::_metrics" sourceIndex="0" startLine="3">
+          <primitiveOperInstance definitionIndex="0" endLine="15" index="0" name="Beat" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="6">
+            <splAnnotation internal="true" tag="logicClause">
+              <value key="hasState" type="boolean">true</value>
+              <value key="hasOnProcess" type="boolean">false</value>
+              <value key="hasOnTuple" type="boolean">false</value>
+              <value key="hasOnPunct" type="boolean">false</value>
+            </splAnnotation>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="Beat" streamName="Beat" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="1" operName="MetricsSink_1" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="0.5"/>
+              <runtimeConstant name="lit$1" value="1000000"/>
+              <runtimeConstant name="lit$2" value="0"/>
+            </runtimeConstants>
+            <sharedObject class="Beat">
+              <wrapper>none</wrapper>
+              <uri>bin/Beat.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="25" index="1" name="MetricsSink_1" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="18">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="Beat" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="0" operName="Beat" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;count&quot;"/>
+              <runtimeConstant name="lit$1" value="&quot;item&quot;"/>
+              <runtimeConstant name="lit$2" value="&quot;sum&quot;"/>
+              <runtimeConstant name="lit$3" value="&quot;count&quot;"/>
+              <runtimeConstant name="lit$4" value="&quot;item&quot;"/>
+              <runtimeConstant name="lit$5" value="&quot;sum&quot;"/>
+              <runtimeConstant name="lit$6" value="1"/>
+              <runtimeConstant name="lit$7" value="10"/>
+              <runtimeConstant name="lit$8" value="11"/>
+            </runtimeConstants>
+            <sharedObject class="MetricsSink_1">
+              <wrapper>none</wrapper>
+              <uri>bin/MetricsSink_1.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+        </compositeOperInstance>
+      </compositeOperInstances>
+    </composites>
+    <toolkits>
+      <toolkit index="0" name="03_metrics" uri="file:///home/edu22/workspace/03_metrics" version="1.0.0"/>
+      <toolkit index="1" name="spl" uri="file:///opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/spl" version="1.4.0"/>
+    </toolkits>
+  </splApplication>
+
+</applicationSet>

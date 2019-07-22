@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<applicationSet xmlns="http://www.ibm.com/xmlns/prod/streams/application/v4200" name="application::_JAVA.appset" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <description>application::_JAVA application set</description>
+
+  <splApplication adlPath="BuildConfig/application._JAVA.adl" applicationDirectory="toolkits/21_JAVA" applicationScope="Default" avoidRuntimeYield="auto" buildId="" bundle="./application._JAVA.sab" checkpointDirectory="/home/edu22/workspace/21_JAVA/data/ckpt" dataDirectory="/home/edu22/workspace/21_JAVA/data" name="application::_JAVA" outputDirectory="BuildConfig" productVersion="4.3.0.3" standaloneApplicationDirectory="toolkits/21_JAVA" version="1.0.0">
+    <libraries/>
+    <hostpools>
+      <hostpool index="0" membershipMode="shared" name="$default"/>
+    </hostpools>
+    <tupleTypes>
+      <tupleType index="0">
+        <attribute name="symbol" type="rstring"/>
+        <attribute name="price" type="float32"/>
+        <attribute name="quantity" type="uint32"/>
+        <attribute name="tradetype" type="rstring"/>
+        <attribute name="datetime" type="rstring"/>
+        <tuple>
+          <tt:attr name="symbol" type="rstring"/>
+          <tt:attr name="price" type="float32"/>
+          <tt:attr name="quantity" type="uint32"/>
+          <tt:attr name="tradetype" type="rstring"/>
+          <tt:attr name="datetime" type="rstring"/>
+        </tuple>
+      </tupleType>
+    </tupleTypes>
+    <primitiveOperDefinitions>
+      <primitiveOperDefinition index="0" kind="spl.utility::Beacon" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+      <primitiveOperDefinition index="1" kind="spl.utility::Custom" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+      <primitiveOperDefinition index="2" kind="spl.utility::JavaOp" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+    </primitiveOperDefinitions>
+    <composites>
+      <sourceUris>
+        <uri index="0" path="file:///home/edu22/workspace/21_JAVA/application/_JAVA.spl"/>
+      </sourceUris>
+      <compositeOperDefinitions>
+        <compositeOperDefinition endLine="63" index="0" kind="application::_JAVA" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="0" startLine="3" toolkitIndex="0">
+          <description>application::_JAVA Composite</description>
+        </compositeOperDefinition>
+      </compositeOperDefinitions>
+      <compositeOperInstances>
+        <compositeOperInstance definitionIndex="0" endLine="63" index="4" name="application::_JAVA" sourceIndex="0" startLine="3">
+          <primitiveOperInstance definitionIndex="0" endLine="12" index="0" name="C_ticker" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="7">
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="C_ticker" streamName="C_ticker" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="1" operName="Ticker" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="5"/>
+              <runtimeConstant name="lit$1" value="10"/>
+            </runtimeConstants>
+            <sharedObject class="C_ticker">
+              <wrapper>none</wrapper>
+              <uri>bin/C_ticker.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="46" index="1" name="Ticker" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="14">
+            <splAnnotation internal="true" tag="logicClause">
+              <value key="hasState" type="boolean">true</value>
+              <value key="hasOnProcess" type="boolean">false</value>
+              <value key="hasOnTuple" type="boolean">true</value>
+              <value key="hasOnPunct" type="boolean">false</value>
+            </splAnnotation>
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="C_ticker" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="0" operName="C_ticker" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="Ticker" streamName="Ticker" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="2" operName="Ticker_T" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="10"/>
+              <runtimeConstant name="lit$1" value="100"/>
+              <runtimeConstant name="lit$2" value="0"/>
+              <runtimeConstant name="lit$3" value="1"/>
+              <runtimeConstant name="lit$4" value="0"/>
+              <runtimeConstant name="lit$5" value="0"/>
+              <runtimeConstant name="lit$6" value="0"/>
+              <runtimeConstant name="lit$7" value="[&quot;GM&quot;, &quot;IBM&quot;, &quot;F&quot;, &quot;EMC&quot;, &quot;GOOG&quot;, &quot;AMZN&quot;, &quot;GE&quot;, &quot;APPLE&quot;, &quot;FB&quot;, &quot;MS&quot;]"/>
+              <runtimeConstant name="lit$8" value="[170.34, 223.12, 156.65, 54.67, 68.34, 205.13, 54.78, 58.34, 73.12, 186.79]"/>
+              <runtimeConstant name="lit$9" value="[156, 215, 100, 142, 654, 560, 679, 420, 460, 325]"/>
+              <runtimeConstant name="lit$10" value="[&quot;buy&quot;, &quot;sell&quot;]"/>
+              <runtimeConstant name="lit$11" value="0"/>
+            </runtimeConstants>
+            <sharedObject class="Ticker">
+              <wrapper>none</wrapper>
+              <uri>bin/Ticker.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="2" endLine="54" index="2" name="Ticker_T" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="false" sourceIndex="0" startLine="48">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="Ticker" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="1" operName="Ticker" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="Ticker_T" streamName="Ticker_T" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="3" operName="OnConsole" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <sharedObject class="Ticker_T">
+              <wrapper>none</wrapper>
+              <uri>bin/Ticker_T.so</uri>
+            </sharedObject>
+            <jvmArguments/>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="61" index="3" name="OnConsole" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="56">
+            <splAnnotation internal="true" tag="logicClause">
+              <value key="hasState" type="boolean">false</value>
+              <value key="hasOnProcess" type="boolean">false</value>
+              <value key="hasOnTuple" type="boolean">true</value>
+              <value key="hasOnPunct" type="boolean">false</value>
+            </splAnnotation>
+            <inputPorts>
+              <port encoding="LE" index="0" isControl="true" isMutable="false" name="Ticker_T" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="2" operName="Ticker_T" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <sharedObject class="OnConsole">
+              <wrapper>none</wrapper>
+              <uri>bin/OnConsole.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+        </compositeOperInstance>
+      </compositeOperInstances>
+    </composites>
+    <toolkits>
+      <toolkit index="0" name="21_JAVA" uri="file:///home/edu22/workspace/21_JAVA" version="1.0.0"/>
+      <toolkit index="1" name="spl" uri="file:///opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/spl" version="1.4.0"/>
+    </toolkits>
+  </splApplication>
+
+</applicationSet>

@@ -1,0 +1,14 @@
+<% # Switch to Perl scripting mode
+	use integer;
+	print "// Perl Arguments in effect for mixed-mode processing\n";
+	my $argCnt = @ARGV;
+	print "// Argument count: ", $argCnt, "\n";
+	my $argIdx;
+	for ($argIdx = 0; $argIdx < $argCnt; $argIdx++) {
+		print "// \$ARGV\[", $argIdx, "\]\:", $ARGV[$argIdx], "\n";
+	}
+%>
+namespace application;
+
+composite _split_mm {
+}

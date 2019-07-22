@@ -1,0 +1,27 @@
+namespace application ;
+
+composite _punctor
+{
+	graph
+		(stream<varType varName> Beacon_1_out0) as Beacon_1 = Beacon()
+		{
+		}
+
+		(stream<varType varName> Custom_2_out0) as Custom_2 = Custom(Beacon_1_out0)
+		{
+		}
+
+		(stream<varType varName> Punctor_3_out0) as Punctor_3 =
+			Punctor(InputStreamName0)
+		{
+			param
+				punctuate : parameterValue ;
+				position : parameterValue ;
+		}
+
+		() as Custom_4 = Custom()
+		{
+		}
+
+}
+

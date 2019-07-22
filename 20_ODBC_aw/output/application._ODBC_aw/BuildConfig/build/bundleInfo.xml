@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<bundleInfoModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/bundleInfoModel" adlFile="application._ODBC_aw.adl" applicationDirectory="20_ODBC_aw" buildDate="" buildId="" bundleVersion="4300" executionMode="distributed" outputDirectory="BuildConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <toolkit compileRoot="/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/spl" name="spl" version="1.4.0">
+    <file name="toolkit.xml"/>
+  </toolkit>
+
+  <toolkit compileRoot="/opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/com.ibm.streams.db" name="com.ibm.streams.db" version="2.2.0">
+    <file name="impl/nl/DatabaseToolkitResource.dat"/>
+    <file name="etc/db2helper/Makefile"/>
+    <file name="etc/db2helper/db2helper.cpp"/>
+    <file name="etc/odbchelper/odbchelper.cpp"/>
+    <file name="etc/odbchelper/Makefile"/>
+    <file name="toolkit.xml"/>
+  </toolkit>
+
+  <toolkit compileRoot="/home/edu22/workspace/20_ODBC_aw" name="20_ODBC_aw" version="1.0.0">
+    <file name="toolkit.xml"/>
+  </toolkit>
+
+</bundleInfoModel>

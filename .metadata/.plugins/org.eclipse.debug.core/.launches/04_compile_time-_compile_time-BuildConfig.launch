@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><launchConfiguration type="com.ibm.streams.studio.launchers.launchConfigurationType.Standalone">
+<stringAttribute key="buildConfig" value="BuildConfig"/>
+<stringAttribute key="compositeName" value="_compile_time"/>
+<stringAttribute key="dataDirectory" value=""/>
+<stringAttribute key="debuggerExe" value=""/>
+<stringAttribute key="executionDirectory" value=""/>
+<stringAttribute key="instance" value="$default"/>
+<stringAttribute key="jobName" value="04_compile_time - _compile_time - BuildConfig="/>
+<stringAttribute key="loggingLevel" value="DEFAULT"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/04_compile_time"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="4"/>
+</listAttribute>
+<listAttribute key="parameterList">
+<listEntry value="_compile_time,param6,loki"/>
+<listEntry value="_compile_time,param5,ironman"/>
+<listEntry value="_compile_time,param4,str1"/>
+</listAttribute>
+<stringAttribute key="projectName" value="04_compile_time"/>
+<booleanAttribute key="prompt" value="true"/>
+<stringAttribute key="sampleName" value=""/>
+<stringAttribute key="samplePath" value=""/>
+<stringAttribute key="tracingLevel" value="DEFAULT"/>
+</launchConfiguration>

@@ -1,0 +1,17 @@
+namespace spiderman ;
+
+composite _metrics
+{
+	graph
+		() as MetricsSink_1 = MetricsSink(Beacon_2_out0)
+		{
+			param
+				metrics : parameterValue ;
+		}
+
+		(stream<varType varName> Beacon_2_out0) as Beacon_2 = Beacon()
+		{
+		}
+
+}
+

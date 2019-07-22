@@ -1,0 +1,38 @@
+namespace application ;
+
+composite Sender
+{
+	type
+		FLY_REC = tuple<rstring fly_num, rstring depDate, rstring origin, rstring time>;
+		FLY_REC_gate = FLY_REC, tuple<rstring gate>;
+		
+	graph
+		stream<FLY_REC> Flight = TCPSource()
+		{
+			param
+				role : server ;
+				port : 21222u;
+		}
+
+		stream<FLY_REC_gate> FlightGate = Custom(Flight) 
+		{
+			logic
+				onTuple Flight:
+				{
+					mutable FLY_REC_gate oTuple = {}; 
+					assignFrom(oTuple, Flight);
+					oTuple.gate = "A05";
+					submit(oTuple, FlightGate);				
+				}
+		}
+
+		() as TCPSink_3 = TCPSink(Custom_2_out0)
+		{
+			param
+				role : parameterValue ;
+		}
+
+}
+
+
+

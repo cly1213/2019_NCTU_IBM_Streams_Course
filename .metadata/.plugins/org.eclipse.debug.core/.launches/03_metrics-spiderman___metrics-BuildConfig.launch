@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><launchConfiguration type="com.ibm.streams.studio.launchers.launchConfigurationType.Distributed">
+<stringAttribute key="buildConfig" value="BuildConfig"/>
+<stringAttribute key="compositeName" value="spiderman::_metrics"/>
+<stringAttribute key="dataDirectory" value=""/>
+<stringAttribute key="fusionScheme" value="default"/>
+<stringAttribute key="instance" value="$default"/>
+<stringAttribute key="jobConfigFile" value=""/>
+<stringAttribute key="jobGroup" value="default"/>
+<stringAttribute key="jobName" value="03_metrics - spiderman::_metrics - BuildConfig="/>
+<stringAttribute key="loggingLevel" value="DEFAULT"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/03_metrics"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="4"/>
+</listAttribute>
+<stringAttribute key="parallelRegionConfig" value="default"/>
+<listAttribute key="parallelRegionList"/>
+<listAttribute key="parameterList"/>
+<stringAttribute key="placementScheme" value="default"/>
+<stringAttribute key="preload" value="$default"/>
+<stringAttribute key="projectName" value="03_metrics"/>
+<booleanAttribute key="prompt" value="true"/>
+<stringAttribute key="sampleName" value=""/>
+<stringAttribute key="samplePath" value=""/>
+<stringAttribute key="threadingModel" value="default"/>
+<stringAttribute key="tracingLevel" value="DEFAULT"/>
+</launchConfiguration>

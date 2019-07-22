@@ -1,0 +1,6 @@
+//defaultInstance.ver1_file\:/opt/ibm/InfoSphere_Streams/4.3.0.3/=nctu4303/edu22
+defaultInstance.ver1=nctu4303/edu22
+domainConnInfoVersion=4
+domainConnInfosJson={"version"\:1,"domainConnInfos"\:[{"connectAtStartup"\:true,"jmxUrls"\:["service\:jmx\:jmxmp\:\\/\\/invPM120\:9975"],"authMethod"\:"USERID_PASSWORD","tlsProtocol"\:"TLSv1.2","domainId"\:"nctu4303","zkConnect"\:""}]}
+eclipse.preferences.version=1
+toolkitLocations=file\:///opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits

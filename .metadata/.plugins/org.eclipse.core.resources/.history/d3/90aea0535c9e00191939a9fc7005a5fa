@@ -1,0 +1,26 @@
+namespace application ;
+//Write data from the source (/data/Day1/Employee.dat) to workspace's file(source_sink).
+
+
+composite _source_sink
+{
+	type
+		employee = tuple<rstring name, rstring title, rstring department, float64 salary>;
+	
+	graph
+		stream<employee> FileSource_1_out0 = FileSource()
+		{
+			param
+				file: "/data/Day1/Employee.dat" ;
+				format: csv;
+				initDelay: 4.0;
+		}
+
+		() as FileSink_2 = FileSink(FileSource_1_out0)
+		{
+			param
+				file : "source_sink" ;
+		}
+
+}
+

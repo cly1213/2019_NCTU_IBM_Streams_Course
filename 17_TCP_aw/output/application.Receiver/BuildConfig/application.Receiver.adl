@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<applicationSet xmlns="http://www.ibm.com/xmlns/prod/streams/application/v4200" name="application::Receiver.appset" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <description>application::Receiver application set</description>
+
+  <splApplication adlPath="BuildConfig/application.Receiver.adl" applicationDirectory="toolkits/17_TCP_aw" applicationScope="Default" avoidRuntimeYield="auto" buildId="" bundle="./application.Receiver.sab" checkpointDirectory="/home/edu22/workspace/17_TCP_aw/data/ckpt" dataDirectory="/home/edu22/workspace/17_TCP_aw/data" name="application::Receiver" outputDirectory="BuildConfig" productVersion="4.3.0.3" standaloneApplicationDirectory="toolkits/17_TCP_aw" version="1.0.0">
+    <libraries/>
+    <hostpools>
+      <hostpool index="0" membershipMode="shared" name="$default"/>
+    </hostpools>
+    <tupleTypes>
+      <tupleType index="0">
+        <attribute name="fly_num" type="rstring"/>
+        <attribute name="depDate" type="rstring"/>
+        <attribute name="origin" type="rstring"/>
+        <attribute name="dest" type="rstring"/>
+        <attribute name="gate" type="rstring"/>
+        <tuple>
+          <tt:attr name="fly_num" type="rstring"/>
+          <tt:attr name="depDate" type="rstring"/>
+          <tt:attr name="origin" type="rstring"/>
+          <tt:attr name="dest" type="rstring"/>
+          <tt:attr name="gate" type="rstring"/>
+        </tuple>
+      </tupleType>
+    </tupleTypes>
+    <primitiveOperDefinitions>
+      <primitiveOperDefinition index="0" kind="spl.adapter::TCPSource" runtimeType="SPL_CPlusPlus" toolkitIndex="1">
+        <customMetricIndicies>
+          <customMetricIndex>0</customMetricIndex>
+          <customMetricIndex>1</customMetricIndex>
+          <customMetricIndex>2</customMetricIndex>
+          <customMetricIndex>3</customMetricIndex>
+        </customMetricIndicies>
+      </primitiveOperDefinition>
+      <primitiveOperDefinition index="1" kind="spl.adapter::TCPSink" runtimeType="SPL_CPlusPlus" toolkitIndex="1">
+        <customMetricIndicies>
+          <customMetricIndex>4</customMetricIndex>
+          <customMetricIndex>5</customMetricIndex>
+          <customMetricIndex>6</customMetricIndex>
+        </customMetricIndicies>
+      </primitiveOperDefinition>
+    </primitiveOperDefinitions>
+    <composites>
+      <sourceUris>
+        <uri index="0" path="file:///home/edu22/workspace/17_TCP_aw/application/Receiver.spl"/>
+      </sourceUris>
+      <compositeOperDefinitions>
+        <compositeOperDefinition endLine="25" index="0" kind="application::Receiver" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="0" startLine="3" toolkitIndex="0">
+          <description>application::Receiver Composite</description>
+        </compositeOperDefinition>
+      </compositeOperDefinitions>
+      <compositeOperInstances>
+        <compositeOperInstance definitionIndex="0" endLine="25" index="2" name="application::Receiver" sourceIndex="0" startLine="3">
+          <primitiveOperInstance definitionIndex="0" endLine="15" index="0" name="Flight_gate" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="10">
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="Flight_gate" streamName="Flight_gate" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="1" operName="TCPSink_2" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="21222"/>
+            </runtimeConstants>
+            <sharedObject class="Flight_gate">
+              <wrapper>none</wrapper>
+              <uri>bin/Flight_gate.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="23" index="1" name="TCPSink_2" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="17">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="Flight_gate" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="0" operName="Flight_gate" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="21223"/>
+            </runtimeConstants>
+            <sharedObject class="TCPSink_2">
+              <wrapper>none</wrapper>
+              <uri>bin/TCPSink_2.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+        </compositeOperInstance>
+      </compositeOperInstances>
+    </composites>
+    <toolkits>
+      <toolkit index="0" name="17_TCP_aw" uri="file:///home/edu22/workspace/17_TCP_aw" version="1.0.0"/>
+      <toolkit index="1" name="spl" uri="file:///opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/spl" version="1.4.0"/>
+    </toolkits>
+    <customMetrics>
+      <customMetric index="0" kind="Counter" name="nInvalidTuples">
+        <description>The number of tuples that failed to read correctly in csv or txt format.</description>
+      </customMetric>
+      <customMetric index="1" kind="Counter" name="nReconnections">
+        <description>The number of times the input connection was re-establised.</description>
+      </customMetric>
+      <customMetric index="2" kind="Gauge" name="nConnections">
+        <description>
+The number of currently active TCP/IP connections. 
+If the `TCPSource` operator is waiting for a connection or a reconnection, the value is `0`.
+If the operator is connected, the value is `1`.
+</description>
+      </customMetric>
+      <customMetric index="3" kind="Counter" name="nConfirmWireFormatFailures">
+        <description>The number of times the input connection wire format handshake failed.</description>
+      </customMetric>
+      <customMetric index="4" kind="Counter" name="nReconnections">
+        <description>The number times the TCP connection was re-established.</description>
+      </customMetric>
+      <customMetric index="5" kind="Gauge" name="nConnections">
+        <description>
+The number of current TCP/IP connections. 
+If the `TCPSink` operator is waiting for a connection or a reconnection, the value is `0`.
+If the operator is currently connected,  the value is `1`. 
+</description>
+      </customMetric>
+      <customMetric index="6" kind="Counter" name="nConfirmWireFormatFailures">
+        <description>The number of times the output connection wire format handshake failed.</description>
+      </customMetric>
+    </customMetrics>
+  </splApplication>
+
+</applicationSet>

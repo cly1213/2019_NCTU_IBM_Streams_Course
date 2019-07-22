@@ -1,0 +1,15 @@
+namespace application ;
+
+composite _hello_world
+{
+	graph
+		(stream<varType varName> Beacon_1_out0) as Beacon_1 = Beacon()
+		{
+		}
+
+		() as Custom_2 = Custom(Beacon_1_out0)
+		{
+		}
+
+}
+

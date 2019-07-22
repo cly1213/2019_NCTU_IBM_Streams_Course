@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<applicationSet xmlns="http://www.ibm.com/xmlns/prod/streams/application/v4200" name="application::_split_mm.appset" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <description>application::_split_mm application set</description>
+
+  <splApplication adlPath="BuildConfig/application._split_mm.adl" applicationDirectory="toolkits/05_split_mm" applicationScope="Default" avoidRuntimeYield="auto" buildId="" bundle="./application._split_mm.sab" checkpointDirectory="/home/edu22/workspace/05_split_mm/data/ckpt" dataDirectory="/home/edu22/workspace/05_split_mm/data" name="application::_split_mm" outputDirectory="BuildConfig" productVersion="4.3.0.3" standaloneApplicationDirectory="toolkits/05_split_mm" version="1.0.0">
+    <libraries/>
+    <hostpools/>
+    <tupleTypes/>
+    <primitiveOperDefinitions/>
+    <composites>
+      <sourceUris>
+        <uri index="0" path="file:///home/edu22/workspace/05_split_mm/application/_split_mm.spl"/>
+      </sourceUris>
+      <compositeOperDefinitions>
+        <compositeOperDefinition endLine="7" index="0" kind="application::_split_mm" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="0" startLine="6" toolkitIndex="0">
+          <description>application::_split_mm Composite</description>
+        </compositeOperDefinition>
+      </compositeOperDefinitions>
+      <compositeOperInstances>
+        <compositeOperInstance definitionIndex="0" endLine="7" index="0" name="application::_split_mm" sourceIndex="0" startLine="6"/>
+      </compositeOperInstances>
+    </composites>
+    <toolkits>
+      <toolkit index="0" name="05_split_mm" uri="file:///home/edu22/workspace/05_split_mm" version="1.0.0"/>
+    </toolkits>
+  </splApplication>
+
+</applicationSet>

@@ -1,0 +1,20 @@
+
+
+composite _compile_time
+{
+	graph
+		(stream<varType varName> Beacon_1_out0) as Beacon_1 = Beacon()
+		{
+		}
+
+		(stream<varType varName> Functor_2_out0) as Functor_2 =
+			Functor(Beacon_1_out0)
+		{
+		}
+
+		() as Custom_3 = Custom(Functor_2_out0)
+		{
+		}
+
+}
+

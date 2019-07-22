@@ -1,0 +1,26 @@
+
+
+composite _compile_time
+{
+	type 
+		mytuple1 = tuple<int32 i, int32 j>;
+		mytuple2 = tuple<rstring str1, rstring str2, rstring str3, rstring str4, rstring str5, rstring str6, rstring str7>;
+		mytuple3 = tuple<mytuple1, mytuple2>;
+		
+	
+	graph
+		(stream<varType varName> Beacon_1_out0) as Beacon_1 = Beacon()
+		{
+		}
+
+		(stream<varType varName> Functor_2_out0) as Functor_2 =
+			Functor(Beacon_1_out0)
+		{
+		}
+
+		() as Custom_3 = Custom(Functor_2_out0)
+		{
+		}
+
+}
+

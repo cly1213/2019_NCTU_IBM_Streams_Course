@@ -1,0 +1,4 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/B_Result.so -fPIC -shared $(SOB_Result) -lstreams-stdtk-runtime $(SPL_LDFLAGS)\
+	    build/operator/B_Result.o \
+	    build/type/BeJwrMS02Sc4sqSw2T84vzSspqiw1NCjILyjNSSzJzM8rNcl1TE8ttSxwTSlNTixJTQEAtpcSBJ.o \
+	    build/type/BeJwrMSs1NM5NrAjILyjNSSzJzM8rNQdyfR3TU4GMzDwww9AIyCpwTSlNTixJTSk2Sc4sqSw2T84vzSspqgQAQKsZBU.o 

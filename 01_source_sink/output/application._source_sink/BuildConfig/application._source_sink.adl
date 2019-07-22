@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<applicationSet xmlns="http://www.ibm.com/xmlns/prod/streams/application/v4200" name="application::_source_sink.appset" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <description>application::_source_sink application set</description>
+
+  <splApplication adlPath="BuildConfig/application._source_sink.adl" applicationDirectory="toolkits/01_source_sink" applicationScope="Default" avoidRuntimeYield="auto" buildId="" bundle="./application._source_sink.sab" checkpointDirectory="/home/edu22/workspace/01_source_sink/data/ckpt" dataDirectory="/home/edu22/workspace/01_source_sink/data" name="application::_source_sink" outputDirectory="BuildConfig" productVersion="4.3.0.3" standaloneApplicationDirectory="toolkits/01_source_sink" version="1.0.0">
+    <libraries/>
+    <hostpools>
+      <hostpool index="0" membershipMode="shared" name="$default"/>
+    </hostpools>
+    <tupleTypes>
+      <tupleType index="0">
+        <attribute name="name" type="rstring"/>
+        <attribute name="title" type="rstring"/>
+        <attribute name="department" type="rstring"/>
+        <attribute name="salary" type="float64"/>
+        <tuple>
+          <tt:attr name="name" type="rstring"/>
+          <tt:attr name="title" type="rstring"/>
+          <tt:attr name="department" type="rstring"/>
+          <tt:attr name="salary" type="float64"/>
+        </tuple>
+      </tupleType>
+    </tupleTypes>
+    <primitiveOperDefinitions>
+      <primitiveOperDefinition index="0" kind="spl.adapter::FileSource" runtimeType="SPL_CPlusPlus" toolkitIndex="1">
+        <customMetricIndicies>
+          <customMetricIndex>0</customMetricIndex>
+          <customMetricIndex>1</customMetricIndex>
+        </customMetricIndicies>
+      </primitiveOperDefinition>
+      <primitiveOperDefinition index="1" kind="spl.adapter::FileSink" runtimeType="SPL_CPlusPlus" toolkitIndex="1">
+        <customMetricIndicies>
+          <customMetricIndex>2</customMetricIndex>
+          <customMetricIndex>3</customMetricIndex>
+        </customMetricIndicies>
+      </primitiveOperDefinition>
+    </primitiveOperDefinitions>
+    <composites>
+      <sourceUris>
+        <uri index="0" path="file:///home/edu22/workspace/01_source_sink/application/_source_sink.spl"/>
+      </sourceUris>
+      <compositeOperDefinitions>
+        <compositeOperDefinition endLine="26" index="0" kind="application::_source_sink" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="0" startLine="6" toolkitIndex="0">
+          <description>application::_source_sink Composite</description>
+        </compositeOperDefinition>
+      </compositeOperDefinitions>
+      <compositeOperInstances>
+        <compositeOperInstance definitionIndex="0" endLine="26" index="2" name="application::_source_sink" sourceIndex="0" startLine="6">
+          <primitiveOperInstance definitionIndex="0" endLine="18" index="0" name="FileSource_1_out0" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="12">
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="FileSource_1_out0" streamName="FileSource_1_out0" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="1" operName="FileSink_2" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;/data/Day1/Employee.dat&quot;"/>
+              <runtimeConstant name="lit$1" value="4"/>
+            </runtimeConstants>
+            <sharedObject class="FileSource_1_out0">
+              <wrapper>none</wrapper>
+              <uri>bin/FileSource_1_out0.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="24" index="1" name="FileSink_2" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="20">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="FileSource_1_out0" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="0" operName="FileSource_1_out0" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;source_sink&quot;"/>
+            </runtimeConstants>
+            <sharedObject class="FileSink_2">
+              <wrapper>none</wrapper>
+              <uri>bin/FileSink_2.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+        </compositeOperInstance>
+      </compositeOperInstances>
+    </composites>
+    <toolkits>
+      <toolkit index="0" name="01_source_sink" uri="file:///home/edu22/workspace/01_source_sink" version="1.0.0"/>
+      <toolkit index="1" name="spl" uri="file:///opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/spl" version="1.4.0"/>
+    </toolkits>
+    <customMetrics>
+      <customMetric index="0" kind="Counter" name="nFilesOpened">
+        <description>The number of files opened by the `FileSource` operator.</description>
+      </customMetric>
+      <customMetric index="1" kind="Counter" name="nInvalidTuples">
+        <description>The number of tuples that failed to read correctly in csv or txt format.</description>
+      </customMetric>
+      <customMetric index="2" kind="Counter" name="nFilesOpened">
+        <description>The number of files opened by the `FileSink` operator.</description>
+      </customMetric>
+      <customMetric index="3" kind="Counter" name="nTupleWriteErrors">
+        <description>
+ The number of tuple writes that had an error on the file stream after the write completed. 
+Due to buffering, write failures might not be detected immediately. 
+You can use `param flush : 1u;` to ensure quicker detection, but with a (possibly large) performance penalty. 
+After a failure is detected, all future writes fail unless the error condition is cleared or the file is closed. 
+
+For more information, see the **writeFailureAction** parameter.
+</description>
+      </customMetric>
+    </customMetrics>
+  </splApplication>
+
+</applicationSet>

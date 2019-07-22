@@ -1,0 +1,3 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/NAME.so -fPIC -shared $(SONAME) $(SPL_LDFLAGS)\
+	    build/operator/NAME.o \
+	    build/type/BeJwrMSk2yUvMTS01ykwpNi3JLMlJTTMrTsxJLKoEAIzYApX.o 

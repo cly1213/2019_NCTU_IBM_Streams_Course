@@ -1,0 +1,95 @@
+namespace application;
+
+composite _config_aw {
+type
+		ticker = tuple<rstring symbol, float32 price, uint32 quantity, 	rstring tradetype> ;
+		
+		//addkey = tuple<rstring symbol, rstring tradetype> ;
+		//removekey = addkey ;
+		
+	graph
+		stream<ticker> C_ticker = Beacon()
+		{
+			param
+				initDelay : 5.0f ;
+		}
+
+		stream<ticker> Ticker = Custom(C_ticker)
+		{
+			logic
+				state :
+				{
+					mutable uint32 cnt = 0 ;
+					list<rstring> symbols = [ "GM", "IBM", "F", "EMC", "GOOG", "AMZN", "GE", 	"APPLE", "FB", "MS" ] ;
+					mutable list<float32> prices = [ 170.34f, 223.12f, 156.65f, 54.67f, 	68.34f, 205.13f, 54.78f, 58.34f, 73.12f, 186.79f ] ;
+					mutable list<uint32> quantities = [ 156u, 215u, 100u, 142u, 654u, 560u, 	679u, 420u, 460u, 325u ] ;
+					list<rstring> tradetypes = [ "buy", "sell" ] ;
+					mutable uint32 tradetypeindicator = 0 ;
+					mutable tuple<ticker> result = { } ;
+				}
+
+				onTuple C_ticker :
+				{
+					cnt =((uint32)(random() * 100.0)) % 10u ;
+					if(tradetypeindicator == 0u)
+					{
+						tradetypeindicator = 1u ;
+					}
+
+					else
+					{
+						tradetypeindicator = 0u ;
+					}
+
+					result.symbol = symbols [ cnt ] ;
+					result.quantity = quantities [ cnt ] ;
+					result.price = prices [ cnt ] ;
+					result.tradetype = tradetypes [ tradetypeindicator ] ;
+					submit(result, Ticker) ;
+				}
+
+		}
+
+		(stream<ticker> GM_Ticker; stream<ticker> IBM_Ticker; stream<ticker> F_Ticker; stream<ticker> EMC_Ticker; 
+		stream<ticker> GOOG_Ticker; stream<ticker> AMZN_Ticker; stream<ticker> GE_Ticker; stream<ticker> APPLE_Ticker; 
+		stream<ticker> FB_Ticker; stream<ticker> MS_Ticker  ) = Split(Ticker)
+		
+		{
+			param
+				file: "splitter.txt"; //mapping file
+				key: symbol;
+		}
+
+		() as Ticker_1 = Custom(GM_Ticker)
+		{
+		}
+		() as Ticker_2 = Custom(IBM_Ticker)
+		{
+		}
+		() as Ticker_3 = Custom(F_Ticker)
+		{
+		}
+		() as Ticker_4 = Custom(EMC_Ticker)
+		{
+		}
+		() as Ticker_5 = Custom(GOOG_Ticker)
+		{
+		}
+		() as Ticker_6 = Custom(AMZN_Ticker)
+		{
+		}
+		() as Ticker_7 = Custom(GE_Ticker)
+		{
+		}
+		() as Ticker_8 = Custom(APPLE_Ticker)
+		{
+		}
+		() as Ticker_9 = Custom(FB_Ticker)
+		{
+		}
+		() as Ticker_10 = Custom(MS_Ticker)
+		{
+		}
+
+
+}

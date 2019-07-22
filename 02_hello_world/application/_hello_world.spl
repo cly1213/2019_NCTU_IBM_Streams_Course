@@ -1,0 +1,25 @@
+namespace application ;
+
+//Beacon 產生5次hello world的訊息，Custom接收並顯示在console上
+
+composite _hello_world
+{
+	graph
+		stream<rstring message> Hi = Beacon()
+		{
+			param
+				iterations: 5u;
+				output Hi:
+					message = "Hello World!";
+				
+		}
+
+		() as Custom_2 = Custom(Hi)
+		{
+			logic 
+				onTuple Hi:
+					printStringLn(message);
+		}
+
+}
+

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<applicationSet xmlns="http://www.ibm.com/xmlns/prod/streams/application/v4200" name="application::_punctor.appset" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <description>application::_punctor application set</description>
+
+  <splApplication adlPath="BuildConfig/application._punctor.adl" applicationDirectory="toolkits/06_punctor" applicationScope="Default" avoidRuntimeYield="auto" buildId="" bundle="./application._punctor.sab" checkpointDirectory="/home/edu22/workspace/06_punctor/data/ckpt" dataDirectory="/home/edu22/workspace/06_punctor/data" name="application::_punctor" outputDirectory="BuildConfig" productVersion="4.3.0.3" standaloneApplicationDirectory="toolkits/06_punctor" version="1.0.0">
+    <libraries/>
+    <hostpools>
+      <hostpool index="0" membershipMode="shared" name="$default"/>
+    </hostpools>
+    <tupleTypes>
+      <tupleType index="0">
+        <attribute name="name" type="rstring"/>
+        <attribute name="id" type="int32"/>
+        <attribute name="rank" type="int32"/>
+        <attribute name="major" type="rstring"/>
+        <tuple>
+          <tt:attr name="name" type="rstring"/>
+          <tt:attr name="id" type="int32"/>
+          <tt:attr name="rank" type="int32"/>
+          <tt:attr name="major" type="rstring"/>
+        </tuple>
+      </tupleType>
+    </tupleTypes>
+    <primitiveOperDefinitions>
+      <primitiveOperDefinition index="0" kind="spl.utility::Beacon" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+      <primitiveOperDefinition index="1" kind="spl.utility::Custom" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+      <primitiveOperDefinition index="2" kind="spl.relational::Punctor" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+    </primitiveOperDefinitions>
+    <composites>
+      <sourceUris>
+        <uri index="0" path="file:///home/edu22/workspace/06_punctor/application/_punctor.spl"/>
+      </sourceUris>
+      <compositeOperDefinitions>
+        <compositeOperDefinition endLine="55" index="0" kind="application::_punctor" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="0" startLine="3" toolkitIndex="0">
+          <description>application::_punctor Composite</description>
+        </compositeOperDefinition>
+      </compositeOperDefinitions>
+      <compositeOperInstances>
+        <compositeOperInstance definitionIndex="0" endLine="55" index="4" name="application::_punctor" sourceIndex="0" startLine="3">
+          <primitiveOperInstance definitionIndex="0" endLine="13" index="0" name="Beat" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="9">
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="Beat" streamName="Beat" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="1" operName="SRO" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="100"/>
+            </runtimeConstants>
+            <sharedObject class="Beat">
+              <wrapper>none</wrapper>
+              <uri>bin/Beat.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="33" index="1" name="SRO" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="15">
+            <splAnnotation internal="true" tag="logicClause">
+              <value key="hasState" type="boolean">true</value>
+              <value key="hasOnProcess" type="boolean">false</value>
+              <value key="hasOnTuple" type="boolean">true</value>
+              <value key="hasOnPunct" type="boolean">false</value>
+            </splAnnotation>
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="Beat" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="0" operName="Beat" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="SRO" streamName="SRO" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="2" operName="PSR" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;Name&quot;"/>
+              <runtimeConstant name="lit$1" value="1000"/>
+              <runtimeConstant name="lit$2" value="0"/>
+              <runtimeConstant name="lit$3" value="5"/>
+              <runtimeConstant name="lit$4" value="5"/>
+              <runtimeConstant name="lit$5" value="5"/>
+              <runtimeConstant name="lit$6" value="&quot;Major&quot;"/>
+              <runtimeConstant name="lit$7" value="0"/>
+              <runtimeConstant name="lit$8" value="0"/>
+            </runtimeConstants>
+            <sharedObject class="SRO">
+              <wrapper>none</wrapper>
+              <uri>bin/SRO.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="2" endLine="40" index="2" name="PSR" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="35">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="SRO" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="1" operName="SRO" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="PSR" streamName="PSR" transport="TCP" tupleTypeIndex="0" viewable="true">
+                <connections>
+                  <connection operIndex="3" operName="Custom_4" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="1100"/>
+              <runtimeConstant name="lit$1" value="1076"/>
+              <runtimeConstant name="lit$2" value="1051"/>
+              <runtimeConstant name="lit$3" value="1026"/>
+            </runtimeConstants>
+            <sharedObject class="PSR">
+              <wrapper>none</wrapper>
+              <uri>bin/PSR.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="53" index="3" name="Custom_4" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="42">
+            <splAnnotation internal="true" tag="logicClause">
+              <value key="hasState" type="boolean">true</value>
+              <value key="hasOnProcess" type="boolean">false</value>
+              <value key="hasOnTuple" type="boolean">true</value>
+              <value key="hasOnPunct" type="boolean">true</value>
+            </splAnnotation>
+            <inputPorts>
+              <port encoding="LE" index="0" isControl="true" isMutable="false" name="PSR" transport="TCP" tupleTypeIndex="0">
+                <connections>
+                  <connection operIndex="2" operName="PSR" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="false"/>
+              <runtimeConstant name="lit$1" value="&quot;Punctuation arrived before&quot;"/>
+              <runtimeConstant name="lit$2" value="0"/>
+              <runtimeConstant name="lit$3" value="true"/>
+              <runtimeConstant name="lit$4" value="false"/>
+              <runtimeConstant name="lit$5" value="0"/>
+            </runtimeConstants>
+            <sharedObject class="Custom_4">
+              <wrapper>none</wrapper>
+              <uri>bin/Custom_4.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+        </compositeOperInstance>
+      </compositeOperInstances>
+    </composites>
+    <toolkits>
+      <toolkit index="0" name="06_punctor" uri="file:///home/edu22/workspace/06_punctor" version="1.0.0"/>
+      <toolkit index="1" name="spl" uri="file:///opt/ibm/InfoSphere_Streams/4.3.0.3/toolkits/spl" version="1.4.0"/>
+    </toolkits>
+  </splApplication>
+
+</applicationSet>

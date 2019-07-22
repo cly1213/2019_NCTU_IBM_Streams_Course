@@ -1,0 +1,129 @@
+namespace application;
+
+composite _join_aw
+{
+	type
+		Emp = tuple<rstring name, uint32 dept>;
+		Dep = tuple< uint32 dept_id, rstring dep_name>;
+		order = tuple< uint32 id, rstring customer, rstring date, rstring product, uint32 quantity>;
+		inventory = tuple< uint32 product_id, rstring productName, uint32 quantity, float32 price>;
+		
+	graph
+		stream<Emp> Employee = FileSource()
+		{
+			param
+				file: "/data/Day2/07_EmployeeRecords.txt";
+				format: csv;
+				hasDelayField: true;
+				initDelay: 2.0;
+		}
+
+		stream<Dep> Department = FileSource()
+		{
+			param
+				file: "/data/Day2/07_DepartmentRecords.txt";
+				format: csv;
+				hasDelayField: true;
+				initDelay: 2.0;
+		}
+
+		stream<order> Order = FileSource()
+		{
+			param
+				file: "/data/Day2/07_orders.txt";
+				format: csv;
+				hasDelayField: true;
+				initDelay: 2.0;
+		}
+
+		stream<inventory> Inventory = FileSource()
+		{
+			param
+				file: "/data/Day2/07_inventory.txt";
+				format: csv;
+				hasDelayField: true;
+				initDelay: 2.0;
+		}
+
+		stream<Emp, Dep> InnerJoin1 = Join(Employee; Department)
+		{
+			window
+				Employee : sliding, count(20) ;
+				Department : sliding, count(20) ;
+			param
+				match:	Employee.dept == Department.dept_id;
+				algorithm:	inner;
+		}
+		
+		() as innerjoin = Custom(InnerJoin1)
+		{
+			logic
+				state: mutable int32  cnt = 0;
+				onTuple InnerJoin1:  {
+					if (cnt++ == 0) {
+						printStringLn("\n a) Tuples joined during Inner Join with sliding count(20)");
+					}
+					printStringLn((rstring) cnt + "  a) " + (rstring) InnerJoin1);
+				}
+		}
+
+		stream<order, inventory, tuple<uint32 quantity2> > InnerJoin2 = Join(Order; Inventory)
+		{
+			window
+				Order : sliding,		delta(id, 1u) ;
+				Inventory : sliding, time(7) ;
+				
+			param
+				algorithm:		inner;
+				match:		product_id == 125u;
+				equalityLHS:		Order.product;
+				equalityRHS:	Inventory.productName;
+			output
+				InnerJoin2:
+					quantity = 	Order.quantity,
+					quantity2 =	Inventory.quantity;	
+		}
+		
+		() as FileSink_8 = FileSink(InnerJoin2)
+		{
+			param
+				file : "InnerJoin2" ;
+		}
+		
+		( stream<order> LeftOuter1; stream<order> LeftOuter2 ) = Join(Order; Inventory)
+		{
+			window
+				Order : 	sliding, time(6) ;
+				Inventory : sliding, time(6) ;
+				
+			param
+				algorithm:		leftOuter;
+				match:		product == productName;		
+		}
+		
+		() as leftouter1 = Custom(LeftOuter1)
+		{
+			logic
+				state: mutable int32  cnt = 0;
+				onTuple LeftOuter1:  {
+					if (cnt++ == 0) {
+						printStringLn("\n c) Tuples matched during LeftOuter Join with sliding time(6)");
+					}
+					printStringLn((rstring) cnt + "  c) " + (rstring) LeftOuter1);
+				}
+		}
+		
+		() as leftouter2 = Custom(LeftOuter2)
+		{
+			logic
+				state: mutable int32  cnt = 0;
+				onTuple LeftOuter2:  {
+					if (cnt++ == 0) {
+						printStringLn("\n d) Tuples not matched during LeftOuter Join with sliding time(6)");
+					}
+					printStringLn((rstring) cnt + "  d) " + (rstring) LeftOuter2);
+				}
+		}
+
+}
+

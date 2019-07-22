@@ -1,0 +1,4 @@
+namespace spiderman;
+
+composite _metrics {
+}

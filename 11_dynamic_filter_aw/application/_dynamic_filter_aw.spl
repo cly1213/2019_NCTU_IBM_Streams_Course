@@ -1,0 +1,81 @@
+namespace application;
+
+composite _dynamic_filter_aw {
+		type
+			ticker = tuple<rstring symbol, float32 price, uint32 quantity, rstring tradetype>;
+			
+			addkey = tuple<rstring symbol, rstring tradetype>;
+			
+			removekey = addkey;
+		
+		graph
+			stream<ticker> C_ticker = Beacon()
+			{
+				param
+					initDelay: 5.0f;
+			}
+			
+			stream<ticker> Ticker = Custom(C_ticker)
+			{
+				logic
+					state: {
+						mutable uint32 cnt = 0;
+						list<rstring> symbols = ["GM", "IBM", "F", "EMC", "GOOG", "AMZN", "GE", "APPLE", "FB", "MS"];
+						mutable list<float32> prices = [170.34f, 223.12f, 156.65f, 54.67f, 68.34f, 205.13f, 54.78f, 58.34f, 73.12f, 186.79f];
+						mutable list<uint32> quantities = [156u, 215u, 100u, 142u, 654u, 560u, 679u, 420u, 460u, 325u];
+						list<rstring> tradetypes = ["buy", "sell"];
+						mutable uint32 tradetypeindicator = 0;
+						mutable tuple<ticker> result = {};
+						}
+						
+					onTuple C_ticker: {
+						cnt = ( (uint32) (random() * 100.0)) % 10u;
+						if (tradetypeindicator == 0u) { 
+							tradetypeindicator = 1u;
+						} else {
+							tradetypeindicator = 0u;
+						}
+						result.symbol = symbols[cnt];
+						result.quantity = quantities[cnt];
+						result.price = prices[cnt];
+						result.tradetype = tradetypes[tradetypeindicator];
+						submit(result, Ticker);				
+				
+						}
+			}
+			
+			stream<addkey> AddKey = FileSource()
+			{
+				param
+					file: "addkey";
+					format: csv;
+					hotFile: true;
+			}
+
+			stream<removekey> RemoveKey = FileSource()
+			{
+				param
+					file: "removekey";
+					format: csv;
+					hotFile: true;
+			}
+			
+			(stream<ticker> M_Ticker; stream<ticker> UM_Ticker) = DynamicFilter(Ticker; AddKey; RemoveKey)
+			{
+				logic
+					onTuple AddKey: printStringLn ("AddKey value: " + (rstring) AddKey ) ;
+					onTuple RemoveKey : printStringLn ("Remove Key value " + (rstring) RemoveKey );
+				param
+					key : Ticker.symbol, Ticker.tradetype ;
+					addKey : AddKey.symbol, AddKey.tradetype ;
+					removeKey : RemoveKey.symbol, RemoveKey.tradetype ;
+			}
+			
+			() as OnConsole = Custom(M_Ticker)
+			{
+				logic
+					onTuple M_Ticker: printStringLn((rstring) M_Ticker);
+			}
+			
+	
+}

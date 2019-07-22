@@ -1,0 +1,4 @@
+namespace application;
+
+composite _inetsource_aw {
+}
