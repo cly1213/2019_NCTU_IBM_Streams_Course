@@ -1,2 +1,2 @@
-# 2019_NCTU_IBM_Streams_Course
+# 2019_Summer_NCTU_IBM_Streams_Course
 # https://ibmstreams.github.io/tutorials/
